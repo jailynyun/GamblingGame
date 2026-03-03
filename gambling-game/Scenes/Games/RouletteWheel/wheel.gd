@@ -42,8 +42,8 @@ func spin_wheel(number: int):
 	print("dec: ",deceleration)
 	
 	spun = true
-	
-	
+
+
 
 
 func _on_play_again_pressed() -> void:

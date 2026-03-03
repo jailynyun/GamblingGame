@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var wheel = $Wheel
 
+var money = 1000
+
 var numbers = [
 	["green", 00], ["red", 1], ["black", 13], ["red", 36], ["black", 24],
 	["red", 3], ["black", 15], ["red", 34], ["black", 22], ["red", 5],
@@ -13,8 +15,11 @@ var numbers = [
 	["red", 25], ["black", 10], ["red", 27]
 ]
 
+var bets = [] # Size of 38, one for each slot
+
+
 func _ready() -> void:
-	pass
+	bets.resize(38)
 
 func random_number():
 	# random number between 0 and 37
