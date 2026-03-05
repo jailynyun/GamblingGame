@@ -1,8 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cvpqp3jyr8v16"]
 
 [ext_resource type="Script" uid="uid://bbbmrdbns2w7e" path="res://Assets/Characters/player.gd" id="1_dbjc2"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_ngp1l"]
+[ext_resource type="Texture2D" uid="uid://xfwqffjk68p0" path="res://Assets/Art/Characters/Main_Character.png" id="2_b5nv5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dbjc2"]
 
@@ -10,12 +9,14 @@
 script = ExtResource("1_dbjc2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(5.9604645e-07, 4.7683716e-07)
-scale = Vector2(22.000002, 32)
-texture = SubResource("CanvasTexture_ngp1l")
+unique_name_in_owner = true
+position = Vector2(-28, 0)
+texture = ExtResource("2_b5nv5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(8, 8)
 shape = SubResource("CapsuleShape2D_dbjc2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+process_callback = 0
 position_smoothing_enabled = true

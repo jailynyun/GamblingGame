@@ -13,3 +13,5 @@ position = Vector2(484, 260)
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_wv7tl")
+
+[node name="Timer" type="Timer" parent="."]
