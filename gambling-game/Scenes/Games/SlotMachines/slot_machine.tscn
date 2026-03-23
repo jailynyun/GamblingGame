@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://dp5fcaw2uucbv"]
+
+[ext_resource type="Shader" uid="uid://dbcydde53akcf" path="res://Scenes/Games/SlotMachines/spin_tex.gdshader" id="1_aqq8y"]
+[ext_resource type="Script" uid="uid://qejaix527yji" path="res://Scenes/Games/SlotMachines/slot_machine.gd" id="1_wy8p5"]
+[ext_resource type="Texture2D" uid="uid://c5fhmwgnmwxo0" path="res://Assets/Art/slot_strip.png" id="2_sk7lg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sk7lg"]
+shader = ExtResource("1_aqq8y")
+shader_parameter/tex = ExtResource("2_sk7lg")
+shader_parameter/n_rows = 5.0
+shader_parameter/y_offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_stl56"]
+shader = ExtResource("1_aqq8y")
+shader_parameter/tex = ExtResource("2_sk7lg")
+shader_parameter/n_rows = 5.0
+shader_parameter/y_offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_raimn"]
+shader = ExtResource("1_aqq8y")
+shader_parameter/tex = ExtResource("2_sk7lg")
+shader_parameter/n_rows = 5.0
+shader_parameter/y_offset = 0.0
+
+[node name="SlotMachine" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wy8p5")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 315.0
+offset_bottom = 174.0
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer"]
+material = SubResource("ShaderMaterial_sk7lg")
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect2" type="ColorRect" parent="HBoxContainer"]
+material = SubResource("ShaderMaterial_stl56")
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect3" type="ColorRect" parent="HBoxContainer"]
+material = SubResource("ShaderMaterial_raimn")
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpinButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 193.0
+offset_right = 249.0
+offset_bottom = 302.0
+text = "spin"
+
+[connection signal="pressed" from="SpinButton" to="." method="spin"]
