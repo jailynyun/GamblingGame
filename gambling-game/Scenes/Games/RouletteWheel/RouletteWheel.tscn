@@ -53,5 +53,7 @@ offset_top = 347.0
 offset_right = 510.0
 offset_bottom = 347.0
 
-[connection signal="pressed" from="Buttons/Spin" to="." method="_on_spin_pressed"]
+[connection signal="pressed" from="Buttons/Spin" to="Table" method="_on_spin_pressed"]
+[connection signal="pressed" from="Buttons/PlayAgain" to="." method="_on_play_again_pressed"]
 [connection signal="pressed" from="Buttons/PlayAgain" to="Wheel" method="_on_play_again_pressed"]
+[connection signal="finalized_bets" from="Table" to="." method="_on_finalized_bets"]
