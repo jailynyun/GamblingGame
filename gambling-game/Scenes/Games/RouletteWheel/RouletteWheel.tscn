@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7tvsmptjkky4"]
+[gd_scene load_steps=5 format=3 uid="uid://c7tvsmptjkky4"]
 
 [ext_resource type="Script" uid="uid://d0oxfppl76q0s" path="res://Scenes/Games/RouletteWheel/roulette_wheel.gd" id="1_6gn48"]
 [ext_resource type="Script" uid="uid://fk5vi5o8cd8u" path="res://Scenes/Games/RouletteWheel/wheel.gd" id="2_qgq2f"]
 [ext_resource type="Texture2D" uid="uid://k8p4a7heacft" path="res://Assets/Art/RouletteWheel.svg" id="2_yk3t5"]
-[ext_resource type="Script" uid="uid://eah41k110rqu" path="res://Scenes/Games/RouletteWheel/buttons.gd" id="4_yk3t5"]
 [ext_resource type="PackedScene" uid="uid://bd3706ge61ipn" path="res://Scenes/Games/RouletteWheel/Table/Table.tscn" id="5_168ti"]
 
 [node name="RouletteWheel" type="Node2D"]
@@ -29,7 +28,6 @@ offset_left = 431.0
 offset_top = 113.0
 offset_right = 471.0
 offset_bottom = 153.0
-script = ExtResource("4_yk3t5")
 
 [node name="Spin" type="Button" parent="Buttons"]
 layout_mode = 0
