@@ -10,7 +10,7 @@ var regions := {
 }
 
 signal bet_added(num_clicked)
-#signal bed_removed()
+#signal bet_removed()
 
 func _ready():
 	fill_regions_single()

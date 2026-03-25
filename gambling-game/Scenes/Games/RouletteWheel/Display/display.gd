@@ -1,14 +1,38 @@
 extends Control
 
 @onready var money_label : Label = $Money
-var money = 1000
+@onready var bet_label : Label = $Bet
+@onready var result_label : Label = $Result
 
-func _process(_delta: float) -> void:
-	money_label.text = "Money: " + str(money)
+var money = 0
+var bet = 0
+
+func _ready() -> void:
+	_update_labels()
+
+func _update_labels() -> void:
+	money_label.text = "Money: %d" % money
+	bet_label.text = "Bet: %d" % bet
+	result_label.text = ""
 
 func _on_table_bet_added() -> void:
 	money -= 100
+	bet += 100
+	_update_labels()
 
 
 func _on_get_money(m: Variant) -> void:
 	money = m
+	_update_labels()
+
+
+func _on_play_again_pressed() -> void:
+	bet = 0
+	_update_labels()
+
+
+func _on_get_result(won: Variant, win_amt: Variant) -> void:
+	if won:
+		result_label.text = "WIN!!! +%d" % win_amt
+	else:
+		result_label.text = "losee :(("

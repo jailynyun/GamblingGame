@@ -7,6 +7,9 @@ var bet_size = 100
 var spun = false
 
 signal get_money(m)
+signal get_result(won, win_amt)
+var won = false
+var win_amt = 0
 
 var numbers = [
 	# green 00 = 1000, green 0 = 100
@@ -39,7 +42,7 @@ var bet_rules = {
 }
 
 func _ready() -> void:
-	pass
+	get_money.emit(money)
 
 func random_number():
 	if spun:
@@ -56,22 +59,24 @@ func check_bets(jackpot):
 	# get the number on the wheel from the index
 	var win_num = numbers[jackpot][1]
 	var win_color = numbers[jackpot][0]
-	var won = false
 	for bet in bets:
 		print(bet)
 		if bet == win_num:
 			print("WIN! 35:1")
 			money += 36*bet_size
+			win_amt += 36*bet_size
 			won = true
 		if bet>=61 && bet<=66:
 			if bet_rules[bet].call(win_num, win_color):
 				print("WIN! 1:1")
 				money += 2*bet_size
+				win_amt += 2*bet_size
 				won = true
 		if bet>=121 && bet<=126:
 			if bet_rules[bet].call(win_num):
 				print("WIN! 2:1")
 				money += 3*bet_size
+				win_amt += 3*bet_size
 				won = true
 	
 	if !won:
@@ -104,3 +109,4 @@ func _on_play_again_pressed() -> void:
 
 func _on_wheel_stopped() -> void:
 	get_money.emit(money)
+	get_result.emit(won, win_amt)
