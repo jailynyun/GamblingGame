@@ -6,6 +6,7 @@ var money = 1000
 var bet_size = 100
 var spun = false
 
+signal get_money(m)
 
 var numbers = [
 	# green 00 = 1000, green 0 = 100
@@ -99,3 +100,7 @@ func _on_finalized_bets(b: Array) -> void:
 func _on_play_again_pressed() -> void:
 	bets.clear()
 	spun = false
+
+
+func _on_wheel_stopped() -> void:
+	get_money.emit(money)
