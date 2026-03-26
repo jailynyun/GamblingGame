@@ -17,8 +17,6 @@ func _update_labels() -> void:
 	result_label.text = ""
 
 func _on_table_bet_added() -> void:
-	if spun:
-		return
 	money -= 100
 	bet += 100
 	_update_labels()
