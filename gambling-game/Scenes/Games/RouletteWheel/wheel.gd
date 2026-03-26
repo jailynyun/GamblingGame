@@ -11,6 +11,7 @@ var target_angle := 0.0
 var spun := false
 
 signal wheel_stopped
+signal get_spun(s)
 
 func _ready() -> void:
 	skip_button.visible = false
@@ -60,12 +61,14 @@ func spin_wheel(number: int):
 	print("dec: ",deceleration)
 	
 	spun = true
+	get_spun.emit(spun)
 
 
 
 
 func _on_play_again_pressed() -> void:
 	spun = false
+	get_spun.emit(spun)
 	velocity = .5
 
 

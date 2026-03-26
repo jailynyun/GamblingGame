@@ -6,6 +6,7 @@ extends Control
 
 var money = 0
 var bet = 0
+var spun = false
 
 func _ready() -> void:
 	_update_labels()
@@ -16,6 +17,8 @@ func _update_labels() -> void:
 	result_label.text = ""
 
 func _on_table_bet_added() -> void:
+	if spun:
+		return
 	money -= 100
 	bet += 100
 	_update_labels()
@@ -36,3 +39,7 @@ func _on_get_result(won: Variant, win_amt: Variant) -> void:
 		result_label.text = "WIN!!! +%d" % win_amt
 	else:
 		result_label.text = "losee :(("
+
+
+func _on_wheel_get_spun(s: Variant) -> void:
+	spun = s

@@ -68,6 +68,7 @@ offset_bottom = 90.0
 
 [connection signal="get_money" from="." to="Display" method="_on_get_money"]
 [connection signal="get_result" from="." to="Display" method="_on_get_result"]
+[connection signal="get_spun" from="Wheel" to="Display" method="_on_wheel_get_spun"]
 [connection signal="wheel_stopped" from="Wheel" to="." method="_on_wheel_stopped"]
 [connection signal="pressed" from="Buttons/Spin" to="Table" method="_on_spin_pressed"]
 [connection signal="pressed" from="Buttons/Skip" to="Wheel" method="_on_skip_pressed"]
