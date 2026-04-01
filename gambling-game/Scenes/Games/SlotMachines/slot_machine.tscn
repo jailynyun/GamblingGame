@@ -10,19 +10,19 @@ shader_parameter/tex = ExtResource("2_sk7lg")
 shader_parameter/n_rows = 5.0
 shader_parameter/y_offset = 0.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wy8p5"]
+shader = ExtResource("1_aqq8y")
+shader_parameter/tex = ExtResource("2_sk7lg")
+shader_parameter/n_rows = 5.0
+shader_parameter/y_offset = 0.0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_stl56"]
 shader = ExtResource("1_aqq8y")
 shader_parameter/tex = ExtResource("2_sk7lg")
 shader_parameter/n_rows = 5.0
 shader_parameter/y_offset = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_raimn"]
-shader = ExtResource("1_aqq8y")
-shader_parameter/tex = ExtResource("2_sk7lg")
-shader_parameter/n_rows = 5.0
-shader_parameter/y_offset = 0.0
-
-[node name="SlotMachine" type="Control"]
+[node name="SlotMachine" type="Control" node_paths=PackedStringArray("spinners")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,24 +30,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wy8p5")
+spinners = [NodePath("HBoxContainer/Slot1"), NodePath("HBoxContainer/Slot2"), NodePath("HBoxContainer/Slot3")]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 315.0
-offset_bottom = 174.0
+offset_right = 344.0
+offset_bottom = 145.0
 
-[node name="ColorRect" type="ColorRect" parent="HBoxContainer"]
+[node name="Slot1" type="ColorRect" parent="HBoxContainer"]
 material = SubResource("ShaderMaterial_sk7lg")
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ColorRect2" type="ColorRect" parent="HBoxContainer"]
-material = SubResource("ShaderMaterial_stl56")
+[node name="Slot2" type="ColorRect" parent="HBoxContainer"]
+material = SubResource("ShaderMaterial_wy8p5")
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ColorRect3" type="ColorRect" parent="HBoxContainer"]
-material = SubResource("ShaderMaterial_raimn")
+[node name="Slot3" type="ColorRect" parent="HBoxContainer"]
+material = SubResource("ShaderMaterial_stl56")
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -58,5 +59,42 @@ offset_top = 193.0
 offset_right = 249.0
 offset_bottom = 302.0
 text = "spin"
+
+[node name="CreditsLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 469.0
+offset_top = 202.0
+offset_right = 509.0
+offset_bottom = 225.0
+
+[node name="BetLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 466.0
+offset_top = 168.0
+offset_right = 506.0
+offset_bottom = 191.0
+
+[node name="ResultLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 459.0
+offset_top = 79.0
+offset_right = 499.0
+offset_bottom = 102.0
+
+[node name="BetUpButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 433.0
+offset_top = 118.0
+offset_right = 481.0
+offset_bottom = 149.0
+text = "Bet +"
+
+[node name="BetDownButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 119.0
+offset_right = 532.0
+offset_bottom = 150.0
+text = "Bet -"
 
 [connection signal="pressed" from="SpinButton" to="." method="spin"]
