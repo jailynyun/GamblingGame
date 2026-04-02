@@ -81,20 +81,62 @@ offset_top = 79.0
 offset_right = 499.0
 offset_bottom = 102.0
 
-[node name="BetUpButton" type="Button" parent="."]
+[node name="Bet1Button" type="Button" parent="."]
 layout_mode = 0
 offset_left = 433.0
 offset_top = 118.0
 offset_right = 481.0
 offset_bottom = 149.0
-text = "Bet +"
+text = "Bet 1"
 
-[node name="BetDownButton" type="Button" parent="."]
+[node name="Bet5Button" type="Button" parent="."]
 layout_mode = 0
 offset_left = 488.0
 offset_top = 119.0
 offset_right = 532.0
 offset_bottom = 150.0
-text = "Bet -"
+text = "Bet 5"
+
+[node name="Bet10Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 545.0
+offset_top = 120.0
+offset_right = 602.0
+offset_bottom = 151.0
+text = "Bet 10"
+
+[node name="Bet25Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 606.0
+offset_top = 121.0
+offset_right = 663.0
+offset_bottom = 152.0
+text = "Bet 25"
+
+[node name="Bet50Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 668.0
+offset_top = 121.0
+offset_right = 725.0
+offset_bottom = 152.0
+text = "Bet 50"
+
+[node name="MaxBetButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 728.0
+offset_top = 122.0
+offset_right = 800.0
+offset_bottom = 153.0
+text = "Bet Max"
+
+[node name="ResetBetButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 805.0
+offset_top = 121.0
+offset_right = 856.0
+offset_bottom = 152.0
+text = "Reset"
 
 [connection signal="pressed" from="SpinButton" to="." method="spin"]
+[connection signal="pressed" from="MaxBetButton" to="." method="_on_max_bet_pressed"]
+[connection signal="pressed" from="ResetBetButton" to="." method="_on_reset_bet_pressed"]
