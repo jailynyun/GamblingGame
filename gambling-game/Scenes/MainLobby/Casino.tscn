@@ -1,7 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://v01uei8xai5"]
+[gd_scene load_steps=14 format=3 uid="uid://v01uei8xai5"]
 
 [ext_resource type="PackedScene" uid="uid://cvpqp3jyr8v16" path="res://Assets/Characters/Player.tscn" id="1_gm6j6"]
 [ext_resource type="Texture2D" uid="uid://sdbhu1myf25l" path="res://Assets/Art/Backgrounds/Casino2.png" id="2_wv7tl"]
+[ext_resource type="PackedScene" uid="uid://cvqdfjofxjey2" path="res://Scenes/Interaction/interactable.tscn" id="3_2ihwe"]
+[ext_resource type="Script" uid="uid://bvxy8sqm6i2sa" path="res://Scenes/MainLobby/casino_ui.gd" id="3_ek0c7"]
+[ext_resource type="Script" uid="uid://0w4wdp653haa" path="res://Scenes/MainLobby/mini_game_window.gd" id="4_hileu"]
+[ext_resource type="Script" uid="uid://cb43w23gjnin6" path="res://Scenes/MainLobby/BlackJackInteractable.gd" id="4_uqjeq"]
+[ext_resource type="Script" uid="uid://crsgvfrd2k52o" path="res://Scenes/MainLobby/RouletteWheelInteractable.gd" id="5_6gdv7"]
+[ext_resource type="PackedScene" path="res://Scenes/Games/SlotMachines/slot_machine.tscn" id="6_hbe42"]
+[ext_resource type="Script" uid="uid://cq7nusuegrdb5" path="res://Scenes/MainLobby/MemoryGameInteractable.gd" id="6_xri4w"]
+[ext_resource type="PackedScene" path="res://Scenes/Games/Blackjack/blackjack.tscn" id="8_wjenp"]
+[ext_resource type="PackedScene" path="res://Scenes/Games/RouletteWheel/RouletteWheel.tscn" id="10_i7svi"]
+[ext_resource type="PackedScene" path="res://Scenes/Games/MemoryGame/memory_game.tscn" id="12_hv4l6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gvffd"]
+radius = 135.82341
 
 [node name="Casino" type="Node2D"]
 
@@ -15,3 +28,86 @@ offset_bottom = 40.0
 texture = ExtResource("2_wv7tl")
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="CasinoUI" type="CanvasLayer" parent="."]
+script = ExtResource("3_ek0c7")
+
+[node name="Dimmer" type="ColorRect" parent="CasinoUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.011764706, 0.011764706, 0, 1)
+
+[node name="MiniGameWindow" type="Control" parent="CasinoUI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 19.0
+offset_right = 1446.0
+offset_bottom = 750.0
+script = ExtResource("4_hileu")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CasinoUI/MiniGameWindow"]
+layout_mode = 0
+offset_left = 215.0
+offset_top = 189.0
+offset_right = 1715.0
+offset_bottom = 989.0
+
+[node name="SubViewport" type="SubViewport" parent="CasinoUI/MiniGameWindow/SubViewportContainer"]
+size = Vector2i(1500, 800)
+
+[node name="CloseButton" type="Button" parent="CasinoUI/MiniGameWindow"]
+layout_mode = 0
+offset_left = 936.0
+offset_top = 811.0
+offset_right = 1106.0
+offset_bottom = 909.0
+text = "close"
+
+[node name="SlotMachineInteractable" parent="." instance=ExtResource("3_2ihwe")]
+interact_name = "press e"
+target_scene = ExtResource("6_hbe42")
+casino_ui_path = NodePath("../CasinoUI")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlotMachineInteractable"]
+top_level = true
+position = Vector2(35, 52)
+shape = SubResource("CircleShape2D_gvffd")
+
+[node name="BlackJackInteractable" parent="." instance=ExtResource("3_2ihwe")]
+script = ExtResource("4_uqjeq")
+interact_name = "press e"
+target_scene = ExtResource("8_wjenp")
+casino_ui_path = NodePath("../CasinoUI")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlackJackInteractable"]
+top_level = true
+position = Vector2(1419, 71)
+shape = SubResource("CircleShape2D_gvffd")
+
+[node name="RouletteWheelInteractable" parent="." instance=ExtResource("3_2ihwe")]
+script = ExtResource("5_6gdv7")
+interact_name = "press e"
+target_scene = ExtResource("10_i7svi")
+casino_ui_path = NodePath("../CasinoUI")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RouletteWheelInteractable"]
+top_level = true
+position = Vector2(38, 747)
+shape = SubResource("CircleShape2D_gvffd")
+
+[node name="MemoryGameInteractable" parent="." instance=ExtResource("3_2ihwe")]
+script = ExtResource("6_xri4w")
+interact_name = "press e"
+target_scene = ExtResource("12_hv4l6")
+casino_ui_path = NodePath("../CasinoUI")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MemoryGameInteractable"]
+top_level = true
+position = Vector2(1418, 701)
+shape = SubResource("CircleShape2D_gvffd")
+
+[connection signal="pressed" from="CasinoUI/MiniGameWindow/CloseButton" to="CharacterBody2D" method="_on_close_button_pressed"]

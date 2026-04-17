@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvpqp3jyr8v16"]
+[gd_scene load_steps=5 format=3 uid="uid://cvpqp3jyr8v16"]
 
 [ext_resource type="Script" uid="uid://bbbmrdbns2w7e" path="res://Assets/Characters/player.gd" id="1_dbjc2"]
 [ext_resource type="Texture2D" uid="uid://xfwqffjk68p0" path="res://Assets/Art/Characters/Main_Character.png" id="2_b5nv5"]
+[ext_resource type="PackedScene" uid="uid://dihywvwvshtys" path="res://Scenes/Interaction/interacting_component.tscn" id="3_22irx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dbjc2"]
 
@@ -20,3 +21,7 @@ shape = SubResource("CapsuleShape2D_dbjc2")
 [node name="Camera2D" type="Camera2D" parent="."]
 process_callback = 0
 position_smoothing_enabled = true
+
+[node name="InteractingComponent" parent="." instance=ExtResource("3_22irx")]
+position = Vector2(-4, 11.000002)
+scale = Vector2(15, 15)
