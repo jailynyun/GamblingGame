@@ -1,0 +1,172 @@
+[gd_scene load_steps=4 format=3 uid="uid://dm1w15stf01bw"]
+
+[ext_resource type="Script" uid="uid://c8uex2yn6un3y" path="res://Scenes/Games/Blackjack/blackjack.gd" id="1_yk8rt"]
+
+[sub_resource type="Animation" id="Animation_yk8rt"]
+resource_name = "HitAnimationP"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3txm1"]
+_data = {
+&"HitAnimationP": SubResource("Animation_yk8rt")
+}
+
+[node name="Blackjack" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 4
+script = ExtResource("1_yk8rt")
+
+[node name="ColorRect1" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -33.0
+offset_top = -3.0
+offset_right = 897.0
+offset_bottom = 644.0
+color = Color(0.05882353, 0.67058825, 0.99607843, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 898.0
+offset_top = -7.0
+offset_right = 1151.0
+offset_bottom = 648.0
+color = Color(0.29803923, 0.39215687, 1, 1)
+
+[node name="WhoseTurn" type="Label" parent="."]
+layout_mode = 0
+offset_left = 942.0
+offset_top = 148.0
+offset_right = 1111.0
+offset_bottom = 185.0
+theme_override_font_sizes/font_size = 27
+text = "Player's 
+Turn"
+
+[node name="Title" type="CenterContainer" parent="."]
+layout_mode = 1
+offset_left = 619.0
+offset_right = 900.0
+offset_bottom = 151.0
+
+[node name="Label" type="Label" parent="Title"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Blackjack"
+
+[node name="Buttons" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 954.0
+offset_top = 316.0
+offset_right = 1104.0
+offset_bottom = 470.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Buttons"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="Hit" type="Button" parent="Buttons/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Hit"
+
+[node name="Stand" type="Button" parent="Buttons/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Stand"
+
+[node name="Cards" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 147.0
+offset_right = 122.0
+offset_bottom = 222.0
+
+[node name="Hands" type="VBoxContainer" parent="Cards"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="DealerHand" type="HBoxContainer" parent="Cards/Hands"]
+layout_mode = 2
+alignment = 1
+
+[node name="PlayerHand" type="HBoxContainer" parent="Cards/Hands"]
+layout_mode = 2
+
+[node name="PlayerScore" type="Label" parent="."]
+layout_mode = 0
+offset_left = 701.0
+offset_top = 484.0
+offset_right = 766.0
+offset_bottom = 597.0
+theme_override_font_sizes/font_size = 40
+text = "20
+"
+
+[node name="PlayerScoreLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 434.0
+offset_top = 484.0
+offset_right = 672.0
+offset_bottom = 597.0
+theme_override_font_sizes/font_size = 40
+text = "Player Score:
+"
+
+[node name="DealerScore" type="Label" parent="."]
+layout_mode = 0
+offset_left = 699.0
+offset_top = 330.0
+offset_right = 764.0
+offset_bottom = 443.0
+theme_override_font_sizes/font_size = 40
+text = "20
+"
+
+[node name="PlayerHitMarker" type="Label" parent="."]
+layout_mode = 0
+offset_left = 949.0
+offset_top = 320.0
+offset_right = 1110.0
+offset_bottom = 369.0
+theme_override_colors/font_color = Color(0.16862746, 1, 0.24705882, 1)
+theme_override_font_sizes/font_size = 35
+text = "Hit"
+horizontal_alignment = 1
+
+[node name="DealerHitMarker" type="Label" parent="."]
+layout_mode = 0
+offset_left = 949.0
+offset_top = 320.0
+offset_right = 1110.0
+offset_bottom = 369.0
+theme_override_colors/font_color = Color(1, 0.015686275, 0.07450981, 1)
+theme_override_font_sizes/font_size = 35
+text = "Hit"
+horizontal_alignment = 1
+
+[node name="DealerScoreLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 434.0
+offset_top = 327.0
+offset_right = 683.0
+offset_bottom = 440.0
+theme_override_font_sizes/font_size = 40
+text = "Dealer Score:
+"
+
+[node name="WinnerText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 538.0
+offset_right = 282.0
+offset_bottom = 593.0
+theme_override_font_sizes/font_size = 40
+text = "PLAYER WINS"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3txm1")
+}
+
+[connection signal="pressed" from="Buttons/VBoxContainer/Hit" to="." method="_on_hit_pressed"]
+[connection signal="pressed" from="Buttons/VBoxContainer/Stand" to="." method="_on_stand_pressed"]
