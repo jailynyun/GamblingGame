@@ -1,5 +1,5 @@
 extends CanvasLayer
-class_name CasinoUI
+
 
 @export var player_path: NodePath
 

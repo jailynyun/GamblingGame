@@ -21,7 +21,7 @@ var tween: Tween
 var offsets := {}
 var spin_step := 1.0 / float(n_options)
 
-var credits: int = 100
+#var credits: int = 100 use global money instead
 var bet: int = 5
 
 func _ready() -> void:
@@ -36,14 +36,14 @@ func _ready() -> void:
 	_update_ui()
 
 func _set_bet(amount: int) -> void:
-	if credits <= 0:
+	if GameManager.money <= 0:
 		return
-	bet += clamp(amount, 1, credits)
+	bet += clamp(amount, 1, GameManager.money)
 	_update_ui()
 
 func _on_max_bet_pressed() -> void:
-	if credits > 0:
-		bet = credits
+	if GameManager.money > 0:
+		bet = GameManager.money
 	_update_ui()
 	
 func _on_reset_bet_pressed() -> void:
@@ -51,14 +51,14 @@ func _on_reset_bet_pressed() -> void:
 	_update_ui()
 
 func spin() -> void:
-	if bet > credits or credits <= 0:
+	if bet > GameManager.money or GameManager.money <= 0:
 		result_label.text = "Not enough money!"
 		return
 	if bet == 0:
 		result_label.text = "You need to bet to play"
 		return
-		
-	credits -= bet
+	
+	GameManager.remove_money(bet)
 	result_label.text = "Spinning..."
 	bet_1_button.disabled = true
 	bet_5_button.disabled = true
@@ -102,7 +102,7 @@ func _finish_spin() -> void:
 			spinners[idx].material.set_shader_parameter("y_offset", values[idx] * spin_step)
 
 	var winnings := _calculate_winnings()
-	credits += winnings
+	GameManager.add_money(winnings)
 	
 	#bc u lose how much u put in for the bet.. maybe change back?
 	if winnings > 0:
@@ -110,10 +110,10 @@ func _finish_spin() -> void:
 	else:
 		result_label.text = "You lost $" + str(bet) + "."
 
-	if credits > 0 and bet > credits:
-		bet = credits
+	if GameManager.money > 0 and bet > GameManager.money:
+		bet = GameManager.money
 
-	spin_button.disabled = credits <= 0
+	spin_button.disabled = GameManager.money <= 0
 
 	_update_ui()
 
@@ -135,12 +135,12 @@ func _calculate_winnings() -> int:
 	return 0
 
 func _update_ui() -> void:
-	credits_label.text = "Money: $" + str(credits)
+	credits_label.text = "Money: $" + str(GameManager.money)
 	bet_label.text = "Bet: $" + str(bet)
 
-	bet_1_button.disabled = credits < 1
-	bet_5_button.disabled = credits < 5
-	bet_10_button.disabled = credits < 10
-	bet_25_button.disabled = credits < 25
-	bet_50_button.disabled = credits < 50
-	max_bet_button.disabled = credits <= 0
+	bet_1_button.disabled = GameManager.money < 1
+	bet_5_button.disabled = GameManager.money < 5
+	bet_10_button.disabled = GameManager.money < 10
+	bet_25_button.disabled = GameManager.money < 25
+	bet_50_button.disabled = GameManager.money < 50
+	max_bet_button.disabled = GameManager.money <= 0
