@@ -12,17 +12,17 @@ var turns_taken = 0
 var bet_size = 0
 var game_started = false
 
-@onready var betting_square: Control = $"../Betting"
-@onready var bet_50_button: Button = $"../Betting/Bet50Button"
-@onready var bet_100_button: Button = $"../Betting/Bet100Button"
-@onready var max_bet_button: Button = $"../Betting/MaxBetButton"
-@onready var reset_bet_button: Button = $"../Betting/ResetBetButton"
+@onready var betting_square: Control = $"../CanvasLayer/Betting"
+@onready var bet_50_button: Button = $"../CanvasLayer/Betting/Bet50Button"
+@onready var bet_100_button: Button = $"../CanvasLayer/Betting/Bet100Button"
+@onready var max_bet_button: Button = $"../CanvasLayer/Betting/MaxBetButton"
+@onready var reset_bet_button: Button = $"../CanvasLayer/Betting/ResetBetButton"
 @onready var play_again_button: Button = $"../CanvasLayer/PlayAgain"
 
 @onready var results_label: Label = $"../CanvasLayer/results_label"
 @onready var money_label: Label = $"../CanvasLayer/money_label"
 @onready var bet_label: Label = $"../CanvasLayer/bet_label"
-@onready var betting_money_label: Label = $"../Betting/money_label"
+@onready var betting_money_label: Label = $"../CanvasLayer/Betting/money_label"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -36,7 +36,7 @@ func _ready() -> void:
 	
 	bet_50_button.pressed.connect(func(): _add_bet(50))
 	bet_100_button.pressed.connect(func(): _add_bet(100))
-	max_bet_button.pressed.connect(func(): _add_bet(Inventory.money))
+	max_bet_button.pressed.connect(func(): _add_bet(GameManager.money))
 	reset_bet_button.pressed.connect(_reset_bet)
 	
 	pass # Replace with function body.
@@ -100,9 +100,9 @@ func when_two_cards_revealed():
 func update_text():
 	$"../CanvasLayer/score_label".text = "Score: %d" % score
 	$"../CanvasLayer/turns_label".text = "Turns Taken: %d" % turns_taken
-	$"../Betting/bet_label".text = "Bet: %d" % bet_size
-	betting_money_label.text = "Money: %d" % Inventory.money
-	money_label.text = "Money: %d" % Inventory.money
+	$"../CanvasLayer/Betting/bet_label".text = "Bet: %d" % bet_size
+	betting_money_label.text = "Money: %d" % GameManager.money
+	money_label.text = "Money: %d" % GameManager.money
 	bet_label.text = "Bet: %d" % bet_size
 	
 func put_back_cards_with_delay():
@@ -113,7 +113,7 @@ func put_back_cards_with_delay():
 
 func end_game():
 	var winnings = calculate_winnings()
-	Inventory.money += winnings
+	GameManager.money += winnings
 	game_started = false
 	
 	results_label.visible = true
@@ -144,19 +144,19 @@ func _add_bet(amount: int):
 		return
 	if amount <= 0:
 		return
-	if Inventory.money <= 0:
+	if GameManager.money <= 0:
 		return
 
-	var actual_amount = min(amount, Inventory.money)
+	var actual_amount = min(amount, GameManager.money)
 	bet_size += actual_amount
-	Inventory.money -= actual_amount
+	GameManager.money -= actual_amount
 	update_text()
 
 func _reset_bet():
 	if game_started:
 		return
 
-	Inventory.money += bet_size
+	GameManager.money += bet_size
 	bet_size = 0
 	update_text()
 

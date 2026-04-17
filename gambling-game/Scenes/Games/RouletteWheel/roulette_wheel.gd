@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var wheel = $Wheel
 
-var money = Inventory.money
+var money = GameManager.money
 var bet_size = 100
 var spun = false
 
@@ -112,4 +112,4 @@ func _on_play_again_pressed() -> void:
 func _on_wheel_stopped() -> void:
 	get_money.emit(money)
 	get_result.emit(won, win_amt)
-	Inventory.money = money
+	GameManager.money = money
