@@ -9,8 +9,13 @@ var wobble_speed := 12.0
 var wobble_rotation := 15 # In Degrees
 var min_squash_percent := .2 # Sprite2D will squash at least 20%
 var max_squash_percent := .4 # Sprite2D will squash at most 40%
+var can_move := true
 
 func _physics_process(delta):
+	#Check if Entered a Casino MiniGame
+	if not can_move:
+		return
+	
 	# Player Movement
 	var input_vector := Vector2(Input.get_axis("left","right"), Input.get_axis("forward","backward")).normalized()
 	
@@ -52,3 +57,7 @@ func _physics_process(delta):
 		sprite2D.rotation_degrees = lerp(sprite2D.rotation_degrees, 0.0, delta * 10.0)
 		sprite2D.scale.y = lerp(sprite2D.scale.y, 1.0, delta * 10.0)
 		sprite2D.scale.x = lerp(sprite2D.scale.x, 1.0, delta * 10.0)
+
+
+func _on_close_button_pressed() -> void:
+	pass # Replace with function body.
