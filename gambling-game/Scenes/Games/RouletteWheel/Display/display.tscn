@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://djtdga2wrclv3"]
+
+[ext_resource type="Script" uid="uid://dehofjpy2n824" path="res://Scenes/Games/RouletteWheel/Display/display.gd" id="1_rpqna"]
+
+[node name="Display" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_rpqna")
+
+[node name="Money" type="Label" parent="."]
+layout_mode = 0
+offset_right = 62.0
+offset_bottom = 23.0
+text = "Money: "
+
+[node name="Bet" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 22.0
+offset_right = 41.0
+offset_bottom = 45.0
+text = "Bet:"
+
+[node name="Result" type="Label" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 78.0
+offset_right = 48.0
+offset_bottom = 101.0
+text = "Result"

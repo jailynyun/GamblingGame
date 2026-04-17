@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7tvsmptjkky4"]
+
+[ext_resource type="Script" uid="uid://d0oxfppl76q0s" path="res://Scenes/Games/RouletteWheel/roulette_wheel.gd" id="1_6gn48"]
+[ext_resource type="Script" uid="uid://fk5vi5o8cd8u" path="res://Scenes/Games/RouletteWheel/wheel.gd" id="2_qgq2f"]
+[ext_resource type="Texture2D" uid="uid://k8p4a7heacft" path="res://Assets/Art/RouletteWheel.svg" id="2_yk3t5"]
+[ext_resource type="PackedScene" uid="uid://djtdga2wrclv3" path="res://Scenes/Games/RouletteWheel/Display/display.tscn" id="5_0lkg8"]
+[ext_resource type="PackedScene" uid="uid://bd3706ge61ipn" path="res://Scenes/Games/RouletteWheel/Table/Table.tscn" id="5_168ti"]
+
+[node name="RouletteWheel" type="Node2D"]
+script = ExtResource("1_6gn48")
+
+[node name="arrow" type="Label" parent="."]
+offset_left = 213.0
+offset_top = 10.0
+offset_right = 252.0
+offset_bottom = 33.0
+text = "v"
+
+[node name="Wheel" type="Sprite2D" parent="."]
+position = Vector2(216, 247)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_yk3t5")
+script = ExtResource("2_qgq2f")
+
+[node name="Buttons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 431.0
+offset_top = 113.0
+offset_right = 471.0
+offset_bottom = 153.0
+
+[node name="Spin" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 75.0
+offset_right = 109.0
+offset_bottom = 106.0
+text = "Spin"
+
+[node name="Skip" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 126.0
+offset_right = 75.0
+offset_bottom = 134.0
+text = "Skip"
+
+[node name="PlayAgain" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 126.0
+offset_right = 154.0
+offset_bottom = 157.0
+text = "Play again"
+
+[node name="Table" parent="." instance=ExtResource("5_168ti")]
+offset_left = 510.0
+offset_top = 347.0
+offset_right = 510.0
+offset_bottom = 347.0
+
+[node name="Display" parent="." instance=ExtResource("5_0lkg8")]
+offset_left = 663.0
+offset_top = 64.0
+offset_right = 722.0
+offset_bottom = 90.0
+
+[connection signal="get_money" from="." to="Display" method="_on_get_money"]
+[connection signal="get_result" from="." to="Display" method="_on_get_result"]
+[connection signal="get_spun" from="Wheel" to="Table" method="_on_wheel_get_spun"]
+[connection signal="get_spun" from="Wheel" to="Display" method="_on_wheel_get_spun"]
+[connection signal="wheel_stopped" from="Wheel" to="." method="_on_wheel_stopped"]
+[connection signal="pressed" from="Buttons/Spin" to="Table" method="_on_spin_pressed"]
+[connection signal="pressed" from="Buttons/Skip" to="Wheel" method="_on_skip_pressed"]
+[connection signal="pressed" from="Buttons/PlayAgain" to="." method="_on_play_again_pressed"]
+[connection signal="pressed" from="Buttons/PlayAgain" to="Wheel" method="_on_play_again_pressed"]
+[connection signal="pressed" from="Buttons/PlayAgain" to="Display" method="_on_play_again_pressed"]
+[connection signal="bet_added" from="Table" to="Display" method="_on_table_bet_added"]
+[connection signal="finalized_bets" from="Table" to="." method="_on_finalized_bets"]
