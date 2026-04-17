@@ -15,6 +15,10 @@ run/main_scene="uid://v01uei8xai5"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://Assets/Art/icon.svg"
 
+[autoload]
+
+Inventory="*res://Scenes/Inventory.gd"
+
 [display]
 
 window/size/viewport_width=1920

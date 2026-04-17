@@ -21,7 +21,7 @@ var tween: Tween
 var offsets := {}
 var spin_step := 1.0 / float(n_options)
 
-var credits: int = 100
+var credits: int = Inventory.money
 var bet: int = 5
 
 func _ready() -> void:
@@ -103,6 +103,7 @@ func _finish_spin() -> void:
 
 	var winnings := _calculate_winnings()
 	credits += winnings
+	Inventory.money = credits
 	
 	#bc u lose how much u put in for the bet.. maybe change back?
 	if winnings > 0:
