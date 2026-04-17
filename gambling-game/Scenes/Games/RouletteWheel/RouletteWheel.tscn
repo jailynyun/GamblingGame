@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7tvsmptjkky4"]
+[gd_scene load_steps=6 format=3 uid="uid://dbkux5qejs3gv"]
 
 [ext_resource type="Script" uid="uid://d0oxfppl76q0s" path="res://Scenes/Games/RouletteWheel/roulette_wheel.gd" id="1_6gn48"]
 [ext_resource type="Script" uid="uid://fk5vi5o8cd8u" path="res://Scenes/Games/RouletteWheel/wheel.gd" id="2_qgq2f"]
@@ -66,6 +66,8 @@ offset_top = 64.0
 offset_right = 722.0
 offset_bottom = 90.0
 
+[connection signal="get_bet_size" from="." to="Table" method="_on_get_bet_size"]
+[connection signal="get_money" from="." to="Table" method="_on_get_money"]
 [connection signal="get_money" from="." to="Display" method="_on_get_money"]
 [connection signal="get_result" from="." to="Display" method="_on_get_result"]
 [connection signal="get_spun" from="Wheel" to="Table" method="_on_wheel_get_spun"]

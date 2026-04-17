@@ -7,6 +7,7 @@ var bet_size = 100
 var spun = false
 
 signal get_money(m)
+signal get_bet_size(b)
 signal get_result(won, win_amt)
 var won = false
 var win_amt = 0
@@ -43,6 +44,7 @@ var bet_rules = {
 
 func _ready() -> void:
 	get_money.emit(money)
+	get_bet_size.emit(bet_size)
 
 func random_number():
 	if spun:
