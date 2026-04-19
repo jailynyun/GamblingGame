@@ -3,7 +3,7 @@ extends Node
 signal day_changed(day: int)
 signal time_changed(day_process: float, seconds_left_in_day: float, current_day: int)
 signal debt_changed(current_round: int, amount_due: int, total_paid: int)
-signal limb_lost(limb_name: String, limbs_lost: int)
+signal limb_lost()
 signal game_over()
 signal game_won()
 
@@ -12,7 +12,7 @@ const DEBT_CHECK_DAYS := 2
 const DEBT_CHECK_TIME := DAY_LENGTH * DEBT_CHECK_DAYS #4 min
 
 const DEBT_ROUNDS : Array[int] = [2000, 3000, 5000]
-const LIMB_ORDER : Array[String] = ["Arm", "Eye", "Leg"]
+#const LIMB_ORDER : Array[String] = ["Arm", "Eye", "Leg"]
 
 var money: int = 500 #start w 500
 
@@ -23,7 +23,8 @@ var debt_round_index: int = 0
 var total_paid: int = 0
 
 var time_since_last_debt_check: float = 0.0
-var limbs_lost_count: int = 0
+#var limbs_lost_count: int = 0
+var limbs: Array[String] = ["Arm", "Eye", "Leg"]
 var lost_limbs: Array[String] = []
 
 var is_game_over := false
@@ -79,17 +80,18 @@ func _handle_debt_deadline() -> void:
 		_lose_next_limb()
 
 func _lose_next_limb() -> void:
-	if limbs_lost_count >= LIMB_ORDER.size():
+	if limbs.is_empty():
 		is_game_over = true
 		game_over.emit()
 		return
 
-	var limb_name : String = LIMB_ORDER[limbs_lost_count]
+	var random_limb_num = randi_range(0, limbs.size()-1)
+	var limb_name : String = limbs[random_limb_num]
 	lost_limbs.append(limb_name)
-	limbs_lost_count += 1
-	limb_lost.emit(limb_name, limbs_lost_count)
+	limbs.remove_at(random_limb_num)
+	limb_lost.emit()
 
-	if limbs_lost_count >= LIMB_ORDER.size():
+	if limbs.is_empty():
 		is_game_over = true
 		game_over.emit()
 
@@ -126,7 +128,7 @@ func reset_game() -> void:
 	debt_round_index = 0
 	total_paid = 0
 	time_since_last_debt_check = 0.0
-	limbs_lost_count = 0
+	#limbs_lost_count = 0
 	lost_limbs.clear()
 	is_game_over = false
 	is_game_won = false

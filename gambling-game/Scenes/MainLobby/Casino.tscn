@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dp5fcaw2uucbv" path="res://Scenes/Games/SlotMachines/slot_machine.tscn" id="6_hbe42"]
 [ext_resource type="Script" uid="uid://cq7nusuegrdb5" path="res://Scenes/MainLobby/Interactable_Minigame_Scripts/MemoryGameInteractable.gd" id="6_xri4w"]
 [ext_resource type="PackedScene" uid="uid://dm1w15stf01bw" path="res://Scenes/Games/Blackjack/blackjack.tscn" id="8_wjenp"]
-[ext_resource type="PackedScene" uid="uid://c7tvsmptjkky4" path="res://Scenes/Games/RouletteWheel/RouletteWheel.tscn" id="10_i7svi"]
+[ext_resource type="PackedScene" uid="uid://dbkux5qejs3gv" path="res://Scenes/Games/RouletteWheel/RouletteWheel.tscn" id="10_i7svi"]
 [ext_resource type="PackedScene" uid="uid://3c37315w1488" path="res://Scenes/Games/MemoryGame/memory_game.tscn" id="12_hv4l6"]
 [ext_resource type="Script" uid="uid://d223v25ru5bxj" path="res://Scenes/MainLobby/UI_Scripts/GameHUD.gd" id="13_hileu"]
 

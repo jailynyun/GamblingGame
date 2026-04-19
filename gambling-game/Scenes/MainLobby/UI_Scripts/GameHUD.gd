@@ -68,7 +68,7 @@ func _on_debt_changed(current_round: int, amount_due: int, total_paid: int) -> v
 			total_paid
 		]
 
-func _on_limb_lost(limb_name: String, _limbs_lost: int) -> void:
+func _on_limb_lost() -> void:
 	var limbs_text := "Lost limbs: " + ", ".join(GameManager.lost_limbs)
 	limbs_label.text = limbs_text
 
