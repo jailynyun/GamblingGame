@@ -36,7 +36,7 @@ func _on_get_result(won: Variant, win_amt: Variant) -> void:
 	if won:
 		result_label.text = "WIN!!! +%d" % win_amt
 	else:
-		result_label.text = "losee :(("
+		result_label.text = "losee :(( %d" % win_amt
 
 
 func _on_wheel_get_spun(s: Variant) -> void:

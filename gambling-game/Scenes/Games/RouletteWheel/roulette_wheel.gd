@@ -63,18 +63,19 @@ func check_bets(jackpot):
 	var win_color = numbers[jackpot][0]
 	for bet in bets:
 		print(bet)
+		win_amt -= bet_size
 		if bet == win_num:
 			print("WIN! 35:1")
 			money += 36*bet_size
 			win_amt += 36*bet_size
 			won = true
-		if bet>=61 && bet<=66:
+		elif bet>=61 && bet<=66:
 			if bet_rules[bet].call(win_num, win_color):
 				print("WIN! 1:1")
 				money += 2*bet_size
 				win_amt += 2*bet_size
 				won = true
-		if bet>=121 && bet<=126:
+		elif bet>=121 && bet<=126: 
 			if bet_rules[bet].call(win_num):
 				print("WIN! 2:1")
 				money += 3*bet_size
@@ -97,6 +98,7 @@ func _on_finalized_bets(b: Array) -> void:
 	bets = b
 	print(bets)
 	money -= (bets.size() * bet_size)
+	GameManager.money = money
 	
 	var random_num = random_number()
 	wheel.spin_wheel(random_num)
@@ -106,6 +108,8 @@ func _on_finalized_bets(b: Array) -> void:
 
 func _on_play_again_pressed() -> void:
 	bets.clear()
+	win_amt = 0
+	won = false
 	spun = false
 
 
