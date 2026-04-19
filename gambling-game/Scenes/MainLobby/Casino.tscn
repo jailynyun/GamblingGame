@@ -19,7 +19,7 @@ radius = 135.82341
 
 [node name="Casino" type="Node2D"]
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_gm6j6")]
+[node name="Player" parent="." instance=ExtResource("1_gm6j6")]
 top_level = true
 position = Vector2(484, 260)
 
@@ -169,4 +169,4 @@ top_level = true
 position = Vector2(1418, 701)
 shape = SubResource("CircleShape2D_gvffd")
 
-[connection signal="pressed" from="Minigame_UI/MiniGameWindow/CloseButton" to="CharacterBody2D" method="_on_close_button_pressed"]
+[connection signal="pressed" from="Minigame_UI/MiniGameWindow/CloseButton" to="Player" method="_on_close_button_pressed"]

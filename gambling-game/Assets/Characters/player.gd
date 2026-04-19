@@ -11,6 +11,9 @@ var min_squash_percent := .2 # Sprite2D will squash at least 20%
 var max_squash_percent := .4 # Sprite2D will squash at most 40%
 var can_move := true
 
+func _ready() -> void:
+	GameManager.limb_lost.connect(_on_limb_lost)
+
 func _physics_process(delta):
 	#Check if Entered a Casino MiniGame
 	if not can_move:
@@ -61,3 +64,7 @@ func _physics_process(delta):
 
 func _on_close_button_pressed() -> void:
 	pass # Replace with function body.
+	
+func _on_limb_lost():
+	if GameManager.lost_limbs.has("leg"):
+		max_speed = 200

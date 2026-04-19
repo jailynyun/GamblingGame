@@ -24,7 +24,7 @@ var total_paid: int = 0
 
 var time_since_last_debt_check: float = 0.0
 #var limbs_lost_count: int = 0
-var limbs: Array[String] = ["Arm", "Eye", "Leg"]
+var limbs: Array[String] = ["arm", "eye", "leg"]
 var lost_limbs: Array[String] = []
 
 var is_game_over := false
