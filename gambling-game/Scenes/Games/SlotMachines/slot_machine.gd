@@ -36,7 +36,7 @@ func _ready() -> void:
 	_update_ui()
 
 func _set_bet(amount: int) -> void:
-	if GameManager.money <= 0:
+	if GameManager.money <= 0 || bet >= GameManager.money:
 		return
 	bet += clamp(amount, 1, GameManager.money)
 	_update_ui()
