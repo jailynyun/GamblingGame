@@ -9,6 +9,7 @@ signal finalized_bets(b:Array)
 signal bet_added
 
 @onready var highlight = $Highlight
+@onready var reset_button = $"../Buttons/Reset"
 
 var regions := {
 	# Rect2 defined as Rect2(position_vector, size_vector)
@@ -116,6 +117,7 @@ func fill_regions_half():
 
 func _on_spin_pressed() -> void:
 	finalized_bets.emit(bets)
+	reset_button.visible = false
 
 
 func _on_wheel_get_spun(s: Variant) -> void:
@@ -127,3 +129,12 @@ func _on_get_money(m: Variant) -> void:
 
 func _on_get_bet_size(b: Variant) -> void:
 	bet_size = b
+
+
+func _on_reset_pressed() -> void:
+	bets = []
+	money = GameManager.money
+
+
+func _on_play_again_pressed() -> void:
+	reset_button.visible = true

@@ -41,3 +41,9 @@ func _on_get_result(won: Variant, win_amt: Variant) -> void:
 
 func _on_wheel_get_spun(s: Variant) -> void:
 	spun = s
+
+
+func _on_reset_pressed() -> void:
+	money = GameManager.money
+	bet = 0
+	_update_labels()

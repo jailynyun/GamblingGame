@@ -54,6 +54,14 @@ offset_right = 154.0
 offset_bottom = 157.0
 text = "Play again"
 
+[node name="Reset" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 234.0
+offset_top = 78.0
+offset_right = 323.0
+offset_bottom = 109.0
+text = "Reset bets"
+
 [node name="Table" parent="." instance=ExtResource("5_168ti")]
 offset_left = 510.0
 offset_top = 347.0
@@ -77,6 +85,9 @@ offset_bottom = 90.0
 [connection signal="pressed" from="Buttons/Skip" to="Wheel" method="_on_skip_pressed"]
 [connection signal="pressed" from="Buttons/PlayAgain" to="." method="_on_play_again_pressed"]
 [connection signal="pressed" from="Buttons/PlayAgain" to="Wheel" method="_on_play_again_pressed"]
+[connection signal="pressed" from="Buttons/PlayAgain" to="Table" method="_on_play_again_pressed"]
 [connection signal="pressed" from="Buttons/PlayAgain" to="Display" method="_on_play_again_pressed"]
+[connection signal="pressed" from="Buttons/Reset" to="Table" method="_on_reset_pressed"]
+[connection signal="pressed" from="Buttons/Reset" to="Display" method="_on_reset_pressed"]
 [connection signal="bet_added" from="Table" to="Display" method="_on_table_bet_added"]
 [connection signal="finalized_bets" from="Table" to="." method="_on_finalized_bets"]
