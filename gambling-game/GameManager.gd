@@ -50,7 +50,14 @@ func _process(delta: float) -> void:
 	if debt_round_index < DEBT_ROUNDS.size() and time_since_last_debt_check >= DEBT_CHECK_TIME:
 		time_since_last_debt_check -= DEBT_CHECK_TIME
 		_handle_debt_deadline()
-		
+
+func _input(event: InputEvent) -> void:
+	if is_game_over or is_game_won:
+		return
+
+	if event.is_action_pressed("skip"):
+		skip_day()
+
 func _handle_debt_deadline() -> void:
 	if debt_round_index >= DEBT_ROUNDS.size():
 		return
@@ -127,3 +134,31 @@ func reset_game() -> void:
 	debt_changed.emit(1, get_current_amount_due(), total_paid)
 	time_changed.emit(0.0, DAY_LENGTH, current_day)
 	day_changed.emit(current_day)
+	
+func skip_day() -> void:
+	var seconds_into_day := fmod(elapsed_time, DAY_LENGTH)
+	var seconds_to_next_day := DAY_LENGTH - seconds_into_day
+
+	# safety: if already exactly at boundary
+	if is_zero_approx(seconds_to_next_day):
+		seconds_to_next_day = DAY_LENGTH
+
+	elapsed_time += seconds_to_next_day
+	time_since_last_debt_check += seconds_to_next_day
+
+	# force update immediately (instead of waiting for _process)
+	var new_day := int(floor(elapsed_time / DAY_LENGTH)) + 1
+	if new_day != current_day:
+		current_day = new_day
+		day_changed.emit(current_day)
+
+	var seconds_into_day_new := fmod(elapsed_time, DAY_LENGTH)
+	var day_progress := seconds_into_day_new / DAY_LENGTH
+	var seconds_left := DAY_LENGTH - seconds_into_day_new
+
+	time_changed.emit(day_progress, seconds_left, current_day)
+
+	# handle debt if we crossed a deadline
+	while debt_round_index < DEBT_ROUNDS.size() and time_since_last_debt_check >= DEBT_CHECK_TIME:
+		time_since_last_debt_check -= DEBT_CHECK_TIME
+		_handle_debt_deadline()

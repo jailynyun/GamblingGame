@@ -2,6 +2,8 @@ extends Control
 
 var bets = []
 var spun = false
+var money = 0
+var bet_size = 0
 
 signal finalized_bets(b:Array)
 signal bet_added
@@ -35,11 +37,12 @@ func _gui_input(event):
 	# When region is clicked, prints the clicked region
 	for r in regions:
 		if regions[r].has_point(local):
-			if event is InputEventMouseButton and event.pressed:
+			if event is InputEventMouseButton and event.pressed and (money-bet_size) >= 0:
 				#print("Coords: ", local)
 				print("Clicked region:", r)
 				bets.push_back(r+1)
 				bet_added.emit()
+				money -= bet_size
 	
 	 
 	# Highlights when hovering over region
@@ -117,3 +120,10 @@ func _on_spin_pressed() -> void:
 
 func _on_wheel_get_spun(s: Variant) -> void:
 	spun = s
+
+
+func _on_get_money(m: Variant) -> void:
+	money = m
+
+func _on_get_bet_size(b: Variant) -> void:
+	bet_size = b
