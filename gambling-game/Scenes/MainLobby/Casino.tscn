@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://v01uei8xai5"]
+[gd_scene load_steps=17 format=3 uid="uid://v01uei8xai5"]
 
 [ext_resource type="PackedScene" uid="uid://cvpqp3jyr8v16" path="res://Assets/Characters/Player.tscn" id="1_gm6j6"]
+[ext_resource type="Script" uid="uid://ba8perqd1jtlj" path="res://Scenes/MainLobby/casino.gd" id="1_wjenp"]
 [ext_resource type="Texture2D" uid="uid://sdbhu1myf25l" path="res://Assets/Art/Backgrounds/Casino2.png" id="2_wv7tl"]
 [ext_resource type="PackedScene" uid="uid://cvqdfjofxjey2" path="res://Scenes/Interaction/interactable.tscn" id="3_2ihwe"]
 [ext_resource type="Script" uid="uid://bvxy8sqm6i2sa" path="res://Scenes/MainLobby/UI_Scripts/Minigame_UI.gd" id="3_ek0c7"]
@@ -19,6 +20,7 @@
 radius = 135.82341
 
 [node name="Casino" type="Node2D"]
+script = ExtResource("1_wjenp")
 
 [node name="Player" parent="." instance=ExtResource("1_gm6j6")]
 top_level = true
