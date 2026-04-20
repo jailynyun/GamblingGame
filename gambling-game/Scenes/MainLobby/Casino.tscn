@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://v01uei8xai5"]
+[gd_scene load_steps=16 format=3 uid="uid://v01uei8xai5"]
 
 [ext_resource type="PackedScene" uid="uid://cvpqp3jyr8v16" path="res://Assets/Characters/Player.tscn" id="1_gm6j6"]
 [ext_resource type="Texture2D" uid="uid://sdbhu1myf25l" path="res://Assets/Art/Backgrounds/Casino2.png" id="2_wv7tl"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dbkux5qejs3gv" path="res://Scenes/Games/RouletteWheel/RouletteWheel.tscn" id="10_i7svi"]
 [ext_resource type="PackedScene" uid="uid://3c37315w1488" path="res://Scenes/Games/MemoryGame/memory_game.tscn" id="12_hv4l6"]
 [ext_resource type="Script" uid="uid://d223v25ru5bxj" path="res://Scenes/MainLobby/UI_Scripts/GameHUD.gd" id="13_hileu"]
+[ext_resource type="PackedScene" uid="uid://dj5885f3an41f" path="res://Assets/Characters/CasinoLoan.tscn" id="14_hbe42"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gvffd"]
 radius = 135.82341
@@ -87,6 +88,7 @@ text = "money
 "
 
 [node name="Minigame_UI" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("3_ek0c7")
 
 [node name="Dimmer" type="ColorRect" parent="Minigame_UI"]
@@ -108,15 +110,15 @@ script = ExtResource("4_hileu")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Minigame_UI/MiniGameWindow"]
 layout_mode = 0
-offset_left = 215.0
-offset_top = 189.0
-offset_right = 1715.0
-offset_bottom = 989.0
+offset_left = 211.0
+offset_top = 139.0
+offset_right = 1711.0
+offset_bottom = 939.0
 
 [node name="SubViewport" type="SubViewport" parent="Minigame_UI/MiniGameWindow/SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(1500, 800)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="CloseButton" type="Button" parent="Minigame_UI/MiniGameWindow"]
 layout_mode = 0
@@ -168,5 +170,8 @@ casino_ui_path = NodePath("../Minigame_UI")
 top_level = true
 position = Vector2(1418, 701)
 shape = SubResource("CircleShape2D_gvffd")
+
+[node name="CasinoLoan" parent="." instance=ExtResource("14_hbe42")]
+position = Vector2(1143, 392)
 
 [connection signal="pressed" from="Minigame_UI/MiniGameWindow/CloseButton" to="Player" method="_on_close_button_pressed"]

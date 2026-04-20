@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dj5885f3an41f"]
+
+[ext_resource type="Script" uid="uid://3eixbegoeie7" path="res://Assets/Characters/casino_loan.gd" id="1_hwecn"]
+[ext_resource type="Texture2D" uid="uid://bb100jjblssc5" path="res://Assets/Art/icon.svg" id="1_qyd3l"]
+[ext_resource type="PackedScene" uid="uid://cvqdfjofxjey2" path="res://Scenes/Interaction/interactable.tscn" id="2_hwecn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mbfqi"]
+radius = 81.49847
+
+[node name="CasinoLoan" type="Node2D"]
+script = ExtResource("1_hwecn")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(2, -2)
+texture = ExtResource("1_qyd3l")
+
+[node name="Interactable" parent="." instance=ExtResource("2_hwecn")]
+position = Vector2(-3, -3)
+interact_name = "talk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+position = Vector2(3, 3)
+shape = SubResource("CircleShape2D_mbfqi")

@@ -1,0 +1,11 @@
+[style name="dialogue_style"]
+Hey, heard you need cash?
+- Ye.
+- nah.
+	[end_timeline]
+Well, you can take a loan from me, but you gotta pay it back by the end of the day.
+So, whaddya say? Wanna strike a deal?
+- Ye.
+- Uh, I'm good...
+	[end_timeline]
+[end_timeline]

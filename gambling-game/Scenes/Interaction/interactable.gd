@@ -5,7 +5,11 @@ extends Area2D
 @export var target_scene: PackedScene
 @export var casino_ui_path: NodePath
 
-func interact() -> void:
+var interact: Callable = func():
+	interact_minigame()
+	pass
+
+func interact_minigame() -> void:
 	if target_scene == null:
 		return
 
