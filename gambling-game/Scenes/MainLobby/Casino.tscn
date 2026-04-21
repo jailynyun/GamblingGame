@@ -155,9 +155,11 @@ texture = ExtResource("17_hv4l6")
 y_sort_enabled = true
 
 [node name="Games" type="Node2D" parent="Y-sort"]
+y_sort_enabled = true
 position = Vector2(1143, 392)
 
 [node name="SlotMachine" type="Sprite2D" parent="Y-sort/Games"]
+y_sort_enabled = true
 position = Vector2(-3758, -689)
 texture = ExtResource("18_0vkxp")
 
@@ -167,7 +169,6 @@ texture = ExtResource("19_boxkh")
 
 [node name="BlackJackTable" type="Sprite2D" parent="Y-sort/Games"]
 position = Vector2(1266, 66.00003)
-scale = Vector2(0.87465566, 0.9185111)
 texture = ExtResource("20_aamvy")
 
 [node name="MemoryTable" type="Sprite2D" parent="Y-sort/Games"]
@@ -194,45 +195,47 @@ position = Vector2(127.99945, 46.000107)
 scale = Vector2(403.29996, 213.00002)
 polygon = PackedVector2Array(-5.273989, 7.2159615, -8.564343, 7.2159615, -8.522191, -6.4647884, -4.1284394, -6.4131455, -4.1185217, -8.892019, -8.988346, -8.920188, -8.941235, 8.591548, 8.33375, 8.53521, 8.358545, -8.821596, 3.6399722, -8.868545, 3.7019608, -6.4131455, 7.934542, -6.516432, 7.9890924, 7.2676044)
 
-[node name="SlotMachineInteractable" parent="." instance=ExtResource("3_2ihwe")]
+[node name="Interactions" type="Node2D" parent="."]
+
+[node name="SlotMachineInteractable" parent="Interactions" instance=ExtResource("3_2ihwe")]
 interact_name = "press e"
 target_scene = ExtResource("6_hbe42")
-casino_ui_path = NodePath("../Minigame_UI")
+casino_ui_path = NodePath("../../Minigame_UI")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SlotMachineInteractable"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/SlotMachineInteractable"]
 top_level = true
 position = Vector2(-2621, -320)
 shape = SubResource("CircleShape2D_gvffd")
 
-[node name="BlackJackInteractable" parent="." instance=ExtResource("3_2ihwe")]
+[node name="BlackJackInteractable" parent="Interactions" instance=ExtResource("3_2ihwe")]
 script = ExtResource("4_uqjeq")
 interact_name = "press e"
 target_scene = ExtResource("8_wjenp")
-casino_ui_path = NodePath("../Minigame_UI")
+casino_ui_path = NodePath("../../Minigame_UI")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BlackJackInteractable"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/BlackJackInteractable"]
 top_level = true
 position = Vector2(-2, -17.5)
 shape = SubResource("RectangleShape2D_3xcgm")
 
-[node name="RouletteWheelInteractable" parent="." instance=ExtResource("3_2ihwe")]
+[node name="RouletteWheelInteractable" parent="Interactions" instance=ExtResource("3_2ihwe")]
 script = ExtResource("5_6gdv7")
 interact_name = "press e"
 target_scene = ExtResource("10_i7svi")
-casino_ui_path = NodePath("../Minigame_UI")
+casino_ui_path = NodePath("../../Minigame_UI")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RouletteWheelInteractable"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/RouletteWheelInteractable"]
 top_level = true
 position = Vector2(-2052.5, 915)
 shape = SubResource("RectangleShape2D_5knvt")
 
-[node name="MemoryGameInteractable" parent="." instance=ExtResource("3_2ihwe")]
+[node name="MemoryGameInteractable" parent="Interactions" instance=ExtResource("3_2ihwe")]
 script = ExtResource("6_xri4w")
 interact_name = "press e"
 target_scene = ExtResource("12_hv4l6")
-casino_ui_path = NodePath("../Minigame_UI")
+casino_ui_path = NodePath("../../Minigame_UI")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MemoryGameInteractable"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/MemoryGameInteractable"]
 top_level = true
 position = Vector2(2416, 459)
 shape = SubResource("RectangleShape2D_h0ks5")

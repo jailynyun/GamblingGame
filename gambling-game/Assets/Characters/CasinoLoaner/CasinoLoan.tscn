@@ -24,6 +24,7 @@ position = Vector2(3, 3)
 shape = SubResource("CircleShape2D_mbfqi")
 
 [node name="LoanMenu" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("4_sva7j")
 
 [node name="ColorRect" type="ColorRect" parent="LoanMenu"]
