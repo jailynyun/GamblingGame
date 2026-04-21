@@ -20,14 +20,17 @@ var money = 1000
 var curr_bet = 0
 var round_active = false
 
+var lost_arm = true
+var lost_eye = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$amount.text = "$" + str(money)
 	$bet.text = "$" + str(curr_bet)
 	#$Buttons/VBoxContainer/Replay.visible = false
 	$WinnerText.visible = false
-	$PlayerHitMarker.visible = false
-	$DealerHitMarker.visible = false
+	#$PlayerHitMarker.visible = false
+	#$DealerHitMarker.visible = false
 	$Buttons/VBoxContainer/Hit.disabled = true
 	$Buttons/VBoxContainer/Stand.disabled = true
 	get_tree().root.content_scale_factor
@@ -35,6 +38,8 @@ func _ready():
 	update_ui()
 	if curr_bet == 0:
 		$Play.disabled = true
+		
+	
 	
 		
 	## Create cards
@@ -69,8 +74,13 @@ func _process(delta):
 	
 	
 func _on_hit_pressed():
-	#print("enter_hit")
-	$PlayerHitMarker.visible = true
+	if lost_eye:
+		$EyeLostUser.visible = false
+	
+	if lost_arm and  await lose_arm():
+		return
+	
+	#$PlayerHitMarker.visible = true
 	generate_card("player")
 	# Play "hit!" animation
 	$AnimationPlayer.play("HitAnimationP")
@@ -112,8 +122,9 @@ func _on_stand_pressed():
 	#$PlayerHitMarker.visible = false #I added this. not sure if its needed
 	$Buttons/VBoxContainer/Stand.disabled = true
 	#$Buttons/VBoxContainer/OptionalMove.disabled = true
-	$DealerHitMarker.visible = true
+	#$DealerHitMarker.visible = true
 	$WhoseTurn.text = "Dealer's\nTurn"
+	
 	
 	await get_tree().create_timer(1.5).timeout
 	var dealer_hand_container = $Cards/Hands/DealerHand
@@ -232,7 +243,7 @@ func generate_card(hand, back=false):
 	var card_hand_container
 	if hand == "player":
 		card_hand_container = $Cards/Hands/PlayerHand
-		$PlayerHitMarker.visible = true
+		#$PlayerHitMarker.visible = true
 		
 		if random_card[0] == 11 and playerScore > 10:  # Aces are 1 if score is too high for 11
 			playerScore += 1
@@ -251,12 +262,14 @@ func generate_card(hand, back=false):
 		
 	# Add the card as a child to the HBoxContainer
 	card_hand_container.add_child(card_texture_rect)
-
+	
+	if hand == "player":
+		update_eye_debuff_visual()
 
 func updateText():
 	# Update the labels displayed on screen for the dealer and player scores.
 	$DealerScore.text = str(dealerScore)
-	$PlayerScore.text = str(playerScore)
+	#$PlayerScore.text = str(playerScore)
 
 
 func playerLose():
@@ -266,8 +279,8 @@ func playerLose():
 	$Buttons/VBoxContainer/Hit.disabled = true
 	$Buttons/VBoxContainer/Stand.disabled = true
 	#don't show any marker
-	$PlayerHitMarker.visible = false
-	$DealerHitMarker.visible = false
+	#$PlayerHitMarker.visible = false
+	#$DealerHitMarker.visible = false
 	#$Buttons/VBoxContainer/OptionalMove.disabled = true
 	await get_tree().create_timer(1).timeout
 	$WinnerText.visible = true
@@ -296,8 +309,8 @@ func playerWin(blackjack=false):
 	$Buttons/VBoxContainer/Hit.disabled = true
 	$Buttons/VBoxContainer/Stand.disabled = true
 	#don't show any marker
-	$PlayerHitMarker.visible = false
-	$DealerHitMarker.visible = false
+	#$PlayerHitMarker.visible = false
+	#$DealerHitMarker.visible = false
 	
 	#$Buttons/VBoxContainer/OptionalMove.disabled = true
 	
@@ -320,8 +333,8 @@ func playerDraw():
 	$WinnerText.set("theme_override_colors/font_color", "white")
 	$Buttons/VBoxContainer/Hit.disabled = true
 	$Buttons/VBoxContainer/Stand.disabled = true
-	$PlayerHitMarker.visible = false
-	$DealerHitMarker.visible = false
+	#$PlayerHitMarker.visible = false#
+	#$DealerHitMarker.visible = false
 	
 	#$Buttons/VBoxContainer/OptimalMove.disabled = true
 	await get_tree().create_timer(1).timeout
@@ -349,7 +362,6 @@ func reset_ui():
 	
 	$Money.disabled = false
 	round_active = false
-	
 	
 	update_ui()
 	
@@ -425,6 +437,8 @@ func reset_board():
 	card_images.clear()
 	cardsShuffled.clear()
 	
+	
+	
 	# Clear card visuals
 	for child in $Cards/Hands/PlayerHand.get_children():
 		child.queue_free()
@@ -435,8 +449,8 @@ func reset_board():
 	# Reset round UI
 	$WinnerText.visible = false
 	$WinnerText.text = ""
-	$PlayerHitMarker.visible = false
-	$DealerHitMarker.visible = false
+	#$PlayerHitMarker.visible = false
+	#$DealerHitMarker.visible = false
 	$WhoseTurn.text = "Player's\nTurn"
 	#$Buttons/VBoxContainer/Replay.visible = false
 	$Play.disabled = false
@@ -450,6 +464,8 @@ func reset_board():
 	update_ui()
 
 func _on_play_pressed() -> void:
+	if lost_eye:
+		lose_eye()
 	if curr_bet <= 0:
 		return
 	
@@ -482,4 +498,42 @@ func _on_play_pressed() -> void:
 	await get_tree().create_timer(1).timeout
 	
 	if playerScore == 21:
-		playerWin(true)
+		_on_stand_pressed()
+		
+
+func lose_arm() -> bool:
+	#if you want to hit there’s a 10% chance you stand instead
+
+	if randf() < 1.0: #1.0 = max randf value, 0.1 = 10% chance
+		print("enetered random")
+		_on_stand_pressed()
+		$ArmLostUser.text = "you lost an arm. must stand"
+		await get_tree().create_timer(1.0).timeout
+		$ArmLostUser.visible = false
+		return true
+	return false
+	
+
+func lose_eye():
+	lost_eye = true
+	
+	update_eye_debuff_visual()
+	
+	$EyeLostUser.text = "your eye is gone. card is hidden..."
+	$EyeLostUser.set("theme_override_colors/font_color", "#ffd166")
+	$EyeLostUser.visible = true
+	
+	#await get_tree().create_timer(3.0).timeout
+	#$EyeLostUser.visible = false
+
+func update_eye_debuff_visual():
+	if not lost_eye:
+		return
+	
+	var player_hand = $Cards/Hands/PlayerHand
+	
+	for i in range(player_hand.get_child_count()):
+		player_hand.get_child(i).visible = true
+	
+	if player_hand.get_child_count() > 0:
+		player_hand.get_child(0).visible = false
