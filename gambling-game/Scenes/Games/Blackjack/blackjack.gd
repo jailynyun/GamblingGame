@@ -490,6 +490,7 @@ func _on_play_pressed() -> void:
 	generate_card("player")
 	updateText()
 	
+	
 	# Generate dealers cards; note how first one is true as we want to show the back
 	await get_tree().create_timer(0.5).timeout
 	generate_card("dealer", true)
@@ -509,7 +510,9 @@ func lose_arm() -> bool:
 	if randf() < 1.0: #1.0 = max randf value, 0.1 = 10% chance
 		print("enetered random")
 		_on_stand_pressed()
+		
 		$ArmLostUser.text = "you lost an arm. must stand"
+		$ArmLostUser.visible = true
 		await get_tree().create_timer(1.0).timeout
 		$ArmLostUser.visible = false
 		return true
