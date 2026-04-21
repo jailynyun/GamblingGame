@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dbkux5qejs3gv" path="res://Scenes/Games/RouletteWheel/RouletteWheel.tscn" id="10_i7svi"]
 [ext_resource type="PackedScene" uid="uid://3c37315w1488" path="res://Scenes/Games/MemoryGame/memory_game.tscn" id="12_hv4l6"]
 [ext_resource type="Script" uid="uid://d223v25ru5bxj" path="res://Scenes/MainLobby/UI_Scripts/GameHUD.gd" id="13_hileu"]
-[ext_resource type="PackedScene" uid="uid://dj5885f3an41f" path="res://Assets/Characters/CasinoLoan.tscn" id="14_hbe42"]
+[ext_resource type="PackedScene" uid="uid://dj5885f3an41f" path="res://Assets/Characters/CasinoLoaner/CasinoLoan.tscn" id="14_hbe42"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gvffd"]
 radius = 135.82341

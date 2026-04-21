@@ -1,0 +1,107 @@
+[gd_scene load_steps=6 format=3 uid="uid://dj5885f3an41f"]
+
+[ext_resource type="Script" uid="uid://3eixbegoeie7" path="res://Assets/Characters/CasinoLoaner/casino_loan.gd" id="1_hwecn"]
+[ext_resource type="Texture2D" uid="uid://bb100jjblssc5" path="res://Assets/Art/icon.svg" id="1_qyd3l"]
+[ext_resource type="PackedScene" uid="uid://cvqdfjofxjey2" path="res://Scenes/Interaction/interactable.tscn" id="2_hwecn"]
+[ext_resource type="Script" uid="uid://p8rghfyb1hm3" path="res://Assets/Characters/CasinoLoaner/loan_menu.gd" id="4_sva7j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mbfqi"]
+radius = 81.49847
+
+[node name="CasinoLoan" type="Node2D"]
+script = ExtResource("1_hwecn")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(2, -2)
+texture = ExtResource("1_qyd3l")
+
+[node name="Interactable" parent="." instance=ExtResource("2_hwecn")]
+position = Vector2(-3, -3)
+interact_name = "talk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+position = Vector2(3, 3)
+shape = SubResource("CircleShape2D_mbfqi")
+
+[node name="LoanMenu" type="CanvasLayer" parent="."]
+script = ExtResource("4_sva7j")
+
+[node name="ColorRect" type="ColorRect" parent="LoanMenu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -522.0
+offset_top = -383.0
+offset_right = 545.0
+offset_bottom = 354.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.4627451, 0.29411766, 1, 1)
+
+[node name="Label" type="Label" parent="LoanMenu/ColorRect"]
+layout_mode = 0
+offset_left = 428.0
+offset_top = 151.0
+offset_right = 636.0
+offset_bottom = 196.0
+theme_override_font_sizes/font_size = 30
+text = "loan amounts:"
+
+[node name="Loan100" type="Button" parent="LoanMenu/ColorRect"]
+layout_mode = 0
+offset_left = 343.0
+offset_top = 292.0
+offset_right = 379.0
+offset_bottom = 323.0
+theme_override_font_sizes/font_size = 20
+text = "100"
+
+[node name="Loan500" type="Button" parent="LoanMenu/ColorRect"]
+layout_mode = 0
+offset_left = 517.0
+offset_top = 288.0
+offset_right = 553.0
+offset_bottom = 319.0
+theme_override_font_sizes/font_size = 20
+text = "500"
+
+[node name="Loan1000" type="Button" parent="LoanMenu/ColorRect"]
+layout_mode = 0
+offset_left = 683.0
+offset_top = 289.0
+offset_right = 728.0
+offset_bottom = 320.0
+theme_override_font_sizes/font_size = 20
+text = "1000"
+
+[node name="CurrentSelected" type="Label" parent="LoanMenu/ColorRect"]
+layout_mode = 0
+offset_left = 510.0
+offset_top = 403.0
+offset_right = 550.0
+offset_bottom = 426.0
+theme_override_font_sizes/font_size = 20
+text = "Loan:"
+
+[node name="Confirm" type="Button" parent="LoanMenu/ColorRect"]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 516.0
+offset_right = 617.0
+offset_bottom = 615.0
+theme_override_font_sizes/font_size = 22
+text = "Confirm"
+
+[node name="CloseButton" type="Button" parent="LoanMenu/ColorRect"]
+layout_mode = 0
+offset_left = 891.0
+offset_top = 637.0
+offset_right = 957.0
+offset_bottom = 679.0
+text = "Close"
+
+[connection signal="loan_submitted" from="LoanMenu" to="." method="_on_loan_menu_loan_submitted"]
+[connection signal="pressed" from="LoanMenu/ColorRect/Confirm" to="LoanMenu" method="_on_confirm_pressed"]
+[connection signal="pressed" from="LoanMenu/ColorRect/CloseButton" to="." method="_on_close_button_pressed"]
