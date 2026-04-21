@@ -126,16 +126,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_3txm1")
 }
 
-[node name="Exit" type="Button" parent="."]
-layout_mode = 0
-offset_left = 938.0
-offset_top = 568.0
-offset_right = 1122.0
-offset_bottom = 625.0
-theme_override_colors/font_color = Color(0.87, 0.2088, 0.2088, 1)
-theme_override_font_sizes/font_size = 35
-text = "Exit"
-
 [node name="MoneyLabel" type="Label" parent="."]
 layout_mode = 0
 offset_left = 941.0
@@ -208,6 +198,5 @@ offset_bottom = 507.0
 
 [connection signal="pressed" from="Buttons/VBoxContainer/Hit" to="." method="_on_hit_pressed"]
 [connection signal="pressed" from="Buttons/VBoxContainer/Stand" to="." method="_on_stand_pressed"]
-[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="Money" to="." method="_on_money_pressed"]
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]

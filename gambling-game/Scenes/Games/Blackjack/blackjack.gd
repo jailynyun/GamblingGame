@@ -23,6 +23,8 @@ var round_active = false
 var lost_arm = true
 var lost_eye = true
 
+var card_back_image = preload("res://Assets/Art/cards/Cards_back.png")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$amount.text = "$" + str(money)
@@ -77,7 +79,7 @@ func _on_hit_pressed():
 	if lost_eye:
 		$EyeLostUser.visible = false
 	
-	if lost_arm and  await lose_arm():
+	if lost_arm and await lose_arm():
 		return
 	
 	#$PlayerHitMarker.visible = true
@@ -523,8 +525,7 @@ func lose_eye():
 	$EyeLostUser.set("theme_override_colors/font_color", "#ffd166")
 	$EyeLostUser.visible = true
 	
-	#await get_tree().create_timer(3.0).timeout
-	#$EyeLostUser.visible = false
+
 
 func update_eye_debuff_visual():
 	if not lost_eye:
@@ -536,4 +537,5 @@ func update_eye_debuff_visual():
 		player_hand.get_child(i).visible = true
 	
 	if player_hand.get_child_count() > 0:
-		player_hand.get_child(0).visible = false
+		player_hand.get_child(0).texture = card_back_image
+		
