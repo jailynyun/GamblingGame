@@ -20,7 +20,7 @@ func set_loan_amount(amt : int):
 	update_label()
 
 func update_label():
-	current_loan_label.text = "Loan: %d" % current_loan_amount
+	current_loan_label.text = "Loan: $%d" % current_loan_amount
 
 
 func _on_confirm_pressed() -> void:
