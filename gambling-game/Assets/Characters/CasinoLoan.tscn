@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dj5885f3an41f"]
+[gd_scene load_steps=5 format=3 uid="uid://dgb8ii305yc3p"]
 
-[ext_resource type="Script" uid="uid://3eixbegoeie7" path="res://Assets/Characters/casino_loan.gd" id="1_hwecn"]
+[ext_resource type="Script" path="res://Assets/Characters/casino_loan.gd" id="1_hwecn"]
 [ext_resource type="Texture2D" uid="uid://bb100jjblssc5" path="res://Assets/Art/icon.svg" id="1_qyd3l"]
 [ext_resource type="PackedScene" uid="uid://cvqdfjofxjey2" path="res://Scenes/Interaction/interactable.tscn" id="2_hwecn"]
 
@@ -8,6 +8,7 @@
 radius = 81.49847
 
 [node name="CasinoLoan" type="Node2D"]
+visible = false
 script = ExtResource("1_hwecn")
 
 [node name="Icon" type="Sprite2D" parent="."]
@@ -23,6 +24,7 @@ position = Vector2(3, 3)
 shape = SubResource("CircleShape2D_mbfqi")
 
 [node name="LoanMenu" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="LoanMenu"]
 anchors_preset = 8
