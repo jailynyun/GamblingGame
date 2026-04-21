@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dm1w15stf01bw"]
 
-[ext_resource type="Script" uid="uid://c8uex2yn6un3y" path="res://Scenes/Games/Blackjack/blackjack.gd" id="1_yk8rt"]
+[ext_resource type="Script" path="res://Scenes/Games/Blackjack/blackjack.gd" id="1_yk8rt"]
 
 [sub_resource type="Animation" id="Animation_yk8rt"]
 resource_name = "HitAnimationP"

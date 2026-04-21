@@ -1,0 +1,142 @@
+[gd_scene load_steps=7 format=3 uid="uid://dp5fcaw2uucbv"]
+
+[ext_resource type="Shader" uid="uid://dbcydde53akcf" path="res://Scenes/Games/SlotMachines/spin_tex.gdshader" id="1_aqq8y"]
+[ext_resource type="Script" uid="uid://qejaix527yji" path="res://Scenes/Games/SlotMachines/slot_machine.gd" id="1_wy8p5"]
+[ext_resource type="Texture2D" uid="uid://c5fhmwgnmwxo0" path="res://Assets/Art/slot_strip.png" id="2_sk7lg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sk7lg"]
+shader = ExtResource("1_aqq8y")
+shader_parameter/tex = ExtResource("2_sk7lg")
+shader_parameter/n_rows = 5.0
+shader_parameter/y_offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wy8p5"]
+shader = ExtResource("1_aqq8y")
+shader_parameter/tex = ExtResource("2_sk7lg")
+shader_parameter/n_rows = 5.0
+shader_parameter/y_offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_stl56"]
+shader = ExtResource("1_aqq8y")
+shader_parameter/tex = ExtResource("2_sk7lg")
+shader_parameter/n_rows = 5.0
+shader_parameter/y_offset = 0.0
+
+[node name="SlotMachine" type="Control" node_paths=PackedStringArray("spinners")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wy8p5")
+spinners = [NodePath("HBoxContainer/Slot1"), NodePath("HBoxContainer/Slot2"), NodePath("HBoxContainer/Slot3")]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 344.0
+offset_bottom = 145.0
+
+[node name="Slot1" type="ColorRect" parent="HBoxContainer"]
+material = SubResource("ShaderMaterial_sk7lg")
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Slot2" type="ColorRect" parent="HBoxContainer"]
+material = SubResource("ShaderMaterial_wy8p5")
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Slot3" type="ColorRect" parent="HBoxContainer"]
+material = SubResource("ShaderMaterial_stl56")
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpinButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 193.0
+offset_right = 249.0
+offset_bottom = 302.0
+text = "spin"
+
+[node name="CreditsLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 469.0
+offset_top = 202.0
+offset_right = 509.0
+offset_bottom = 225.0
+
+[node name="BetLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 466.0
+offset_top = 168.0
+offset_right = 506.0
+offset_bottom = 191.0
+
+[node name="ResultLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 459.0
+offset_top = 79.0
+offset_right = 499.0
+offset_bottom = 102.0
+
+[node name="Bet1Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 433.0
+offset_top = 118.0
+offset_right = 481.0
+offset_bottom = 149.0
+text = "Bet 1"
+
+[node name="Bet5Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 119.0
+offset_right = 532.0
+offset_bottom = 150.0
+text = "Bet 5"
+
+[node name="Bet10Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 545.0
+offset_top = 120.0
+offset_right = 602.0
+offset_bottom = 151.0
+text = "Bet 10"
+
+[node name="Bet25Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 606.0
+offset_top = 121.0
+offset_right = 663.0
+offset_bottom = 152.0
+text = "Bet 25"
+
+[node name="Bet50Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 668.0
+offset_top = 121.0
+offset_right = 725.0
+offset_bottom = 152.0
+text = "Bet 50"
+
+[node name="MaxBetButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 728.0
+offset_top = 122.0
+offset_right = 800.0
+offset_bottom = 153.0
+text = "Bet Max"
+
+[node name="ResetBetButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 805.0
+offset_top = 121.0
+offset_right = 856.0
+offset_bottom = 152.0
+text = "Reset"
+
+[connection signal="pressed" from="SpinButton" to="." method="spin"]
+[connection signal="pressed" from="MaxBetButton" to="." method="_on_max_bet_pressed"]
+[connection signal="pressed" from="ResetBetButton" to="." method="_on_reset_bet_pressed"]

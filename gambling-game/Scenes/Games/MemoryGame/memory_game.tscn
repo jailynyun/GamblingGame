@@ -1,0 +1,210 @@
+[gd_scene load_steps=6 format=3 uid="uid://3c37315w1488"]
+
+[ext_resource type="PackedScene" uid="uid://dj3ya0w34r56a" path="res://Scenes/Games/MemoryGame/tile_map.tscn" id="1_f4p3r"]
+[ext_resource type="Script" uid="uid://dkfse0yk6djgr" path="res://Scenes/Games/MemoryGame/tile_map.gd" id="2_7shb0"]
+[ext_resource type="Texture2D" uid="uid://dyn270v8633ov" path="res://Scenes/Games/MemoryGame/placeholder.png" id="2_a3fsh"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ykvbb"]
+texture = ExtResource("2_a3fsh")
+separation = Vector2i(0, 8)
+texture_region_size = Vector2i(32, 30)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/next_alternative_id = 2
+6:2/0 = 0
+6:2/1 = 1
+6:2/1/modulate = Color(1, 0, 1, 1)
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_7shb0"]
+tile_size = Vector2i(32, 30)
+sources/0 = SubResource("TileSetAtlasSource_ykvbb")
+
+[node name="MemoryGame" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="score_label" type="Label" parent="CanvasLayer"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -67.5
+offset_bottom = -12.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "text"
+vertical_alignment = 1
+
+[node name="turns_label" type="Label" parent="CanvasLayer"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -27.0
+offset_bottom = 28.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "text"
+vertical_alignment = 1
+
+[node name="results_label" type="Label" parent="CanvasLayer"]
+offset_left = 1164.0
+offset_top = 325.0
+offset_right = 1217.0
+offset_bottom = 348.0
+text = "results"
+
+[node name="money_label" type="Label" parent="CanvasLayer"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_top = 21.5
+offset_bottom = 44.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "money"
+
+[node name="bet_label" type="Label" parent="CanvasLayer"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = 46.5
+offset_bottom = 69.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "bet"
+
+[node name="PlayAgain" type="Button" parent="CanvasLayer"]
+offset_left = 883.0
+offset_top = 460.0
+offset_right = 891.0
+offset_bottom = 468.0
+text = "Play Again"
+
+[node name="Betting" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -980.0
+offset_top = -560.0
+offset_right = -940.0
+offset_bottom = -520.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Betting"]
+layout_mode = 0
+offset_left = 518.0
+offset_top = 278.0
+offset_right = 1330.0
+offset_bottom = 830.0
+color = Color(1, 0.4627451, 0.76862746, 1)
+
+[node name="bet_label" type="Label" parent="CanvasLayer/Betting"]
+layout_mode = 0
+offset_left = 893.0
+offset_top = 493.0
+offset_right = 919.0
+offset_bottom = 516.0
+text = "bet"
+
+[node name="money_label" type="Label" parent="CanvasLayer/Betting"]
+layout_mode = 0
+offset_left = 883.0
+offset_top = 460.0
+offset_right = 937.0
+offset_bottom = 483.0
+text = "money"
+
+[node name="Bet50Button" type="Button" parent="CanvasLayer/Betting"]
+layout_mode = 0
+offset_left = 823.0
+offset_top = 528.0
+offset_right = 880.0
+offset_bottom = 559.0
+text = "+50"
+
+[node name="Bet100Button" type="Button" parent="CanvasLayer/Betting"]
+layout_mode = 0
+offset_left = 893.0
+offset_top = 529.0
+offset_right = 938.0
+offset_bottom = 560.0
+text = "+100"
+
+[node name="MaxBetButton" type="Button" parent="CanvasLayer/Betting"]
+layout_mode = 0
+offset_left = 960.0
+offset_top = 528.0
+offset_right = 1032.0
+offset_bottom = 559.0
+text = "Max Bet"
+
+[node name="ResetBetButton" type="Button" parent="CanvasLayer/Betting"]
+layout_mode = 0
+offset_left = 883.0
+offset_top = 581.0
+offset_right = 955.0
+offset_bottom = 612.0
+text = "Reset"
+
+[node name="Start" type="Button" parent="CanvasLayer/Betting"]
+layout_mode = 0
+offset_left = 885.0
+offset_top = 644.0
+offset_right = 957.0
+offset_bottom = 675.0
+text = "Start"
+
+[node name="TileMap" parent="." instance=ExtResource("1_f4p3r")]
+position = Vector2(62.999992, 64)
+tile_set = SubResource("TileSet_7shb0")
+script = ExtResource("2_7shb0")
+
+[connection signal="pressed" from="CanvasLayer/PlayAgain" to="TileMap" method="_on_play_again_pressed"]
+[connection signal="pressed" from="CanvasLayer/Betting/Start" to="TileMap" method="_on_start_pressed"]

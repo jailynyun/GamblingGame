@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd3706ge61ipn"]
+
+[ext_resource type="Script" uid="uid://nymvipgwjj3g" path="res://Scenes/Games/RouletteWheel/Table/table.gd" id="1_dm204"]
+[ext_resource type="Texture2D" uid="uid://k1xfn7oanak7" path="res://Assets/Art/roulette-wheel.jpg" id="1_tnlgf"]
+
+[node name="Table" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dm204")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 565.0
+offset_bottom = 239.0
+texture = ExtResource("1_tnlgf")
+
+[node name="Highlight" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(1, 1, 1, 0.4745098)
