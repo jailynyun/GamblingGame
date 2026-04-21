@@ -15,6 +15,7 @@ const DEBT_ROUNDS : Array[int] = [2000, 3000, 5000]
 #const LIMB_ORDER : Array[String] = ["Arm", "Eye", "Leg"]
 
 var money: int = 500 #start w 500
+var loan_amount: int = 0 # from casino loan guy
 
 var elapsed_time: float = 0.0
 var current_day: int = 1
