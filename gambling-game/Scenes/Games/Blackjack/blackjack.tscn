@@ -22,15 +22,15 @@ offset_left = -33.0
 offset_top = -3.0
 offset_right = 897.0
 offset_bottom = 644.0
-color = Color(0.05882353, 0.67058825, 0.99607843, 1)
+color = Color(0.21171725, 0.21668145, 0.22164574, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 898.0
-offset_top = -7.0
-offset_right = 1151.0
-offset_bottom = 650.0
-color = Color(0.29803923, 0.39215687, 1, 1)
+offset_left = 897.0
+offset_top = -6.0
+offset_right = 1148.2968
+offset_bottom = 644.0
+color = Color(0.0432, 0.079040006, 0.12, 1)
 
 [node name="WhoseTurn" type="Label" parent="."]
 layout_mode = 0

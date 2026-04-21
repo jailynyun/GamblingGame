@@ -13,8 +13,8 @@ var cardsShuffled = {}
 
 var ace_found
 
-var MIN_X = 80
-var MIN_Y = 125
+var MIN_X = 83.33
+var MIN_Y = 116.66
 
 var money = 1000
 var curr_bet = 0
@@ -35,6 +35,7 @@ func _ready():
 	update_ui()
 	if curr_bet == 0:
 		$Play.disabled = true
+	
 		
 	## Create cards
 	#updateText()
@@ -170,14 +171,14 @@ func create_card_data():
 	
 	# Generate card names for ranks 2 to 10
 	for rank in range(2, 11):
-		for suit in ["clubs", "diamonds", "hearts", "spades"]:
-			card_names.append(str(rank) + "_" + suit)
+		for suit in ["Clubs", "Diamonds", "Hearts", "Spades"]:
+			card_names.append(suit + "_" + str(rank))
 			card_values.append(rank)
 
 	# Generate card names for face cards (jack, queen, king, ace)
 	for face_card in ["jack", "queen", "king", "ace"]:
 		for suit in ["clubs", "diamonds", "hearts", "spades"]:
-			card_names.append(face_card + "_" + suit)
+			card_names.append(suit + "_" + face_card)
 			if face_card != "ace":
 				card_values.append(10)
 			else:
@@ -187,10 +188,10 @@ func create_card_data():
 	# Load card values and image paths into the dictionary
 	for card in range(len(card_names)):
 		card_images[card_names[card]] = [card_values[card], 
-			"res://Assets/Art/cards_realistic/" + card_names[card] + ".png"]
+			"res://Assets/Art/cards/" + card_names[card] + ".png"]
 		
 	#add the the of card image with key "back"
-	card_images["back"] = [0, "res://Assets/Art/card_realistic/card_back.png"]
+	card_images["back"] = [0, "res://Assets/Art/cards/Card_back.png"]
 	
 	cardsShuffled = card_names.duplicate()
 	cardsShuffled.shuffle()
@@ -272,11 +273,14 @@ func playerLose():
 	$WinnerText.visible = true
 	await get_tree().create_timer(0.5).timeout
 	#$Buttons/VBoxContainer/Replay.visible = true
+	$Play.disabled = false
 	
 	#update_ui()
 	money -= curr_bet
 	reset_ui()
 	
+	$Play.text = "Play Again"
+	$Play.disabled = curr_bet <= 0
 	
 func playerWin(blackjack=false):
 	
@@ -306,6 +310,8 @@ func playerWin(blackjack=false):
 	#update_ui()
 	reset_ui()
 	
+	$Play.text = "Play Again"
+	$Play.disabled = curr_bet <= 0
 	
 	
 func playerDraw():
@@ -323,16 +329,20 @@ func playerDraw():
 	await get_tree().create_timer(0.5).timeout
 	#$Buttons/VBoxContainer/Replay.visible = true
 	
+	
 	#update_ui()
 	reset_ui()
+	
+	$Play.text = "Play Again"
+	$Play.disabled = curr_bet <= 0
 
 
 func _on_exit_pressed():
 	get_tree().quit()
 
 
-#func _on_replay_pressed():
-	#reset_board()
+func _on_replay_pressed():
+	reset_board()
 
 func reset_ui():
 	curr_bet = 0
@@ -340,7 +350,7 @@ func reset_ui():
 	$Money.disabled = false
 	round_active = false
 	
-	$Play.disabled = round_active or curr_bet <= 0
+	
 	update_ui()
 	
 	
@@ -399,7 +409,7 @@ func update_ui():
 	$bet.text = "$" + str(curr_bet)
 	
 	$Money.disabled = round_active or money < 100
-	$Play.disabled = round_active or curr_bet <= 0
+	$Play.disabled = curr_bet <= 0
 	
 func reset_board():
 	# Reset scores and hands
@@ -429,10 +439,11 @@ func reset_board():
 	$DealerHitMarker.visible = false
 	$WhoseTurn.text = "Player's\nTurn"
 	#$Buttons/VBoxContainer/Replay.visible = false
+	$Play.disabled = false
 	
 	$Buttons/VBoxContainer/Hit.disabled = true
 	$Buttons/VBoxContainer/Stand.disabled = true
-	$Play.disabled = true
+	#$Play.disabled = true
 	
 	round_active = false
 	updateText()
