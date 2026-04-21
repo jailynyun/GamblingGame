@@ -2,10 +2,12 @@
 Hey, heard you need cash?
 - Ye.
 - nah.
+	[signal arg="leave_convo"]
 	[end_timeline]
 Well, you can take a loan from me, but you gotta pay it back by the end of the day.
 So, whaddya say? Wanna strike a deal?
 - Ye.
+	[signal arg="loan_menu"]
 - Uh, I'm good...
+	[signal arg="leave_convo"]
 	[end_timeline]
-[end_timeline]

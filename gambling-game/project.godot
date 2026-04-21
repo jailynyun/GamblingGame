@@ -24,7 +24,8 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 directories/dch_directory={}
 directories/dtl_directory={
-"casino_loan_timeline": "res://Dialogue/casino_loan_timeline.dtl"
+"casino_loan_timeline": "res://Dialogue/casino_loan_timeline.dtl",
+"scam_timeline": "res://Dialogue/scam_timeline.dtl"
 }
 layout/style_list=["res://Dialogue/dialogue_style.tres"]
 layout/default_style="res://Dialogue/dialogue_style.tres"
