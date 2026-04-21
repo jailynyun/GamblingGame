@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var interactable: Area2D = $Interactable
 @onready var loan_menu = $LoanMenu
-@onready var player = $"../Player"
+@onready var player = $"../../Player"
 
 func _ready() -> void:
 	loan_menu.visible = false

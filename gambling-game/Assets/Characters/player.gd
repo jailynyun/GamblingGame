@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 # Movement Settings
 @export var acceleration := 50.0
-@export var max_speed := 500.0
+@export var max_speed := 800.0
 @onready var sprite2D = %Sprite2D
 var walk_time := 0.0
 var wobble_speed := 12.0
@@ -67,4 +67,4 @@ func _on_close_button_pressed() -> void:
 	
 func _on_limb_lost():
 	if GameManager.lost_limbs.has("leg"):
-		max_speed = 200
+		max_speed = 500
