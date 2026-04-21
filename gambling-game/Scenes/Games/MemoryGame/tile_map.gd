@@ -9,6 +9,8 @@ var revealed_spots = []
 var tile_pos_to_atlas_pos = {}
 var score = 0
 var turns_taken = 0
+
+var money = GameManager.money
 var bet_size = 0
 var game_started = false
 
@@ -36,7 +38,7 @@ func _ready() -> void:
 	
 	bet_50_button.pressed.connect(func(): _add_bet(50))
 	bet_100_button.pressed.connect(func(): _add_bet(100))
-	max_bet_button.pressed.connect(func(): _add_bet(GameManager.money))
+	max_bet_button.pressed.connect(func(): _add_bet(money))
 	reset_bet_button.pressed.connect(_reset_bet)
 	
 	pass # Replace with function body.
@@ -101,8 +103,8 @@ func update_text():
 	$"../CanvasLayer/score_label".text = "Score: %d" % score
 	$"../CanvasLayer/turns_label".text = "Turns Taken: %d" % turns_taken
 	$"../CanvasLayer/Betting/bet_label".text = "Bet: %d" % bet_size
-	betting_money_label.text = "Money: %d" % GameManager.money
-	money_label.text = "Money: %d" % GameManager.money
+	betting_money_label.text = "Money: %d" % money
+	money_label.text = "Money: %d" % money
 	bet_label.text = "Bet: %d" % bet_size
 	
 func put_back_cards_with_delay():
@@ -144,19 +146,19 @@ func _add_bet(amount: int):
 		return
 	if amount <= 0:
 		return
-	if GameManager.money <= 0:
+	if money <= 0:
 		return
 
-	var actual_amount = min(amount, GameManager.money)
+	var actual_amount = min(amount, money)
 	bet_size += actual_amount
-	GameManager.money -= actual_amount
+	money -= actual_amount
 	update_text()
 
 func _reset_bet():
 	if game_started:
 		return
 
-	GameManager.money += bet_size
+	money += bet_size
 	bet_size = 0
 	update_text()
 
@@ -165,6 +167,7 @@ func _on_start_pressed() -> void:
 	if bet_size <= 0:
 		return
 	
+	GameManager.money = money
 	betting_square.visible = false
 	money_label.visible = true
 	bet_label.visible = true
@@ -178,6 +181,7 @@ func _on_play_again_pressed() -> void:
 	
 	betting_square.visible = true
 	
+	money = GameManager.money
 	bet_size = 0
 	score = 0
 	turns_taken = 0

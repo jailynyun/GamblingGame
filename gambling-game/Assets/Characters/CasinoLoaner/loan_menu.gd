@@ -3,6 +3,7 @@ extends CanvasLayer
 @onready var loan100 : Button = $ColorRect/Loan100
 @onready var loan500 : Button = $ColorRect/Loan500
 @onready var loan1000 : Button = $ColorRect/Loan1000
+@onready var confirm : Button = $ColorRect/Confirm
 @onready var current_loan_label : Label = $ColorRect/CurrentSelected
 
 var current_loan_amount
@@ -13,10 +14,11 @@ func _ready() -> void:
 	loan100.pressed.connect(func(): set_loan_amount(100))
 	loan500.pressed.connect(func(): set_loan_amount(500))
 	loan1000.pressed.connect(func(): set_loan_amount(1000))
-	
+	confirm.disabled = true
 
 func set_loan_amount(amt : int):
 	current_loan_amount = amt
+	confirm.disabled = false
 	update_label()
 
 func update_label():
