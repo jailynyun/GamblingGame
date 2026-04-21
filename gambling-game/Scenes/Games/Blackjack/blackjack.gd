@@ -16,38 +16,50 @@ var ace_found
 var MIN_X = 80
 var MIN_Y = 125
 
+var money = 1000
+var curr_bet = 0
+var round_active = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#$Replay.visible = false
+	$amount.text = "$" + str(money)
+	$bet.text = "$" + str(curr_bet)
+	#$Buttons/VBoxContainer/Replay.visible = false
 	$WinnerText.visible = false
 	$PlayerHitMarker.visible = false
 	$DealerHitMarker.visible = false
-	#$Buttons/VBoxContainer/Hit.visible = false
-	#$Buttons/VBoxContainer/Stand.visible = false
+	$Buttons/VBoxContainer/Hit.disabled = true
+	$Buttons/VBoxContainer/Stand.disabled = true
 	get_tree().root.content_scale_factor
-	# Create cards
 	updateText()
-	create_card_data()
-	
-	# Generate initial 2 player cards	
-	await get_tree().create_timer(0.7).timeout
-	generate_card("player")
-	updateText()
-	await get_tree().create_timer(0.5).timeout
-	generate_card("player")
-	updateText()
-	
-	# Generate dealers cards; note how first one is true as we want to show the back
-	await get_tree().create_timer(0.5).timeout
-	generate_card("dealer", true)
-	updateText()
-	await get_tree().create_timer(0.5).timeout
-	generate_card("dealer")
-	updateText()
-	await get_tree().create_timer(1).timeout
-	
-	if playerScore == 21:
-		playerWin(true)
+	update_ui()
+	if curr_bet == 0:
+		$Play.disabled = true
+		
+	## Create cards
+	#updateText()
+	#create_card_data()
+	#
+	## Generate initial 2 player cards	
+	#await get_tree().create_timer(0.7).timeout
+	#generate_card("player")
+	#updateText()
+	#await get_tree().create_timer(0.5).timeout
+	#generate_card("player")
+	#updateText()
+	#
+	## Generate dealers cards; note how first one is true as we want to show the back
+	#await get_tree().create_timer(0.5).timeout
+	#generate_card("dealer", true)
+	#updateText()
+	#await get_tree().create_timer(0.5).timeout
+	#generate_card("dealer")
+	#updateText()
+	#await get_tree().create_timer(1).timeout
+	#
+	#if playerScore == 21:
+		#playerWin(true)
+
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -93,11 +105,7 @@ func recalculate_player_score():
 
 
 func _on_stand_pressed():
-	#I added this
-	$Buttons/VBoxContainer/Hit.disabled = true
-	$Buttons/VBoxContainer/Stand.disabled = true
-	
-	
+		
 	# Flip dealer's first card, dealer keeps hitting until score is above 16 or player's score
 	$Buttons/VBoxContainer/Hit.disabled = true
 	#$PlayerHitMarker.visible = false #I added this. not sure if its needed
@@ -106,12 +114,17 @@ func _on_stand_pressed():
 	$DealerHitMarker.visible = true
 	$WhoseTurn.text = "Dealer's\nTurn"
 	
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(1.5).timeout
 	var dealer_hand_container = $Cards/Hands/DealerHand
-	
+	if dealer_hand_container.get_child_count() > 0:
+		var child_to_remove = dealer_hand_container.get_child(0)
+		child_to_remove.queue_free()
+	else:
+		print("Dealer hand is empty, no card to remove.")
+		
 	# Remove the first card from the container (the back of card texture)
-	var child_to_remove = dealer_hand_container.get_child(0)
-	child_to_remove.queue_free()  # Remove the node from the scene
+	#var child_to_remove = dealer_hand_container.get_child(0)
+	#child_to_remove.queue_free()  # Remove the node from the scene
 	
 	# Create a new TextureRect node for the card image
 	var card = dealerCards[0]
@@ -151,6 +164,10 @@ func _on_stand_pressed():
 	
 	
 func create_card_data():
+	card_names.clear()
+	card_values.clear()
+	card_images.clear()
+	
 	# Generate card names for ranks 2 to 10
 	for rank in range(2, 11):
 		for suit in ["clubs", "diamonds", "hearts", "spades"]:
@@ -180,11 +197,16 @@ func create_card_data():
 
 	
 func generate_card(hand, back=false):
+	if cardsShuffled.is_empty():
+		create_card_data()
 	# Assuming you have already loaded card images into the dictionary as shown in your code
 	var random_card
 
 	# If back is true assign card image to back
 	if back:
+		#only enters when after the player stands for the first time???? why?
+		print("entered back")
+		
 		# We display the back of the card, but a real card needs to be pulled
 		# so that it can be shown when the player Stands
 		random_card = card_images["back"]
@@ -200,14 +222,17 @@ func generate_card(hand, back=false):
 	var card_texture_rect = TextureRect.new()
 	card_texture_rect.texture = card_texture
 	card_texture_rect.expand = true
-	card_texture_rect.custom_minimum_size = Vector2(MIN_X, MIN_Y)  # change size here
+	
+	#CHANGE SIZE OF CARD
+	card_texture_rect.custom_minimum_size = Vector2(MIN_X, MIN_Y)  
 	card_texture_rect.stretch_mode = TextureRect.STRETCH_SCALE
 	
 	# Get a reference to the existing HBoxContainer
 	var card_hand_container
 	if hand == "player":
 		card_hand_container = $Cards/Hands/PlayerHand
-		#$PlayerHitMarker.visible = true
+		$PlayerHitMarker.visible = true
+		
 		if random_card[0] == 11 and playerScore > 10:  # Aces are 1 if score is too high for 11
 			playerScore += 1
 		else:
@@ -239,26 +264,48 @@ func playerLose():
 	$WinnerText.set("theme_override_colors/font_color", "ff5342")
 	$Buttons/VBoxContainer/Hit.disabled = true
 	$Buttons/VBoxContainer/Stand.disabled = true
+	#don't show any marker
+	$PlayerHitMarker.visible = false
+	$DealerHitMarker.visible = false
 	#$Buttons/VBoxContainer/OptionalMove.disabled = true
 	await get_tree().create_timer(1).timeout
 	$WinnerText.visible = true
 	await get_tree().create_timer(0.5).timeout
-	#$Replay.visible = true
+	#$Buttons/VBoxContainer/Replay.visible = true
+	
+	#update_ui()
+	money -= curr_bet
+	reset_ui()
 	
 	
 func playerWin(blackjack=false):
+	
 	# Player has won: display text (already set if not blackjack),
 	# display buttons and ask to play again
 	if blackjack:
 		$WinnerText.text = "PLAYER WINS\nBY BLACKJACK"
+		$WinnerText.set("theme_override_colors/font_color", "#daffd6")
+	
+	$WinnerText.text = "PLAYER\nWINS"
+	$WinnerText.set("theme_override_colors/font_color", "#daffd6")
+	
 	$Buttons/VBoxContainer/Hit.disabled = true
 	$Buttons/VBoxContainer/Stand.disabled = true
+	#don't show any marker
+	$PlayerHitMarker.visible = false
+	$DealerHitMarker.visible = false
+	
 	#$Buttons/VBoxContainer/OptionalMove.disabled = true
 	
 	await get_tree().create_timer(1).timeout
 	$WinnerText.visible = true
 	await get_tree().create_timer(0.5).timeout
-	#$Replay.visible = true
+	#$Buttons/VBoxContainer/Replay.visible = true
+	
+	money += (2 * curr_bet)
+	#update_ui()
+	reset_ui()
+	
 	
 	
 func playerDraw():
@@ -267,21 +314,37 @@ func playerDraw():
 	$WinnerText.set("theme_override_colors/font_color", "white")
 	$Buttons/VBoxContainer/Hit.disabled = true
 	$Buttons/VBoxContainer/Stand.disabled = true
+	$PlayerHitMarker.visible = false
+	$DealerHitMarker.visible = false
+	
 	#$Buttons/VBoxContainer/OptimalMove.disabled = true
 	await get_tree().create_timer(1).timeout
 	$WinnerText.visible = true
 	await get_tree().create_timer(0.5).timeout
-	#$Replay.visible = true
+	#$Buttons/VBoxContainer/Replay.visible = true
+	
+	#update_ui()
+	reset_ui()
 
 
-#func _on_exit_pressed():
-	#get_tree().change_scene_to_file("res://main-scene/main_scene.tscn")
+func _on_exit_pressed():
+	get_tree().quit()
 
 
 #func _on_replay_pressed():
-	#get_tree().change_scene_to_file("res://gameplay-scene/game.tscn")
+	#reset_board()
 
-
+func reset_ui():
+	curr_bet = 0
+	
+	$Money.disabled = false
+	round_active = false
+	
+	$Play.disabled = round_active or curr_bet <= 0
+	update_ui()
+	
+	
+#NOT USING OPTIMAL MOVE
 func _on_button_pressed():
 	# AI logic to determine optimal move
 	
@@ -324,3 +387,88 @@ func playerHasAce(cards):
 		if card[0] == 11:
 			return true
 	return false
+
+
+func _on_money_pressed() -> void:
+	#money -= 100
+	curr_bet += 100
+	update_ui()
+
+func update_ui():
+	$amount.text = "$" + str(money)
+	$bet.text = "$" + str(curr_bet)
+	
+	$Money.disabled = round_active or money < 100
+	$Play.disabled = round_active or curr_bet <= 0
+	
+func reset_board():
+	# Reset scores and hands
+	playerScore = 0
+	dealerScore = 0
+	playerCards.clear()
+	dealerCards.clear()
+	ace_found = false
+	
+	# Reset deck data
+	card_names.clear()
+	card_values.clear()
+	card_images.clear()
+	cardsShuffled.clear()
+	
+	# Clear card visuals
+	for child in $Cards/Hands/PlayerHand.get_children():
+		child.queue_free()
+		
+	for child in $Cards/Hands/DealerHand.get_children():
+		child.queue_free()
+	
+	# Reset round UI
+	$WinnerText.visible = false
+	$WinnerText.text = ""
+	$PlayerHitMarker.visible = false
+	$DealerHitMarker.visible = false
+	$WhoseTurn.text = "Player's\nTurn"
+	#$Buttons/VBoxContainer/Replay.visible = false
+	
+	$Buttons/VBoxContainer/Hit.disabled = true
+	$Buttons/VBoxContainer/Stand.disabled = true
+	$Play.disabled = true
+	
+	round_active = false
+	updateText()
+	update_ui()
+
+func _on_play_pressed() -> void:
+	if curr_bet <= 0:
+		return
+	
+	reset_board()
+	round_active = true
+	$Buttons/VBoxContainer/Stand.disabled = false
+	$Buttons/VBoxContainer/Hit.disabled = false
+	$Play.disabled = true
+	
+	$Money.disabled = true
+	# Create cards
+	
+	create_card_data()
+	
+	# Generate initial 2 player cards	
+	await get_tree().create_timer(0.7).timeout
+	generate_card("player")
+	updateText()
+	await get_tree().create_timer(0.5).timeout
+	generate_card("player")
+	updateText()
+	
+	# Generate dealers cards; note how first one is true as we want to show the back
+	await get_tree().create_timer(0.5).timeout
+	generate_card("dealer", true)
+	updateText()
+	await get_tree().create_timer(0.5).timeout
+	generate_card("dealer")
+	updateText()
+	await get_tree().create_timer(1).timeout
+	
+	if playerScore == 21:
+		playerWin(true)
