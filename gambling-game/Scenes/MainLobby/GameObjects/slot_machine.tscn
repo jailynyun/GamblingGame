@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwy28bu2wa18e"]
+
+[ext_resource type="Texture2D" uid="uid://b60f6stppcvq1" path="res://Assets/Art/Backgrounds/Slots.png" id="1_g7fo0"]
+
+[node name="SlotMachine" type="Sprite2D"]
+y_sort_enabled = true
+texture = ExtResource("1_g7fo0")
+offset = Vector2(0, -100)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-1, -98)
+polygon = PackedVector2Array(-86, 51, 79, 52, 77, 169, -90, 172)

@@ -15,6 +15,7 @@ func _ready() -> void:
 	GameManager.limb_lost.connect(_on_limb_lost)
 
 func _physics_process(delta):
+	print(top_level)
 	#Check if Entered a Casino MiniGame
 	if not can_move:
 		return

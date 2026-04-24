@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://t0e28hcumo4n"]
+
+[ext_resource type="Texture2D" uid="uid://baf86hhbsuiqv" path="res://Assets/Art/Backgrounds/MemoryGame.png" id="1_y2rj2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhr0l"]
+size = Vector2(623, 374)
+
+[node name="MemoryTable" type="Sprite2D"]
+texture = ExtResource("1_y2rj2")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1, 39)
+shape = SubResource("RectangleShape2D_qhr0l")

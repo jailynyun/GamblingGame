@@ -5,25 +5,25 @@
 [ext_resource type="PackedScene" uid="uid://dihywvwvshtys" path="res://Scenes/Interaction/interacting_component.tscn" id="3_22irx"]
 
 [node name="Player" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 7
 script = ExtResource("1_dbjc2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(-28, 0)
 texture = ExtResource("2_b5nv5")
+offset = Vector2(0, -100)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -100)
 zoom = Vector2(0.5, 0.5)
 process_callback = 0
 position_smoothing_enabled = true
 
 [node name="InteractingComponent" parent="." instance=ExtResource("3_22irx")]
-position = Vector2(-1, 76.00001)
-scale = Vector2(7, 7)
+position = Vector2(0, -57)
+scale = Vector2(10, 10)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(-28.999998, -25)
+position = Vector2(-29.999998, -123.00001)
 scale = Vector2(0.809047, 0.8367248)
-polygon = PackedVector2Array(-33.37261, 77.683846, 86.521545, 75.29357, 118.34355, 95.919464, 123.60222, 143.41632, 132.25438, 188.8315, 87.316696, 192.26984, -58.09305, 188.8315, -149.5587, 169.70932, -148.32268, 133.85524)
+polygon = PackedVector2Array(-33.37261, 77.683846, 86.521545, 75.29357, 118.34355, 95.919464, 123.60222, 143.41632, 132.25438, 188.8315, 87.316696, 192.26984, -58.09305, 188.8315, -69.21725, 108.757385)

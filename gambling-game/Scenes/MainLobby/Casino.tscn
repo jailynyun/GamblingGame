@@ -9,19 +9,19 @@
 [ext_resource type="Script" uid="uid://crsgvfrd2k52o" path="res://Scenes/MainLobby/Interactable_Minigame_Scripts/RouletteWheelInteractable.gd" id="5_6gdv7"]
 [ext_resource type="PackedScene" uid="uid://dp5fcaw2uucbv" path="res://Scenes/Games/SlotMachines/slot_machine.tscn" id="6_hbe42"]
 [ext_resource type="Script" uid="uid://cq7nusuegrdb5" path="res://Scenes/MainLobby/Interactable_Minigame_Scripts/MemoryGameInteractable.gd" id="6_xri4w"]
+[ext_resource type="PackedScene" uid="uid://cwy28bu2wa18e" path="res://Scenes/MainLobby/GameObjects/slot_machine.tscn" id="8_00tyg"]
 [ext_resource type="PackedScene" uid="uid://dm1w15stf01bw" path="res://Scenes/Games/Blackjack/blackjack.tscn" id="8_wjenp"]
+[ext_resource type="PackedScene" uid="uid://c0i87ow54haqp" path="res://Scenes/MainLobby/GameObjects/roulette_table.tscn" id="9_0vkxp"]
+[ext_resource type="PackedScene" uid="uid://ddkgvaley834s" path="res://Scenes/MainLobby/GameObjects/black_jack_table.tscn" id="10_boxkh"]
 [ext_resource type="PackedScene" uid="uid://dbkux5qejs3gv" path="res://Scenes/Games/RouletteWheel/RouletteWheel.tscn" id="10_i7svi"]
+[ext_resource type="PackedScene" uid="uid://t0e28hcumo4n" path="res://Scenes/MainLobby/GameObjects/memory_table.tscn" id="11_aamvy"]
 [ext_resource type="PackedScene" uid="uid://3c37315w1488" path="res://Scenes/Games/MemoryGame/memory_game.tscn" id="12_hv4l6"]
 [ext_resource type="Texture2D" uid="uid://cacfqkk376p4j" path="res://Assets/Art/Backgrounds/Floor.png" id="13_hbe42"]
 [ext_resource type="Script" uid="uid://d223v25ru5bxj" path="res://Scenes/MainLobby/UI_Scripts/GameHUD.gd" id="13_hileu"]
 [ext_resource type="PackedScene" uid="uid://dj5885f3an41f" path="res://Assets/Characters/CasinoLoaner/CasinoLoan.tscn" id="14_hbe42"]
 [ext_resource type="Texture2D" uid="uid://dxv227krang3y" path="res://Assets/Art/Backgrounds/Stage.png" id="17_hv4l6"]
-[ext_resource type="Texture2D" uid="uid://b60f6stppcvq1" path="res://Assets/Art/Backgrounds/Slots.png" id="18_0vkxp"]
 [ext_resource type="Texture2D" uid="uid://dkpskx03ko12o" path="res://Assets/Art/Backgrounds/Walls_Cropped/BottomWall.png" id="18_ryvo0"]
-[ext_resource type="Texture2D" uid="uid://gv5bl5bscy66" path="res://Assets/Art/Backgrounds/Roulette.png" id="19_boxkh"]
 [ext_resource type="Texture2D" uid="uid://qvryt2klt264" path="res://Assets/Art/Backgrounds/Walls_Cropped/TopWall.png" id="19_xyh06"]
-[ext_resource type="Texture2D" uid="uid://clssta7v1gj21" path="res://Assets/Art/Backgrounds/Blackjack.png" id="20_aamvy"]
-[ext_resource type="Texture2D" uid="uid://baf86hhbsuiqv" path="res://Assets/Art/Backgrounds/MemoryGame.png" id="21_go16v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gvffd"]
 radius = 251.24689
@@ -37,12 +37,6 @@ size = Vector2(1063, 420)
 
 [node name="Casino" type="Node2D"]
 script = ExtResource("1_wjenp")
-
-[node name="Player" parent="." instance=ExtResource("1_gm6j6")]
-top_level = true
-y_sort_enabled = true
-position = Vector2(484, 260)
-collision_mask = 1
 
 [node name="GameHUD_UI" type="CanvasLayer" parent="."]
 
@@ -154,26 +148,25 @@ texture = ExtResource("17_hv4l6")
 [node name="Y-sort" type="Node2D" parent="."]
 y_sort_enabled = true
 
+[node name="Player" parent="Y-sort" instance=ExtResource("1_gm6j6")]
+y_sort_enabled = true
+position = Vector2(-779, 613)
+
 [node name="Games" type="Node2D" parent="Y-sort"]
 y_sort_enabled = true
-position = Vector2(1143, 392)
 
-[node name="SlotMachine" type="Sprite2D" parent="Y-sort/Games"]
+[node name="MemoryTable" parent="Y-sort/Games" instance=ExtResource("11_aamvy")]
 y_sort_enabled = true
-position = Vector2(-3758, -689)
-texture = ExtResource("18_0vkxp")
+position = Vector2(8, -18)
 
-[node name="RouletteTable" type="Sprite2D" parent="Y-sort/Games"]
-position = Vector2(-3193, 527)
-texture = ExtResource("19_boxkh")
+[node name="SlotMachine" parent="Y-sort/Games" instance=ExtResource("8_00tyg")]
+position = Vector2(-2604, -311)
 
-[node name="BlackJackTable" type="Sprite2D" parent="Y-sort/Games"]
-position = Vector2(1266, 66.00003)
-texture = ExtResource("20_aamvy")
+[node name="RouletteTable" parent="Y-sort/Games" instance=ExtResource("9_0vkxp")]
+position = Vector2(-2044, 1047)
 
-[node name="MemoryTable" type="Sprite2D" parent="Y-sort/Games"]
-position = Vector2(-1143, -392)
-texture = ExtResource("21_go16v")
+[node name="BlackJackTable" parent="Y-sort/Games" instance=ExtResource("10_boxkh")]
+position = Vector2(2415, 443)
 
 [node name="CasinoLoan" parent="Y-sort" instance=ExtResource("14_hbe42")]
 position = Vector2(1143, 392)
@@ -215,7 +208,7 @@ casino_ui_path = NodePath("../../Minigame_UI")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/BlackJackInteractable"]
 top_level = true
-position = Vector2(-2, -17.5)
+position = Vector2(4, -23)
 shape = SubResource("RectangleShape2D_3xcgm")
 
 [node name="RouletteWheelInteractable" parent="Interactions" instance=ExtResource("3_2ihwe")]
@@ -240,4 +233,4 @@ top_level = true
 position = Vector2(2416, 459)
 shape = SubResource("RectangleShape2D_h0ks5")
 
-[connection signal="pressed" from="Minigame_UI/MiniGameWindow/CloseButton" to="Player" method="_on_close_button_pressed"]
+[connection signal="pressed" from="Minigame_UI/MiniGameWindow/CloseButton" to="Y-sort/Player" method="_on_close_button_pressed"]
