@@ -29,6 +29,7 @@ func _on_get_money(m: Variant) -> void:
 
 func _on_play_again_pressed() -> void:
 	bet = 0
+	money = GameManager.money
 	_update_labels()
 
 

@@ -13,12 +13,17 @@ var cardsShuffled = {}
 
 var ace_found
 
-var MIN_X = 80
-var MIN_Y = 125
+var MIN_X = 83.33
+var MIN_Y = 116.66
 
 var money = 1000
 var curr_bet = 0
 var round_active = false
+
+var lost_arm = true
+var lost_eye = true
+
+var card_back_image = preload("res://Assets/Art/cards/Cards_back.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,8 +31,8 @@ func _ready():
 	$bet.text = "$" + str(curr_bet)
 	#$Buttons/VBoxContainer/Replay.visible = false
 	$WinnerText.visible = false
-	$PlayerHitMarker.visible = false
-	$DealerHitMarker.visible = false
+	#$PlayerHitMarker.visible = false
+	#$DealerHitMarker.visible = false
 	$Buttons/VBoxContainer/Hit.disabled = true
 	$Buttons/VBoxContainer/Stand.disabled = true
 	get_tree().root.content_scale_factor
@@ -35,6 +40,9 @@ func _ready():
 	update_ui()
 	if curr_bet == 0:
 		$Play.disabled = true
+		
+	
+	
 		
 	## Create cards
 	#updateText()
@@ -68,8 +76,13 @@ func _process(delta):
 	
 	
 func _on_hit_pressed():
-	#print("enter_hit")
-	$PlayerHitMarker.visible = true
+	if lost_eye:
+		$EyeLostUser.visible = false
+	
+	if lost_arm and await lose_arm():
+		return
+	
+	#$PlayerHitMarker.visible = true
 	generate_card("player")
 	# Play "hit!" animation
 	$AnimationPlayer.play("HitAnimationP")
@@ -111,8 +124,9 @@ func _on_stand_pressed():
 	#$PlayerHitMarker.visible = false #I added this. not sure if its needed
 	$Buttons/VBoxContainer/Stand.disabled = true
 	#$Buttons/VBoxContainer/OptionalMove.disabled = true
-	$DealerHitMarker.visible = true
+	#$DealerHitMarker.visible = true
 	$WhoseTurn.text = "Dealer's\nTurn"
+	
 	
 	await get_tree().create_timer(1.5).timeout
 	var dealer_hand_container = $Cards/Hands/DealerHand
@@ -170,14 +184,14 @@ func create_card_data():
 	
 	# Generate card names for ranks 2 to 10
 	for rank in range(2, 11):
-		for suit in ["clubs", "diamonds", "hearts", "spades"]:
-			card_names.append(str(rank) + "_" + suit)
+		for suit in ["Clubs", "Diamonds", "Hearts", "Spades"]:
+			card_names.append(suit + "_" + str(rank))
 			card_values.append(rank)
 
 	# Generate card names for face cards (jack, queen, king, ace)
 	for face_card in ["jack", "queen", "king", "ace"]:
 		for suit in ["clubs", "diamonds", "hearts", "spades"]:
-			card_names.append(face_card + "_" + suit)
+			card_names.append(suit + "_" + face_card)
 			if face_card != "ace":
 				card_values.append(10)
 			else:
@@ -187,10 +201,10 @@ func create_card_data():
 	# Load card values and image paths into the dictionary
 	for card in range(len(card_names)):
 		card_images[card_names[card]] = [card_values[card], 
-			"res://Assets/Art/cards_realistic/" + card_names[card] + ".png"]
+			"res://Assets/Art/cards/" + card_names[card] + ".png"]
 		
 	#add the the of card image with key "back"
-	card_images["back"] = [0, "res://Assets/Art/card_realistic/card_back.png"]
+	card_images["back"] = [0, "res://Assets/Art/cards/Card_back.png"]
 	
 	cardsShuffled = card_names.duplicate()
 	cardsShuffled.shuffle()
@@ -231,7 +245,7 @@ func generate_card(hand, back=false):
 	var card_hand_container
 	if hand == "player":
 		card_hand_container = $Cards/Hands/PlayerHand
-		$PlayerHitMarker.visible = true
+		#$PlayerHitMarker.visible = true
 		
 		if random_card[0] == 11 and playerScore > 10:  # Aces are 1 if score is too high for 11
 			playerScore += 1
@@ -250,12 +264,14 @@ func generate_card(hand, back=false):
 		
 	# Add the card as a child to the HBoxContainer
 	card_hand_container.add_child(card_texture_rect)
-
+	
+	if hand == "player":
+		update_eye_debuff_visual()
 
 func updateText():
 	# Update the labels displayed on screen for the dealer and player scores.
 	$DealerScore.text = str(dealerScore)
-	$PlayerScore.text = str(playerScore)
+	#$PlayerScore.text = str(playerScore)
 
 
 func playerLose():
@@ -265,18 +281,21 @@ func playerLose():
 	$Buttons/VBoxContainer/Hit.disabled = true
 	$Buttons/VBoxContainer/Stand.disabled = true
 	#don't show any marker
-	$PlayerHitMarker.visible = false
-	$DealerHitMarker.visible = false
+	#$PlayerHitMarker.visible = false
+	#$DealerHitMarker.visible = false
 	#$Buttons/VBoxContainer/OptionalMove.disabled = true
 	await get_tree().create_timer(1).timeout
 	$WinnerText.visible = true
 	await get_tree().create_timer(0.5).timeout
 	#$Buttons/VBoxContainer/Replay.visible = true
+	$Play.disabled = false
 	
 	#update_ui()
 	money -= curr_bet
 	reset_ui()
 	
+	$Play.text = "Play Again"
+	$Play.disabled = curr_bet <= 0
 	
 func playerWin(blackjack=false):
 	
@@ -292,8 +311,8 @@ func playerWin(blackjack=false):
 	$Buttons/VBoxContainer/Hit.disabled = true
 	$Buttons/VBoxContainer/Stand.disabled = true
 	#don't show any marker
-	$PlayerHitMarker.visible = false
-	$DealerHitMarker.visible = false
+	#$PlayerHitMarker.visible = false
+	#$DealerHitMarker.visible = false
 	
 	#$Buttons/VBoxContainer/OptionalMove.disabled = true
 	
@@ -306,6 +325,8 @@ func playerWin(blackjack=false):
 	#update_ui()
 	reset_ui()
 	
+	$Play.text = "Play Again"
+	$Play.disabled = curr_bet <= 0
 	
 	
 func playerDraw():
@@ -314,8 +335,8 @@ func playerDraw():
 	$WinnerText.set("theme_override_colors/font_color", "white")
 	$Buttons/VBoxContainer/Hit.disabled = true
 	$Buttons/VBoxContainer/Stand.disabled = true
-	$PlayerHitMarker.visible = false
-	$DealerHitMarker.visible = false
+	#$PlayerHitMarker.visible = false#
+	#$DealerHitMarker.visible = false
 	
 	#$Buttons/VBoxContainer/OptimalMove.disabled = true
 	await get_tree().create_timer(1).timeout
@@ -323,16 +344,20 @@ func playerDraw():
 	await get_tree().create_timer(0.5).timeout
 	#$Buttons/VBoxContainer/Replay.visible = true
 	
+	
 	#update_ui()
 	reset_ui()
+	
+	$Play.text = "Play Again"
+	$Play.disabled = curr_bet <= 0
 
 
 func _on_exit_pressed():
 	get_tree().quit()
 
 
-#func _on_replay_pressed():
-	#reset_board()
+func _on_replay_pressed():
+	reset_board()
 
 func reset_ui():
 	curr_bet = 0
@@ -340,7 +365,6 @@ func reset_ui():
 	$Money.disabled = false
 	round_active = false
 	
-	$Play.disabled = round_active or curr_bet <= 0
 	update_ui()
 	
 	
@@ -399,7 +423,7 @@ func update_ui():
 	$bet.text = "$" + str(curr_bet)
 	
 	$Money.disabled = round_active or money < 100
-	$Play.disabled = round_active or curr_bet <= 0
+	$Play.disabled = curr_bet <= 0
 	
 func reset_board():
 	# Reset scores and hands
@@ -415,6 +439,8 @@ func reset_board():
 	card_images.clear()
 	cardsShuffled.clear()
 	
+	
+	
 	# Clear card visuals
 	for child in $Cards/Hands/PlayerHand.get_children():
 		child.queue_free()
@@ -425,20 +451,23 @@ func reset_board():
 	# Reset round UI
 	$WinnerText.visible = false
 	$WinnerText.text = ""
-	$PlayerHitMarker.visible = false
-	$DealerHitMarker.visible = false
+	#$PlayerHitMarker.visible = false
+	#$DealerHitMarker.visible = false
 	$WhoseTurn.text = "Player's\nTurn"
 	#$Buttons/VBoxContainer/Replay.visible = false
+	$Play.disabled = false
 	
 	$Buttons/VBoxContainer/Hit.disabled = true
 	$Buttons/VBoxContainer/Stand.disabled = true
-	$Play.disabled = true
+	#$Play.disabled = true
 	
 	round_active = false
 	updateText()
 	update_ui()
 
 func _on_play_pressed() -> void:
+	if lost_eye:
+		lose_eye()
 	if curr_bet <= 0:
 		return
 	
@@ -471,4 +500,42 @@ func _on_play_pressed() -> void:
 	await get_tree().create_timer(1).timeout
 	
 	if playerScore == 21:
-		playerWin(true)
+		_on_stand_pressed()
+		
+
+func lose_arm() -> bool:
+	#if you want to hit there’s a 10% chance you stand instead
+
+	if randf() < 1.0: #1.0 = max randf value, 0.1 = 10% chance
+		print("enetered random")
+		_on_stand_pressed()
+		$ArmLostUser.text = "you lost an arm. must stand"
+		await get_tree().create_timer(1.0).timeout
+		$ArmLostUser.visible = false
+		return true
+	return false
+	
+
+func lose_eye():
+	lost_eye = true
+	
+	update_eye_debuff_visual()
+	
+	$EyeLostUser.text = "your eye is gone. card is hidden..."
+	$EyeLostUser.set("theme_override_colors/font_color", "#ffd166")
+	$EyeLostUser.visible = true
+	
+
+
+func update_eye_debuff_visual():
+	if not lost_eye:
+		return
+	
+	var player_hand = $Cards/Hands/PlayerHand
+	
+	for i in range(player_hand.get_child_count()):
+		player_hand.get_child(i).visible = true
+	
+	if player_hand.get_child_count() > 0:
+		player_hand.get_child(0).texture = card_back_image
+		

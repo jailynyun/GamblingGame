@@ -1,0 +1,10 @@
+Hey, ready to pay back your loan? You owe ${GameManager.loan_amount}.
+- YES SIR!
+	if {loan_amount} >{money}:
+		Looks like you don't have enough money. Come back when you can pay.
+		[signal arg="leave_convo"]
+		[end_timeline]
+	[signal arg="pay_back"]
+	Thanks for the business, hope to work with you again soon!
+- No not yet...
+[signal arg="leave_convo"]

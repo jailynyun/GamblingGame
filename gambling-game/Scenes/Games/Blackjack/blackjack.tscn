@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dm1w15stf01bw"]
 
-[ext_resource type="Script" path="res://Scenes/Games/Blackjack/blackjack.gd" id="1_yk8rt"]
+[ext_resource type="Script" uid="uid://c8uex2yn6un3y" path="res://Scenes/Games/Blackjack/blackjack.gd" id="1_yk8rt"]
 
 [sub_resource type="Animation" id="Animation_yk8rt"]
 resource_name = "HitAnimationP"
@@ -18,19 +18,19 @@ script = ExtResource("1_yk8rt")
 
 [node name="ColorRect1" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = -33.0
+offset_left = 2.0
 offset_top = -3.0
 offset_right = 897.0
 offset_bottom = 644.0
-color = Color(0.05882353, 0.67058825, 0.99607843, 1)
+color = Color(0.21171725, 0.21668145, 0.22164574, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 898.0
-offset_top = -7.0
-offset_right = 1151.0
-offset_bottom = 650.0
-color = Color(0.29803923, 0.39215687, 1, 1)
+offset_left = 897.0
+offset_top = -1.0
+offset_right = 1148.2968
+offset_bottom = 644.0
+color = Color(0.0432, 0.079040006, 0.12, 1)
 
 [node name="WhoseTurn" type="Label" parent="."]
 layout_mode = 0
@@ -92,26 +92,6 @@ alignment = 1
 [node name="PlayerHand" type="HBoxContainer" parent="Cards/Hands"]
 layout_mode = 2
 
-[node name="PlayerScore" type="Label" parent="."]
-layout_mode = 0
-offset_left = 817.0
-offset_top = 484.0
-offset_right = 882.0
-offset_bottom = 597.0
-theme_override_font_sizes/font_size = 40
-text = "20
-"
-
-[node name="PlayerScoreLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 552.0
-offset_top = 484.0
-offset_right = 801.0
-offset_bottom = 597.0
-theme_override_font_sizes/font_size = 40
-text = "Player Score:
-"
-
 [node name="DealerScore" type="Label" parent="."]
 layout_mode = 0
 offset_left = 816.0
@@ -121,28 +101,6 @@ offset_bottom = 443.0
 theme_override_font_sizes/font_size = 40
 text = "20
 "
-
-[node name="PlayerHitMarker" type="Label" parent="."]
-layout_mode = 0
-offset_left = 949.0
-offset_top = 285.0
-offset_right = 1110.0
-offset_bottom = 334.0
-theme_override_colors/font_color = Color(0.16862746, 1, 0.24705882, 1)
-theme_override_font_sizes/font_size = 35
-text = "Hit"
-horizontal_alignment = 1
-
-[node name="DealerHitMarker" type="Label" parent="."]
-layout_mode = 0
-offset_left = 949.0
-offset_top = 285.0
-offset_right = 1110.0
-offset_bottom = 334.0
-theme_override_colors/font_color = Color(1, 0.015686275, 0.07450981, 1)
-theme_override_font_sizes/font_size = 35
-text = "Hit"
-horizontal_alignment = 1
 
 [node name="DealerScoreLabel" type="Label" parent="."]
 layout_mode = 0
@@ -167,16 +125,6 @@ text = "PLAYER WINS"
 libraries = {
 &"": SubResource("AnimationLibrary_3txm1")
 }
-
-[node name="Exit" type="Button" parent="."]
-layout_mode = 0
-offset_left = 938.0
-offset_top = 568.0
-offset_right = 1122.0
-offset_bottom = 625.0
-theme_override_colors/font_color = Color(0.87, 0.2088, 0.2088, 1)
-theme_override_font_sizes/font_size = 35
-text = "Exit"
 
 [node name="MoneyLabel" type="Label" parent="."]
 layout_mode = 0
@@ -234,8 +182,21 @@ offset_bottom = 115.0
 theme_override_font_sizes/font_size = 25
 text = "$0"
 
+[node name="ArmLostUser" type="Label" parent="."]
+layout_mode = 0
+offset_left = 303.0
+offset_top = 232.0
+offset_right = 711.0
+offset_bottom = 398.0
+
+[node name="EyeLostUser" type="Label" parent="."]
+layout_mode = 0
+offset_left = 523.0
+offset_top = 373.0
+offset_right = 880.0
+offset_bottom = 507.0
+
 [connection signal="pressed" from="Buttons/VBoxContainer/Hit" to="." method="_on_hit_pressed"]
 [connection signal="pressed" from="Buttons/VBoxContainer/Stand" to="." method="_on_stand_pressed"]
-[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="Money" to="." method="_on_money_pressed"]
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
