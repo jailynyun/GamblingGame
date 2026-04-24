@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://3c37315w1488" path="res://Scenes/Games/MemoryGame/memory_game.tscn" id="12_hv4l6"]
 [ext_resource type="Texture2D" uid="uid://cacfqkk376p4j" path="res://Assets/Art/Backgrounds/Floor.png" id="13_hbe42"]
 [ext_resource type="Script" uid="uid://d223v25ru5bxj" path="res://Scenes/MainLobby/UI_Scripts/GameHUD.gd" id="13_hileu"]
-[ext_resource type="PackedScene" uid="uid://dgb8ii305yc3p" path="res://Assets/Characters/CasinoLoan.tscn" id="14_hbe42"]
+[ext_resource type="PackedScene" path="res://Assets/Characters/CasinoLoan.tscn" id="14_hbe42"]
 [ext_resource type="Texture2D" uid="uid://dxv227krang3y" path="res://Assets/Art/Backgrounds/Stage.png" id="17_hv4l6"]
 [ext_resource type="Texture2D" uid="uid://b60f6stppcvq1" path="res://Assets/Art/Backgrounds/Slots.png" id="18_0vkxp"]
 [ext_resource type="Texture2D" uid="uid://dkpskx03ko12o" path="res://Assets/Art/Backgrounds/Walls_Cropped/BottomWall.png" id="18_ryvo0"]
@@ -52,63 +52,6 @@ y_sort_enabled = true
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_wv7tl")
-
-[node name="GameHUD_UI" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("13_hileu")
-
-[node name="DayLabel" type="Label" parent="GameHUD_UI"]
-layout_mode = 0
-offset_left = 179.0
-offset_top = 12.0
-offset_right = 473.0
-offset_bottom = 97.0
-text = "day label"
-
-[node name="DayProgressBar" type="ProgressBar" parent="GameHUD_UI"]
-layout_mode = 0
-offset_left = 350.0
-offset_top = 18.0
-offset_right = 1083.0
-offset_bottom = 98.0
-
-[node name="DebtLabel" type="Label" parent="GameHUD_UI"]
-layout_mode = 0
-offset_left = 1113.0
-offset_top = 104.0
-offset_right = 1482.0
-offset_bottom = 284.0
-text = "debt label
-"
-
-[node name="DeadlineLabel" type="Label" parent="GameHUD_UI"]
-layout_mode = 0
-offset_left = 655.0
-offset_top = 105.0
-offset_right = 821.0
-offset_bottom = 197.0
-text = "deadline label"
-
-[node name="LimbsLabel" type="Label" parent="GameHUD_UI"]
-layout_mode = 0
-offset_left = 175.0
-offset_top = 95.0
-offset_right = 373.0
-offset_bottom = 205.0
-text = "limbs label"
-
-[node name="MoneyLabel" type="Label" parent="GameHUD_UI"]
-layout_mode = 0
-offset_left = 1113.0
-offset_top = 13.0
-offset_right = 1437.0
-offset_bottom = 164.0
-text = "money
-"
 
 [node name="Minigame_UI" type="CanvasLayer" parent="."]
 visible = false
@@ -241,5 +184,61 @@ y_sort_enabled = true
 position = Vector2(127.99945, 46.000107)
 scale = Vector2(403.29996, 213.00002)
 polygon = PackedVector2Array(-5.273989, 7.2159615, -8.564343, 7.2159615, -8.522191, -6.4647884, -4.1284394, -6.4131455, -4.1185217, -8.892019, -8.988346, -8.920188, -8.941235, 8.591548, 8.33375, 8.53521, 8.358545, -8.821596, 3.6399722, -8.868545, 3.7019608, -6.4131455, 7.934542, -6.516432, 7.9890924, 7.2676044)
+
+[node name="GameHUD_UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("13_hileu")
+
+[node name="DayLabel" type="Label" parent="GameHUD_UI"]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 12.0
+offset_right = 473.0
+offset_bottom = 97.0
+text = "day label"
+
+[node name="DayProgressBar" type="ProgressBar" parent="GameHUD_UI"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 18.0
+offset_right = 1083.0
+offset_bottom = 98.0
+
+[node name="DebtLabel" type="Label" parent="GameHUD_UI"]
+layout_mode = 0
+offset_left = 1113.0
+offset_top = 104.0
+offset_right = 1482.0
+offset_bottom = 284.0
+text = "debt label
+"
+
+[node name="DeadlineLabel" type="Label" parent="GameHUD_UI"]
+layout_mode = 0
+offset_left = 655.0
+offset_top = 105.0
+offset_right = 821.0
+offset_bottom = 197.0
+text = "deadline label"
+
+[node name="LimbsLabel" type="Label" parent="GameHUD_UI"]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 95.0
+offset_right = 373.0
+offset_bottom = 205.0
+text = "limbs label"
+
+[node name="MoneyLabel" type="Label" parent="GameHUD_UI"]
+layout_mode = 0
+offset_left = 1113.0
+offset_top = 13.0
+offset_right = 1437.0
+offset_bottom = 164.0
+text = "money
+"
 
 [connection signal="pressed" from="Minigame_UI/MiniGameWindow/CloseButton" to="Player" method="_on_close_button_pressed"]

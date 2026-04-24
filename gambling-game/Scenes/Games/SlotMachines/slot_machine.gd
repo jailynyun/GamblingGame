@@ -2,6 +2,8 @@ extends Control
 
 @export var n_options: int = 5
 @export var spinners: Array[Control]
+@export var base_spin_duration: float = 1.0
+@export var lost_arm_spin_penalty: float = 10.0
 
 @onready var spin_button: Button = $SpinButton
 @onready var credits_label: Label = $CreditsLabel
@@ -15,6 +17,7 @@ extends Control
 @onready var bet_50_button: Button = $Bet50Button
 @onready var max_bet_button: Button = $MaxBetButton
 @onready var reset_bet_button: Button = $ResetBetButton
+
 
 var values: Array = []
 var tween: Tween
@@ -58,6 +61,7 @@ func spin() -> void:
 		result_label.text = "You need to bet to play"
 		return
 	
+	#UI stuff
 	GameManager.remove_money(bet)
 	result_label.text = "Spinning..."
 	bet_1_button.disabled = true
@@ -69,7 +73,7 @@ func spin() -> void:
 
 	values.clear()
 	offsets.clear()
-
+	
 	for s in spinners:
 		var value := randi_range(0, n_options - 1)
 		values.append(value)
@@ -83,9 +87,12 @@ func spin() -> void:
 		tween.kill()
 
 	spin_button.disabled = true
-
+	
+	#for arm defect
+	var spin_duration := _get_spin_duration()
+	
 	tween = get_tree().create_tween()
-	tween.tween_method(_update_spin, 0.0, 1.0, 1.0)
+	tween.tween_method(_update_spin, 0.0, 1.0, spin_duration)
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.tween_callback(_finish_spin)
@@ -116,6 +123,14 @@ func _finish_spin() -> void:
 	spin_button.disabled = GameManager.money <= 0
 
 	_update_ui()
+
+func _get_spin_duration() -> float:
+	var duration := base_spin_duration
+
+	if "arm" in GameManager.lost_limbs:
+		duration += lost_arm_spin_penalty
+
+	return duration
 
 func _calculate_winnings() -> int:
 	if values.size() < 3:
