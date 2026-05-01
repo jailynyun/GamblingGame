@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://v01uei8xai5"]
+[gd_scene load_steps=28 format=3 uid="uid://v01uei8xai5"]
 
 [ext_resource type="PackedScene" uid="uid://cvpqp3jyr8v16" path="res://Assets/Characters/Player.tscn" id="1_gm6j6"]
 [ext_resource type="Script" uid="uid://ba8perqd1jtlj" path="res://Scenes/MainLobby/casino.gd" id="1_wjenp"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://qvryt2klt264" path="res://Assets/Art/Backgrounds/Walls_Cropped/TopWall.png" id="19_xyh06"]
 [ext_resource type="Texture2D" uid="uid://clssta7v1gj21" path="res://Assets/Art/Backgrounds/Blackjack.png" id="20_aamvy"]
 [ext_resource type="Texture2D" uid="uid://baf86hhbsuiqv" path="res://Assets/Art/Backgrounds/MemoryGame.png" id="21_go16v"]
+[ext_resource type="PackedScene" uid="uid://bt81lyemaummj" path="res://Scenes/UI/pause_menu.tscn" id="23_0vkxp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gvffd"]
 radius = 251.24689
@@ -239,5 +240,7 @@ casino_ui_path = NodePath("../../Minigame_UI")
 top_level = true
 position = Vector2(2416, 459)
 shape = SubResource("RectangleShape2D_h0ks5")
+
+[node name="PauseMenu" parent="." instance=ExtResource("23_0vkxp")]
 
 [connection signal="pressed" from="Minigame_UI/MiniGameWindow/CloseButton" to="Player" method="_on_close_button_pressed"]
