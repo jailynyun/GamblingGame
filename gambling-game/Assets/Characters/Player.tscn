@@ -20,8 +20,8 @@ process_callback = 0
 position_smoothing_enabled = true
 
 [node name="InteractingComponent" parent="." instance=ExtResource("3_22irx")]
-position = Vector2(0, -57)
-scale = Vector2(10, 10)
+position = Vector2(-3.9999998, -77)
+scale = Vector2(15, 15)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-29.999998, -123.00001)
