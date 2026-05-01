@@ -140,14 +140,21 @@ text = "close"
 
 [node name="Background" type="Node2D" parent="."]
 
+[node name="ColorRect" type="ColorRect" parent="Background"]
+offset_left = -5116.0
+offset_top = -2906.0
+offset_right = 4779.0
+offset_bottom = 3460.0
+color = Color(0.115952335, 0.13078627, 0.24460304, 1)
+
 [node name="Floor" type="Sprite2D" parent="Background"]
 texture = ExtResource("13_hbe42")
 
-[node name="Stage" type="Sprite2D" parent="Background"]
-texture = ExtResource("17_hv4l6")
-
 [node name="Carpet" type="Sprite2D" parent="Background"]
 texture = ExtResource("6_0vkxp")
+
+[node name="Stage" type="Sprite2D" parent="Background"]
+texture = ExtResource("17_hv4l6")
 
 [node name="Y-sort" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -215,9 +222,10 @@ offset = Vector2(0, 1350)
 y_sort_enabled = true
 position = Vector2(127.99945, 46.000107)
 scale = Vector2(403.29996, 213.00002)
-polygon = PackedVector2Array(-5.273989, 7.2159615, -8.564343, 7.2159615, -8.522191, -6.4647884, -4.1284394, -6.4131455, -4.1185217, -8.892019, -8.988346, -8.920188, -8.941235, 8.591548, 8.33375, 8.53521, 8.358545, -8.821596, 3.6399722, -8.868545, 3.7019608, -6.4131455, 7.934542, -6.516432, 7.9890924, 7.2676044)
+polygon = PackedVector2Array(-5.273989, 7.2159615, -8.564343, 7.2159615, -8.522191, -6.4647884, -4.056533, -6.4131455, -4.034217, -5.361502, 3.5507088, -5.366197, 3.5457497, -8.892019, -8.988346, -8.920188, -8.941235, 8.591548, 8.33375, 8.53521, 8.358545, -8.821596, 3.6399722, -8.868545, 3.635013, -6.446009, 7.934542, -6.516432, 7.9890924, 7.2676044)
 
 [node name="Interactions" type="Node2D" parent="."]
+visible = false
 
 [node name="SlotMachineInteractable" parent="Interactions" instance=ExtResource("3_2ihwe")]
 interact_name = "press e"
