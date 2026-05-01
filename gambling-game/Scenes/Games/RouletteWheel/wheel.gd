@@ -11,6 +11,8 @@ var target_angle := 0.0
 var spun := false
 
 signal wheel_stopped
+var has_emitted := false # a flag to emit signal wheel_stopped only once
+
 signal get_spun(s)
 
 func _ready() -> void:
@@ -22,8 +24,9 @@ func _process(delta):
 		skip_button.visible = true
 		velocity = max(velocity - deceleration * delta, 0.0)
 		rotation += velocity * delta
-		if velocity == 0:
+		if velocity == 0 && !has_emitted:
 			wheel_stopped.emit()
+			has_emitted = true
 			skip_button.visible = false
 			play_again_button.visible = true
 		
@@ -61,6 +64,7 @@ func spin_wheel(number: int):
 	print("dec: ",deceleration)
 	
 	spun = true
+	has_emitted = false
 	get_spun.emit(spun)
 
 

@@ -11,6 +11,7 @@ signal get_bet_size(b)
 signal get_result(won, win_amt)
 var won = false
 var win_amt = 0
+var bet_amt = 0
 
 var numbers = [
 	# green 00 = 1000, green 0 = 100
@@ -63,7 +64,7 @@ func check_bets(jackpot):
 	var win_color = numbers[jackpot][0]
 	for bet in bets:
 		print(bet)
-		win_amt -= bet_size
+		bet_amt -= bet_size
 		if bet == win_num:
 			print("WIN! 35:1")
 			money += 36*bet_size
@@ -109,11 +110,13 @@ func _on_finalized_bets(b: Array) -> void:
 func _on_play_again_pressed() -> void:
 	bets.clear()
 	win_amt = 0
+	money = GameManager.money
 	won = false
 	spun = false
+	
 
 
 func _on_wheel_stopped() -> void:
 	get_money.emit(money)
 	get_result.emit(won, win_amt)
-	GameManager.money = money
+	GameManager.money += win_amt
