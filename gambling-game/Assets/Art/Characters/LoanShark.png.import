@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://k8p4a7heacft"
-path="res://.godot/imported/RouletteWheel.svg-a5edaf316f48c48a39fb7c3a717db711.ctex"
+uid="uid://c17x3251uj3w8"
+path="res://.godot/imported/LoanShark.png-ccecef4bccd86be1394ecb400aab46d7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/RouletteWheel.svg"
-dest_files=["res://.godot/imported/RouletteWheel.svg-a5edaf316f48c48a39fb7c3a717db711.ctex"]
+source_file="res://Assets/Art/Characters/LoanShark.png"
+dest_files=["res://.godot/imported/LoanShark.png-ccecef4bccd86be1394ecb400aab46d7.ctex"]
 
 [params]
 
@@ -38,6 +38,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qwob8roxmawc"
-path="res://.godot/imported/ButtonOn.PNG-fcbd08640543db691fb60667f6b783e5.ctex"
+uid="uid://b6gpajd1fblvm"
+path="res://.godot/imported/Loanshrimp.png-5694c94c2c2e2fb32dac5cb8ab70d7c8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/ButtonOn.PNG"
-dest_files=["res://.godot/imported/ButtonOn.PNG-fcbd08640543db691fb60667f6b783e5.ctex"]
+source_file="res://Assets/Art/Characters/Loanshrimp.png"
+dest_files=["res://.godot/imported/Loanshrimp.png-5694c94c2c2e2fb32dac5cb8ab70d7c8.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bqcv67n6gltbw"
-path="res://.godot/imported/ButtonOff.PNG-3be33ec3bedb0bc45e3d688e48db5bb5.ctex"
+path="res://.godot/imported/ButtonOff.PNG-cd5d4e5aaba8922269b283c86a7dbbeb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/ButtonOff.PNG"
-dest_files=["res://.godot/imported/ButtonOff.PNG-3be33ec3bedb0bc45e3d688e48db5bb5.ctex"]
+source_file="res://Assets/Art/UI/ButtonOff.PNG"
+dest_files=["res://.godot/imported/ButtonOff.PNG-cd5d4e5aaba8922269b283c86a7dbbeb.ctex"]
 
 [params]
 

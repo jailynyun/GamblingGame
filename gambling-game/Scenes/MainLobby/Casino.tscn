@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://v01uei8xai5"]
+[gd_scene load_steps=30 format=3 uid="uid://v01uei8xai5"]
 
 [ext_resource type="PackedScene" uid="uid://cvpqp3jyr8v16" path="res://Assets/Characters/Player.tscn" id="1_gm6j6"]
 [ext_resource type="Script" path="res://Scenes/MainLobby/casino.gd" id="1_wjenp"]
 [ext_resource type="PackedScene" uid="uid://cvqdfjofxjey2" path="res://Scenes/Interaction/interactable.tscn" id="3_2ihwe"]
+[ext_resource type="PackedScene" uid="uid://bpljjl1ivlbrf" path="res://Scenes/UI/LoanSharkCutscene.tscn" id="3_aamvy"]
 [ext_resource type="Script" uid="uid://bvxy8sqm6i2sa" path="res://Scenes/MainLobby/UI_Scripts/Minigame_UI.gd" id="3_ek0c7"]
 [ext_resource type="Script" uid="uid://0w4wdp653haa" path="res://Scenes/MainLobby/UI_Scripts/mini_game_window.gd" id="4_hileu"]
 [ext_resource type="Script" uid="uid://cb43w23gjnin6" path="res://Scenes/MainLobby/Interactable_Minigame_Scripts/BlackJackInteractable.gd" id="4_uqjeq"]
@@ -143,19 +144,19 @@ render_target_update_mode = 4
 
 [node name="CloseButton" type="Button" parent="Minigame_UI/MiniGameWindow"]
 layout_mode = 0
-offset_left = 842.0
-offset_top = 815.0
-offset_right = 1148.0
-offset_bottom = 911.0
+offset_left = 815.0
+offset_top = 846.0
+offset_right = 1053.0
+offset_bottom = 921.0
 text = "close"
 
 [node name="Background" type="Node2D" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="Background"]
-offset_left = -5116.0
-offset_top = -2906.0
-offset_right = 4779.0
-offset_bottom = 3460.0
+offset_left = -5091.0
+offset_top = -3208.0
+offset_right = 4804.0
+offset_bottom = 3158.0
 color = Color(0.115952335, 0.13078627, 0.24460304, 1)
 
 [node name="Floor" type="Sprite2D" parent="Background"]
@@ -215,7 +216,9 @@ position = Vector2(-1642, 355)
 position = Vector2(1556, 232)
 
 [node name="CasinoLoan" parent="Y-sort" instance=ExtResource("14_hbe42")]
-position = Vector2(3022, -702)
+position = Vector2(2244, 585)
+
+[node name="LoanSharkCutscene" parent="Y-sort" instance=ExtResource("3_aamvy")]
 
 [node name="Wall" type="StaticBody2D" parent="Y-sort"]
 y_sort_enabled = true
@@ -323,5 +326,16 @@ casino_ui_path = NodePath("../../Minigame_UI")
 top_level = true
 position = Vector2(-3.75, 228.5)
 shape = SubResource("RectangleShape2D_h0ks5")
+
+[node name="Markers" type="Node2D" parent="."]
+
+[node name="DoorIn" type="Marker2D" parent="Markers"]
+position = Vector2(-1592, 1473)
+
+[node name="PlayerSpot" type="Marker2D" parent="Markers"]
+position = Vector2(-556, 892)
+
+[node name="DoorOut" type="Marker2D" parent="Markers"]
+position = Vector2(1629, 1537)
 
 [connection signal="pressed" from="Minigame_UI/MiniGameWindow/CloseButton" to="Y-sort/Player" method="_on_close_button_pressed"]
