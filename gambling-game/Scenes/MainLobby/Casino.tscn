@@ -1,9 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://v01uei8xai5"]
+[gd_scene load_steps=31 format=3 uid="uid://v01uei8xai5"]
 
 [ext_resource type="PackedScene" uid="uid://cvpqp3jyr8v16" path="res://Assets/Characters/Player.tscn" id="1_gm6j6"]
-[ext_resource type="Script" path="res://Scenes/MainLobby/casino.gd" id="1_wjenp"]
+[ext_resource type="Script" uid="uid://ba8perqd1jtlj" path="res://Scenes/MainLobby/casino.gd" id="1_wjenp"]
 [ext_resource type="PackedScene" uid="uid://cvqdfjofxjey2" path="res://Scenes/Interaction/interactable.tscn" id="3_2ihwe"]
-[ext_resource type="PackedScene" uid="uid://bpljjl1ivlbrf" path="res://Scenes/UI/LoanSharkCutscene.tscn" id="3_aamvy"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/LoanSharkCutscene.tscn" id="3_aamvy"]
 [ext_resource type="Script" uid="uid://bvxy8sqm6i2sa" path="res://Scenes/MainLobby/UI_Scripts/Minigame_UI.gd" id="3_ek0c7"]
 [ext_resource type="Script" uid="uid://0w4wdp653haa" path="res://Scenes/MainLobby/UI_Scripts/mini_game_window.gd" id="4_hileu"]
 [ext_resource type="Script" uid="uid://cb43w23gjnin6" path="res://Scenes/MainLobby/Interactable_Minigame_Scripts/BlackJackInteractable.gd" id="4_uqjeq"]
@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://dkpskx03ko12o" path="res://Assets/Art/Backgrounds/Walls_Cropped/BottomWall.png" id="18_ryvo0"]
 [ext_resource type="Texture2D" uid="uid://qvryt2klt264" path="res://Assets/Art/Backgrounds/Walls_Cropped/TopWall.png" id="19_xyh06"]
 [ext_resource type="PackedScene" uid="uid://bt81lyemaummj" path="res://Scenes/UI/pause_menu.tscn" id="23_0vkxp"]
+[ext_resource type="AudioStream" uid="uid://gbheyyaehibf" path="res://Assets/Sounds/music_for_videos-casino-164235.mp3" id="26_go16v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gvffd"]
 radius = 251.24689
@@ -337,5 +338,10 @@ position = Vector2(-556, 892)
 
 [node name="DoorOut" type="Marker2D" parent="Markers"]
 position = Vector2(1629, 1537)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("26_go16v")
+autoplay = true
+parameters/looping = false
 
 [connection signal="pressed" from="Minigame_UI/MiniGameWindow/CloseButton" to="Y-sort/Player" method="_on_close_button_pressed"]
