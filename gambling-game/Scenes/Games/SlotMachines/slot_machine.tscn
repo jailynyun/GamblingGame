@@ -2,28 +2,28 @@
 
 [ext_resource type="Shader" uid="uid://dbcydde53akcf" path="res://Scenes/Games/SlotMachines/spin_tex.gdshader" id="1_aqq8y"]
 [ext_resource type="Script" uid="uid://qejaix527yji" path="res://Scenes/Games/SlotMachines/slot_machine.gd" id="1_wy8p5"]
-[ext_resource type="Texture2D" uid="uid://b60f6stppcvq1" path="res://Assets/Art/Backgrounds/Slots.png" id="2_gxoyg"]
 [ext_resource type="Texture2D" uid="uid://bqcv67n6gltbw" path="res://Assets/Art/UI/ButtonOff.PNG" id="2_lev0p"]
-[ext_resource type="Texture2D" uid="uid://c5fhmwgnmwxo0" path="res://Assets/Art/slot_strip.png" id="2_sk7lg"]
 [ext_resource type="Texture2D" uid="uid://qwob8roxmawc" path="res://Assets/Art/UI/ButtonOn.PNG" id="3_gxoyg"]
+[ext_resource type="Texture2D" uid="uid://diaj4351h28wa" path="res://Assets/Art/SlotMachineScreen.PNG" id="4_gxoyg"]
 [ext_resource type="FontFile" uid="uid://be7gj8v4cpoi7" path="res://Assets/Fonts/carnivalee_freakshow/Carnevalee Freakshow.ttf" id="6_i4qj3"]
+[ext_resource type="Texture2D" uid="uid://d270nfh6agxeb" path="res://Assets/Art/UI/Slots_CreamBG.PNG" id="7_gxoyg"]
 [ext_resource type="FontFile" uid="uid://lhnicab54pid" path="res://Assets/Fonts/champagne_limousines/Champagne & Limousines Bold Italic.ttf" id="7_lev0p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sk7lg"]
 shader = ExtResource("1_aqq8y")
-shader_parameter/tex = ExtResource("2_sk7lg")
+shader_parameter/tex = ExtResource("7_gxoyg")
 shader_parameter/n_rows = 5.0
 shader_parameter/y_offset = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wy8p5"]
 shader = ExtResource("1_aqq8y")
-shader_parameter/tex = ExtResource("2_sk7lg")
+shader_parameter/tex = ExtResource("7_gxoyg")
 shader_parameter/n_rows = 5.0
 shader_parameter/y_offset = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_stl56"]
 shader = ExtResource("1_aqq8y")
-shader_parameter/tex = ExtResource("2_sk7lg")
+shader_parameter/tex = ExtResource("7_gxoyg")
 shader_parameter/n_rows = 5.0
 shader_parameter/y_offset = 0.0
 
@@ -45,45 +45,14 @@ spinners = [NodePath("HBoxContainer/Slot1"), NodePath("HBoxContainer/Slot2"), No
 layout_mode = 0
 offset_right = 2172.0
 offset_bottom = 1158.0
-color = Color(0.5137255, 0.23529412, 0.22352941, 1)
-
-[node name="TextureRect" type="TextureRect" parent="."]
-visible = false
-layout_mode = 0
-offset_left = 273.0
-offset_top = -657.0
-offset_right = 497.0
-offset_bottom = -294.0
-scale = Vector2(6, 6)
-texture = ExtResource("2_gxoyg")
-
-[node name="SpinButton" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 781.0
-offset_top = 609.0
-offset_right = 2483.0
-offset_bottom = 1347.0
-scale = Vector2(0.2, 0.2)
-texture_normal = ExtResource("2_lev0p")
-texture_pressed = ExtResource("3_gxoyg")
-texture_hover = ExtResource("3_gxoyg")
-
-[node name="Label" type="Label" parent="SpinButton"]
-layout_mode = 0
-offset_left = 570.0
-offset_top = 115.00006
-offset_right = 1223.0
-offset_bottom = 674.00006
-theme_override_fonts/font = ExtResource("6_i4qj3")
-theme_override_font_sizes/font_size = 450
-text = "spin"
+color = Color(0.43823835, 0.32803163, 0.34046724, 1)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 670.0
-offset_top = 377.0
-offset_right = 1220.0
-offset_bottom = 582.0
+offset_left = 581.0
+offset_top = 383.0
+offset_right = 1429.0
+offset_bottom = 656.0
 theme_override_constants/separation = 20
 
 [node name="Slot1" type="ColorRect" parent="HBoxContainer"]
@@ -101,84 +70,111 @@ material = SubResource("ShaderMaterial_stl56")
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 243.0
+offset_top = 78.0
+offset_right = 1743.0
+offset_bottom = 878.0
+texture = ExtResource("4_gxoyg")
+
 [node name="CreditsLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1224.0
-offset_top = 169.0
-offset_right = 1401.0
-offset_bottom = 233.0
+offset_left = 1294.0
+offset_top = 785.0
+offset_right = 1471.0
+offset_bottom = 849.0
 theme_override_fonts/font = ExtResource("7_lev0p")
 theme_override_font_sizes/font_size = 60
 text = "credits:"
 
 [node name="BetLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 466.0
-offset_top = 168.0
-offset_right = 506.0
-offset_bottom = 191.0
+offset_left = 347.0
+offset_top = 783.0
+offset_right = 442.0
+offset_bottom = 847.0
 theme_override_fonts/font = ExtResource("7_lev0p")
 theme_override_font_sizes/font_size = 60
 text = "bet:"
 
 [node name="ResultLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1266.0
-offset_top = 510.0
-offset_right = 1404.0
-offset_bottom = 574.0
+offset_left = 1232.0
+offset_top = 179.0
+offset_right = 1370.0
+offset_bottom = 243.0
 theme_override_fonts/font = ExtResource("7_lev0p")
-theme_override_font_sizes/font_size = 60
-text = "result:"
+theme_override_font_sizes/font_size = 45
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 428.0
-offset_top = 279.0
-offset_right = 1505.0
-offset_bottom = 340.0
+offset_left = 562.0
+offset_top = 91.0
+offset_right = 1463.0
+offset_bottom = 148.0
 theme_override_constants/separation = 20
 
 [node name="ResetBetButton" type="Button" parent="HBoxContainer2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 40
 text = "Reset"
 
 [node name="Bet1Button" type="Button" parent="HBoxContainer2"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("7_lev0p")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 40
 text = "Bet 1"
 
 [node name="Bet5Button" type="Button" parent="HBoxContainer2"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("7_lev0p")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 40
 text = "Bet 5"
 
 [node name="Bet10Button" type="Button" parent="HBoxContainer2"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("7_lev0p")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 40
 text = "Bet 10"
 
 [node name="Bet25Button" type="Button" parent="HBoxContainer2"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("7_lev0p")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 40
 text = "Bet 25"
 
 [node name="Bet50Button" type="Button" parent="HBoxContainer2"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("7_lev0p")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 40
 text = "Bet 50"
 
 [node name="MaxBetButton" type="Button" parent="HBoxContainer2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 40
 text = "Bet Max"
 
-[connection signal="pressed" from="SpinButton" to="." method="spin"]
+[node name="SpinButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 868.0
+offset_top = 156.0
+offset_right = 2570.0
+offset_bottom = 894.0
+scale = Vector2(0.16, 0.16)
+texture_normal = ExtResource("2_lev0p")
+texture_hover = ExtResource("3_gxoyg")
+
+[node name="Label" type="Label" parent="SpinButton"]
+layout_mode = 0
+offset_left = 570.0
+offset_top = 115.00006
+offset_right = 1223.0
+offset_bottom = 674.00006
+theme_override_fonts/font = ExtResource("6_i4qj3")
+theme_override_font_sizes/font_size = 450
+text = "spin"
+
 [connection signal="pressed" from="HBoxContainer2/ResetBetButton" to="." method="_on_reset_bet_pressed"]
 [connection signal="pressed" from="HBoxContainer2/MaxBetButton" to="." method="_on_max_bet_pressed"]
+[connection signal="pressed" from="SpinButton" to="." method="spin"]
