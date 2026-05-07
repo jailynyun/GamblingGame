@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0i87ow54haqp"]
+
+[ext_resource type="Texture2D" uid="uid://gv5bl5bscy66" path="res://Assets/Art/Backgrounds/Roulette.png" id="1_nmr0y"]
+
+[node name="RouletteTable" type="Sprite2D"]
+texture = ExtResource("1_nmr0y")
+offset = Vector2(0, -150)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-7, -151)
+polygon = PackedVector2Array(-514, -109, 115, -108, 222, -155, 251, -195, 486, -196, 486, 220, 175, 218, 178, 286, -509, 291)

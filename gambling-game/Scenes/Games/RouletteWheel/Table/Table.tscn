@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bd3706ge61ipn"]
 
 [ext_resource type="Script" uid="uid://nymvipgwjj3g" path="res://Scenes/Games/RouletteWheel/Table/table.gd" id="1_dm204"]
-[ext_resource type="Texture2D" uid="uid://k1xfn7oanak7" path="res://Assets/Art/roulette-wheel.jpg" id="1_tnlgf"]
+[ext_resource type="Texture2D" uid="uid://fq66demq4fj8" path="res://Assets/Art/UI/Roulette_Table.png" id="2_tnlgf"]
 
 [node name="Table" type="Control"]
 layout_mode = 3
@@ -14,9 +14,12 @@ script = ExtResource("1_dm204")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 565.0
-offset_bottom = 239.0
-texture = ExtResource("1_tnlgf")
+offset_left = -451.99997
+offset_top = -184.0
+offset_right = 1468.0
+offset_bottom = 896.0
+scale = Vector2(0.606, 0.606)
+texture = ExtResource("2_tnlgf")
 
 [node name="Highlight" type="ColorRect" parent="."]
 layout_mode = 0
