@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpljjl1ivlbrf"]
+
+[ext_resource type="Script" uid="uid://duoq3sla6bytn" path="res://Scenes/UI/loan_shark_cutscene.gd" id="1_c1kbp"]
+[ext_resource type="Texture2D" uid="uid://c17x3251uj3w8" path="res://Assets/Art/Characters/LoanShark.png" id="2_lhxvc"]
+
+[node name="LoanSharkCutscene" type="Node2D"]
+script = ExtResource("1_c1kbp")
+
+[node name="LoanShark" type="Sprite2D" parent="."]
+texture = ExtResource("2_lhxvc")
+offset = Vector2(-100, -120)

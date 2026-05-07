@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func _physics_process(delta):
 	#Check if Entered a Casino MiniGame
-	if not can_move:
+	if !can_move || GameManager.is_cutscene_playing:
 		return
 	
 	# Player Movement

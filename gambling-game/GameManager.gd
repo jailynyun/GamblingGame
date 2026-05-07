@@ -30,9 +30,13 @@ var lost_limbs: Array[String] = []
 
 var is_game_over := false
 var is_game_won := false
+var is_cutscene_playing := false
+
+signal loanshark_cutscene_started(amount_due: int)
+signal loanshark_took_money(amount: int)
 
 func _process(delta: float) -> void:
-	if is_game_over or is_game_won:
+	if is_game_over or is_game_won or is_cutscene_playing:
 		return
 	
 	elapsed_time += delta
@@ -54,7 +58,7 @@ func _process(delta: float) -> void:
 		_handle_debt_deadline()
 
 func _input(event: InputEvent) -> void:
-	if is_game_over or is_game_won:
+	if is_game_over or is_game_won or is_cutscene_playing:
 		return
 
 	if event.is_action_pressed("skip"):
@@ -63,22 +67,11 @@ func _input(event: InputEvent) -> void:
 func _handle_debt_deadline() -> void:
 	if debt_round_index >= DEBT_ROUNDS.size():
 		return
-		
+
+	is_cutscene_playing = true
+
 	var amount_due := get_current_amount_due()
-
-	if money >= amount_due:
-		money -= amount_due #autopay money
-		total_paid += amount_due #paid round
-		debt_round_index += 1 #next round starts
-
-		var next_due := get_current_amount_due()
-		debt_changed.emit(debt_round_index + 1, next_due, total_paid)
-
-		if debt_round_index >= DEBT_ROUNDS.size():
-			is_game_won = true
-			game_won.emit()
-	else:
-		_lose_next_limb()
+	loanshark_cutscene_started.emit(amount_due)
 
 func _lose_next_limb() -> void:
 	if limbs.is_empty():
@@ -165,3 +158,25 @@ func skip_day() -> void:
 	while debt_round_index < DEBT_ROUNDS.size() and time_since_last_debt_check >= DEBT_CHECK_TIME:
 		time_since_last_debt_check -= DEBT_CHECK_TIME
 		_handle_debt_deadline()
+
+func resolve_loanshark_cutscene() -> void:
+	var amount_due := get_current_amount_due()
+
+	if money >= amount_due:
+		money -= amount_due
+		total_paid += amount_due
+		debt_round_index += 1
+
+		loanshark_took_money.emit(amount_due)
+
+		var next_due := get_current_amount_due()
+		debt_changed.emit(debt_round_index + 1, next_due, total_paid)
+
+		if debt_round_index >= DEBT_ROUNDS.size():
+			is_game_won = true
+			game_won.emit()
+	else:
+		_lose_next_limb()
+
+func finish_loanshark_cutscene() -> void:
+	is_cutscene_playing = false
