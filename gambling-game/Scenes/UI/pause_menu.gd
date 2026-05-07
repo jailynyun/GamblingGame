@@ -52,6 +52,7 @@ func _on_resume_pressed() -> void:
 func _on_restart_pressed() -> void:
 	resume()
 	get_tree().reload_current_scene()
+	GameManager.reset_game()
 
 
 func _on_main_menu_pressed() -> void:
