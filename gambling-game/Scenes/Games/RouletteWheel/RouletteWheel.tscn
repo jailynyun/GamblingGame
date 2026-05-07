@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbkux5qejs3gv"]
+[gd_scene load_steps=9 format=3 uid="uid://dbkux5qejs3gv"]
 
 [ext_resource type="Script" uid="uid://d0oxfppl76q0s" path="res://Scenes/Games/RouletteWheel/roulette_wheel.gd" id="1_6gn48"]
 [ext_resource type="Texture2D" uid="uid://bidr04fjv3pof" path="res://Assets/Art/UI/RouletteWheel.png" id="2_168ti"]
 [ext_resource type="Script" uid="uid://fk5vi5o8cd8u" path="res://Scenes/Games/RouletteWheel/wheel.gd" id="2_qgq2f"]
 [ext_resource type="PackedScene" uid="uid://djtdga2wrclv3" path="res://Scenes/Games/RouletteWheel/Display/display.tscn" id="5_0lkg8"]
 [ext_resource type="PackedScene" uid="uid://bd3706ge61ipn" path="res://Scenes/Games/RouletteWheel/Table/Table.tscn" id="5_168ti"]
+[ext_resource type="Texture2D" uid="uid://bqcv67n6gltbw" path="res://Assets/Art/UI/ButtonOff.PNG" id="5_vwodv"]
+[ext_resource type="Texture2D" uid="uid://qwob8roxmawc" path="res://Assets/Art/UI/ButtonOn.PNG" id="6_dtwpq"]
+[ext_resource type="FontFile" uid="uid://be7gj8v4cpoi7" path="res://Assets/Fonts/carnivalee_freakshow/Carnevalee Freakshow.ttf" id="8_dtwpq"]
 
 [node name="RouletteWheel" type="Node2D"]
 script = ExtResource("1_6gn48")
@@ -38,13 +41,15 @@ script = ExtResource("2_qgq2f")
 layout_mode = 3
 anchors_preset = 0
 
-[node name="Spin" type="Button" parent="Buttons"]
+[node name="Spin" type="TextureButton" parent="Buttons"]
 layout_mode = 0
-offset_left = 284.0
-offset_top = 237.0
-offset_right = 326.0
-offset_bottom = 268.0
-text = "Spin"
+offset_left = 238.0
+offset_top = 206.0
+offset_right = 1940.0
+offset_bottom = 944.0
+scale = Vector2(0.08, 0.08)
+texture_normal = ExtResource("5_vwodv")
+texture_hover = ExtResource("6_dtwpq")
 
 [node name="Skip" type="Button" parent="Buttons"]
 layout_mode = 0
@@ -76,19 +81,35 @@ offset_top = 98.0
 offset_right = 1086.0
 offset_bottom = 98.0
 
-[node name="Money" parent="Display" index="0"]
+[node name="Spin" type="Label" parent="Display"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.101
+anchor_top = 0.29000002
+anchor_right = 0.101
+anchor_bottom = 0.29000002
+offset_left = -828.0
+offset_top = 122.0
+offset_right = -731.0
+offset_bottom = 151.0
+theme_override_fonts/font = ExtResource("8_dtwpq")
+theme_override_font_sizes/font_size = 25
+text = "Spin"
+horizontal_alignment = 1
+
+[node name="Money" parent="Display" index="1"]
 offset_left = -421.0
 offset_top = 429.0
 offset_right = -359.0
 offset_bottom = 452.0
 
-[node name="Bet" parent="Display" index="1"]
+[node name="Bet" parent="Display" index="2"]
 offset_left = -421.0
 offset_top = 458.0
 offset_right = -381.0
 offset_bottom = 481.0
 
-[node name="Result" parent="Display" index="2"]
+[node name="Result" parent="Display" index="3"]
 offset_left = 45.0
 offset_top = 444.0
 offset_right = 94.0
@@ -106,8 +127,8 @@ offset_bottom = 467.0
 [connection signal="pressed" from="Buttons/Spin" to="Table" method="_on_spin_pressed"]
 [connection signal="pressed" from="Buttons/Skip" to="Wheel" method="_on_skip_pressed"]
 [connection signal="pressed" from="Buttons/PlayAgain" to="." method="_on_play_again_pressed"]
-[connection signal="pressed" from="Buttons/PlayAgain" to="Wheel" method="_on_play_again_pressed"]
 [connection signal="pressed" from="Buttons/PlayAgain" to="Table" method="_on_play_again_pressed"]
+[connection signal="pressed" from="Buttons/PlayAgain" to="Wheel" method="_on_play_again_pressed"]
 [connection signal="pressed" from="Buttons/PlayAgain" to="Display" method="_on_play_again_pressed"]
 [connection signal="pressed" from="Buttons/Reset" to="Table" method="_on_reset_pressed"]
 [connection signal="pressed" from="Buttons/Reset" to="Display" method="_on_reset_pressed"]

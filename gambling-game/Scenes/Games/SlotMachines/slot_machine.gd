@@ -10,13 +10,13 @@ extends Control
 @onready var bet_label: Label = $BetLabel
 @onready var result_label: Label = $ResultLabel
 
-@onready var bet_1_button: Button = $Bet1Button
-@onready var bet_5_button: Button = $Bet5Button
-@onready var bet_10_button: Button = $Bet10Button
-@onready var bet_25_button: Button = $Bet25Button
-@onready var bet_50_button: Button = $Bet50Button
-@onready var max_bet_button: Button = $MaxBetButton
-@onready var reset_bet_button: Button = $ResetBetButton
+@onready var bet_1_button: Button = $HBoxContainer2/Bet1Button
+@onready var bet_5_button: Button = $HBoxContainer2/Bet5Button
+@onready var bet_10_button: Button = $HBoxContainer2/Bet10Button
+@onready var bet_25_button: Button = $HBoxContainer2/Bet25Button
+@onready var bet_50_button: Button = $HBoxContainer2/Bet50Button
+@onready var max_bet_button: Button = $HBoxContainer2/MaxBetButton
+@onready var reset_bet_button: Button = $HBoxContainer2/ResetBetButton
 
 
 var values: Array = []

@@ -47,6 +47,10 @@ window/stretch/aspect="expand"
 
 enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 
+[gui]
+
+theme/custom_font="uid://lhnicab54pid"
+
 [input]
 
 left={
