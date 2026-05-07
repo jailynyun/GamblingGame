@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddkgvaley834s"]
+
+[ext_resource type="Texture2D" uid="uid://clssta7v1gj21" path="res://Assets/Art/Backgrounds/Blackjack.png" id="1_3heov"]
+
+[node name="BlackJackTable" type="Sprite2D"]
+texture = ExtResource("1_3heov")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(506, -111, 499, -5, 392, 124, 179, 212, -66, 230, -303, 168, -468, 61, -517, -98)

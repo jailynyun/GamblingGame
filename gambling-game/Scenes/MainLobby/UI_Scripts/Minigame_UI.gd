@@ -7,7 +7,7 @@ extends CanvasLayer
 @onready var mini_game_window: Control = $MiniGameWindow
 @onready var subviewport: SubViewport = $MiniGameWindow/SubViewportContainer/SubViewport
 @onready var close_button: Button = $MiniGameWindow/CloseButton
-@onready var player = get_node("../Player")
+@onready var player = get_node("../Y-sort/Player")
 
 var transition_tween: Tween
 var is_open := false

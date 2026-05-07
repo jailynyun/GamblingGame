@@ -21,7 +21,6 @@ func _ready() -> void:
 
 func _process(delta):
 	if spun:
-		skip_button.visible = true
 		velocity = max(velocity - deceleration * delta, 0.0)
 		rotation += velocity * delta
 		if velocity == 0 && !has_emitted:
@@ -33,8 +32,6 @@ func _process(delta):
 	else:
 		rotation += velocity * delta
 		play_again_button.visible = false
-		
-	
 		
 	
 	
@@ -65,6 +62,7 @@ func spin_wheel(number: int):
 	
 	spun = true
 	has_emitted = false
+	skip_button.visible = true
 	get_spun.emit(spun)
 
 
@@ -72,11 +70,13 @@ func spin_wheel(number: int):
 
 func _on_play_again_pressed() -> void:
 	spun = false
+	play_again_button.visible = false
 	get_spun.emit(spun)
 	velocity = .5
 
 
 func _on_skip_pressed() -> void:
+	skip_button.visible = false
 	if spun:
 		velocity = 0
 		rotation = target_angle
