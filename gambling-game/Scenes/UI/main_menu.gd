@@ -15,4 +15,4 @@ func _on_texture_button_pressed() -> void:
 
 
 func _on_credits_button_pressed() -> void:
-	pass # Replace with function body.
+	get_tree().change_scene_to_file("res://Scenes/UI/credits.tscn")

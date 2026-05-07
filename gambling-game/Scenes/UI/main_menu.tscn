@@ -52,7 +52,7 @@ size_flags_vertical = 4
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_mrfpk")
 theme_override_font_sizes/font_size = 200
-text = "Gambling Game"
+text = "Gone Gambling!"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="MarginContainer/Control"]
 
