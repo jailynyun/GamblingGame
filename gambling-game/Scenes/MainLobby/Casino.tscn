@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://v01uei8xai5"]
+[gd_scene load_steps=35 format=3 uid="uid://v01uei8xai5"]
 
 [ext_resource type="PackedScene" uid="uid://cvpqp3jyr8v16" path="res://Assets/Characters/Player.tscn" id="1_gm6j6"]
 [ext_resource type="Script" uid="uid://ba8perqd1jtlj" path="res://Scenes/MainLobby/casino.gd" id="1_wjenp"]
@@ -22,8 +22,12 @@
 [ext_resource type="Script" uid="uid://d223v25ru5bxj" path="res://Scenes/MainLobby/UI_Scripts/GameHUD.gd" id="13_hileu"]
 [ext_resource type="PackedScene" uid="uid://dj5885f3an41f" path="res://Assets/Characters/CasinoLoaner/CasinoLoan.tscn" id="14_hbe42"]
 [ext_resource type="Texture2D" uid="uid://dxv227krang3y" path="res://Assets/Art/Backgrounds/Stage.png" id="17_hv4l6"]
+[ext_resource type="Texture2D" uid="uid://c25jyc2i8tswr" path="res://Assets/Art/Characters/Fox.png" id="18_hora8"]
 [ext_resource type="Texture2D" uid="uid://dkpskx03ko12o" path="res://Assets/Art/Backgrounds/Walls_Cropped/BottomWall.png" id="18_ryvo0"]
+[ext_resource type="Texture2D" uid="uid://bv2mphlpv5cu3" path="res://Assets/Art/Characters/Toad.png" id="19_viis7"]
 [ext_resource type="Texture2D" uid="uid://qvryt2klt264" path="res://Assets/Art/Backgrounds/Walls_Cropped/TopWall.png" id="19_xyh06"]
+[ext_resource type="Texture2D" uid="uid://yegpq8xtkcax" path="res://Assets/Art/Backgrounds/Bar.png" id="20_xbt58"]
+[ext_resource type="Texture2D" uid="uid://cs0wo6hyrj2cm" path="res://Assets/Art/Characters/Mole.png" id="21_acr2l"]
 [ext_resource type="PackedScene" uid="uid://bt81lyemaummj" path="res://Scenes/UI/pause_menu.tscn" id="23_0vkxp"]
 [ext_resource type="AudioStream" uid="uid://gbheyyaehibf" path="res://Assets/Sounds/music_for_videos-casino-164235.mp3" id="26_go16v"]
 
@@ -240,7 +244,35 @@ position = Vector2(127.99945, 46.000107)
 scale = Vector2(403.29996, 213.00002)
 polygon = PackedVector2Array(-5.273989, 7.2159615, -8.564343, 7.2159615, -8.522191, -6.4647884, -4.056533, -6.4131455, -4.034217, -5.361502, 3.5507088, -5.366197, 3.5457497, -8.892019, -8.988346, -8.920188, -8.941235, 8.591548, 8.33375, 8.53521, 8.358545, -8.821596, 3.6399722, -8.868545, 3.635013, -6.446009, 7.934542, -6.516432, 7.9890924, 7.2676044)
 
+[node name="FoxLady" type="Sprite2D" parent="Y-sort"]
+y_sort_enabled = true
+position = Vector2(-2255, -1115)
+texture = ExtResource("18_hora8")
+
+[node name="ToadDealer" type="Sprite2D" parent="Y-sort"]
+y_sort_enabled = true
+position = Vector2(1546, -136)
+texture = ExtResource("19_viis7")
+
+[node name="Bar" type="Sprite2D" parent="Y-sort"]
+y_sort_enabled = true
+position = Vector2(-2700, 1033)
+texture = ExtResource("20_xbt58")
+
+[node name="Area2D" type="StaticBody2D" parent="Y-sort"]
+position = Vector2(-2700, 1033)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Y-sort/Area2D"]
+position = Vector2(54.000057, 9.000014)
+polygon = PackedVector2Array(198, -433, 468, -427, 461, 309, -661.2923, 300.23608, -655.2923, -311.76392, -662.29224, -542.7639, -334, -539, -333, -366)
+
+[node name="Sprite2D" type="Sprite2D" parent="Y-sort"]
+y_sort_enabled = true
+position = Vector2(-2583, 1024)
+texture = ExtResource("21_acr2l")
+
 [node name="Interactions" type="Node2D" parent="."]
+visible = false
 
 [node name="SlotMachineInteractable" parent="Interactions" instance=ExtResource("3_2ihwe")]
 interact_name = "press e"
