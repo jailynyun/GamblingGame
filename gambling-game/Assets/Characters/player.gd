@@ -10,6 +10,7 @@ var wobble_rotation := 15 # In Degrees
 var min_squash_percent := .2 # Sprite2D will squash at least 20%
 var max_squash_percent := .4 # Sprite2D will squash at most 40%
 var can_move := true
+var moving_right = true
 
 func _ready() -> void:
 	GameManager.limb_lost.connect(_on_limb_lost)
@@ -21,6 +22,12 @@ func _physics_process(delta):
 	
 	# Player Movement
 	var input_vector := Vector2(Input.get_axis("left","right"), Input.get_axis("forward","backward")).normalized()
+	
+	if velocity.x < 0:
+		moving_right = false
+	if velocity.x > 0:
+		moving_right = true
+	flip_sprite()
 	
 	# Player Movement Acceleration
 	if (input_vector != Vector2.ZERO):
@@ -68,3 +75,9 @@ func _on_close_button_pressed() -> void:
 func _on_limb_lost():
 	if GameManager.lost_limbs.has("leg"):
 		max_speed = 500
+
+func flip_sprite():
+	if moving_right:
+		sprite2D.flip_h = false
+	else:
+		sprite2D.flip_h = true

@@ -122,8 +122,9 @@ func reset_game() -> void:
 	debt_round_index = 0
 	total_paid = 0
 	time_since_last_debt_check = 0.0
-	#limbs_lost_count = 0
+	limbs = ["arm", "eye", "leg"]
 	lost_limbs.clear()
+	loan_amount = 0
 	is_game_over = false
 	is_game_won = false
 
