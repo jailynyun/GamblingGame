@@ -13,6 +13,7 @@ var turns_taken = 0
 var money = GameManager.money
 var bet_size = 0
 var game_started = false
+var lost_eye = true
 
 @onready var betting_square: Control = $"../CanvasLayer/Betting"
 @onready var bet_50_button: Button = $"../CanvasLayer/Betting/Bet50Button"
@@ -26,8 +27,13 @@ var game_started = false
 @onready var bet_label: Label = $"../CanvasLayer/bet_label"
 @onready var betting_money_label: Label = $"../CanvasLayer/Betting/money_label"
 
+const mystery_tile_coords = Vector2(0, 0) # change to your atlas tile with no symbol
+const mystery_tile_alt = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GameManager.limb_lost.connect(_on_limb_lost)
+	randomize()
 	betting_square.visible = true
 	results_label.visible = false
 	money_label.visible = false
@@ -41,7 +47,10 @@ func _ready() -> void:
 	max_bet_button.pressed.connect(func(): _add_bet(money))
 	reset_bet_button.pressed.connect(_reset_bet)
 	
-	pass # Replace with function body.
+
+func _on_limb_lost(limb_name: String):
+	if limb_name == "eye":
+		lost_eye = true
 
 func get_tiles_to_use():
 	var chosen_tile_coords = []
@@ -72,16 +81,35 @@ func place_single_face_down_card(coords: Vector2):
 	self.set_cell(Layers.hidden, coords, 
 				SOURCE_NUM, hidden_tile_coords, hidden_tile_alt)
 
-func _input(event):
+#func _input(event):
+	#if event is InputEventMouseButton:
+		#if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+			#var global_clicked = event.position
+			#var pos_clicked = Vector2(local_to_map(to_local(global_clicked)))
+			#print(pos_clicked)
+			#var current_tile_alt = get_cell_alternative_tile(Layers.hidden, pos_clicked)
+			#if current_tile_alt == 1 and revealed_spots.size() < 2:
+				#self.set_cell(Layers.hidden, pos_clicked, -1)
+				#revealed_spots.append(pos_clicked)
+				#if revealed_spots.size() == 2:
+					#when_two_cards_revealed()
+
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
 			var global_clicked = event.position
 			var pos_clicked = Vector2(local_to_map(to_local(global_clicked)))
-			print(pos_clicked)
 			var current_tile_alt = get_cell_alternative_tile(Layers.hidden, pos_clicked)
-			if current_tile_alt == 1 and revealed_spots.size() < 2:
+
+			if current_tile_alt == hidden_tile_alt and revealed_spots.size() < 2:
 				self.set_cell(Layers.hidden, pos_clicked, -1)
+
+				if lost_eye and randf() < 0.25:
+					print("enter lost eye")
+					self.set_cell(Layers.revealed, pos_clicked, SOURCE_NUM, mystery_tile_coords, mystery_tile_alt)
+
 				revealed_spots.append(pos_clicked)
+
 				if revealed_spots.size() == 2:
 					when_two_cards_revealed()
 
