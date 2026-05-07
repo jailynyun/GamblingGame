@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://v01uei8xai5"]
+[gd_scene load_steps=29 format=3 uid="uid://v01uei8xai5"]
 
 [ext_resource type="PackedScene" uid="uid://cvpqp3jyr8v16" path="res://Assets/Characters/Player.tscn" id="1_gm6j6"]
 [ext_resource type="Script" uid="uid://ba8perqd1jtlj" path="res://Scenes/MainLobby/casino.gd" id="1_wjenp"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://dxv227krang3y" path="res://Assets/Art/Backgrounds/Stage.png" id="17_hv4l6"]
 [ext_resource type="Texture2D" uid="uid://dkpskx03ko12o" path="res://Assets/Art/Backgrounds/Walls_Cropped/BottomWall.png" id="18_ryvo0"]
 [ext_resource type="Texture2D" uid="uid://qvryt2klt264" path="res://Assets/Art/Backgrounds/Walls_Cropped/TopWall.png" id="19_xyh06"]
+[ext_resource type="PackedScene" uid="uid://bt81lyemaummj" path="res://Scenes/UI/pause_menu.tscn" id="23_0vkxp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gvffd"]
 radius = 251.24689
@@ -38,6 +39,17 @@ size = Vector2(1063, 420)
 
 [node name="Casino" type="Node2D"]
 script = ExtResource("1_wjenp")
+
+[node name="PauseMenu" parent="." instance=ExtResource("23_0vkxp")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 347.0
+offset_top = 254.0
+offset_right = 347.0
+offset_bottom = 254.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="GameHUD_UI" type="CanvasLayer" parent="."]
 
