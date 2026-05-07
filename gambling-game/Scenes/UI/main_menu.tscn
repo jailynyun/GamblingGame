@@ -64,11 +64,13 @@ theme_override_font_sizes/font_size = 75
 text = "Start"
 
 [node name="ExitButton" type="Button" parent="MarginContainer/Control/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 75
 text = "Exit"
 
 [node name="CreditsButton" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 1570.0
 offset_top = 897.0
