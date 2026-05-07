@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dj5885f3an41f"]
 
 [ext_resource type="Script" uid="uid://3eixbegoeie7" path="res://Assets/Characters/CasinoLoaner/casino_loan.gd" id="1_hwecn"]
-[ext_resource type="Texture2D" uid="uid://bb100jjblssc5" path="res://Assets/Art/icon.svg" id="1_qyd3l"]
 [ext_resource type="PackedScene" uid="uid://cvqdfjofxjey2" path="res://Scenes/Interaction/interactable.tscn" id="2_hwecn"]
+[ext_resource type="Texture2D" uid="uid://b6gpajd1fblvm" path="res://Assets/Art/Characters/Loanshrimp.png" id="2_sva7j"]
 [ext_resource type="Script" uid="uid://p8rghfyb1hm3" path="res://Assets/Characters/CasinoLoaner/loan_menu.gd" id="4_sva7j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mbfqi"]
@@ -12,8 +12,8 @@ radius = 81.49847
 script = ExtResource("1_hwecn")
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(2, -2)
-texture = ExtResource("1_qyd3l")
+texture = ExtResource("2_sva7j")
+flip_h = true
 
 [node name="Interactable" parent="." instance=ExtResource("2_hwecn")]
 position = Vector2(-3, -3)

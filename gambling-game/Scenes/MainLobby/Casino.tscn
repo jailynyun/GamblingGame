@@ -215,7 +215,7 @@ position = Vector2(-1642, 355)
 position = Vector2(1556, 232)
 
 [node name="CasinoLoan" parent="Y-sort" instance=ExtResource("14_hbe42")]
-position = Vector2(3022, -702)
+position = Vector2(2244, 585)
 
 [node name="Wall" type="StaticBody2D" parent="Y-sort"]
 y_sort_enabled = true

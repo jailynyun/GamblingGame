@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpe3u3lgxm1bu"]
+
+[ext_resource type="Texture2D" uid="uid://c17x3251uj3w8" path="res://Assets/Art/Characters/LoanShark.png" id="1_b6ksd"]
+
+[node name="LoanShark" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-95, -7)
+texture = ExtResource("1_b6ksd")
