@@ -5,7 +5,7 @@ extends Control
 @export var base_spin_duration: float = 1.0
 @export var lost_arm_spin_penalty: float = 10.0
 
-@onready var spin_button: Button = $SpinButton
+@onready var spin_button: TextureButton = $SpinButton
 @onready var credits_label: Label = $CreditsLabel
 @onready var bet_label: Label = $BetLabel
 @onready var result_label: Label = $ResultLabel
