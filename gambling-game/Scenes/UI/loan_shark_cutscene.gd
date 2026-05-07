@@ -30,6 +30,7 @@ func _start_cutscene(amount_due: int) -> void:
 	await move_shark(door_out.global_position, 1.5)
 
 	visible = false
+	GameManager.finish_loanshark_cutscene()
 
 func move_shark(target: Vector2, duration: float) -> void:
 	var tween := create_tween()

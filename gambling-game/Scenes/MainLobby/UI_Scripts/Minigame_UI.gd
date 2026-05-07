@@ -22,6 +22,12 @@ func _ready() -> void:
 	mini_game_window.scale = Vector2(0.92, 0.92)
 	mini_game_window.modulate.a = 0.0
 
+func _process(_delta: float) -> void:
+	if GameManager.is_cutscene_playing:
+		visible = false
+	else:
+		visible = true
+
 func open_minigame(scene_to_open: PackedScene) -> void:
 	if scene_to_open == null or is_open:
 		return

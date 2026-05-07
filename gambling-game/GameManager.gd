@@ -178,4 +178,5 @@ func resolve_loanshark_cutscene() -> void:
 	else:
 		_lose_next_limb()
 
+func finish_loanshark_cutscene() -> void:
 	is_cutscene_playing = false
