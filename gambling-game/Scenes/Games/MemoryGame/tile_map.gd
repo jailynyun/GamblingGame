@@ -13,7 +13,7 @@ var turns_taken = 0
 var money = GameManager.money
 var bet_size = 0
 var game_started = false
-var lost_eye = true
+var lost_eye = false
 
 @onready var betting_square: Control = $"../CanvasLayer/Betting"
 @onready var bet_50_button: Button = $"../CanvasLayer/Betting/Bet50Button"
@@ -50,6 +50,7 @@ func _ready() -> void:
 
 func _on_limb_lost(limb_name: String):
 	if limb_name == "eye":
+		print("true the eye")
 		lost_eye = true
 
 func get_tiles_to_use():
