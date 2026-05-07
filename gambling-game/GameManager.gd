@@ -7,7 +7,7 @@ signal limb_lost()
 signal game_over()
 signal game_won()
 
-const DAY_LENGTH := 120.0 #120 sec = 2 min = 1 day
+const DAY_LENGTH := 10.0 #120 sec = 2 min = 1 day
 const DEBT_CHECK_DAYS := 2
 const DEBT_CHECK_TIME := DAY_LENGTH * DEBT_CHECK_DAYS #4 min
 

@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dp5fcaw2uucbv"]
+[gd_scene load_steps=10 format=3 uid="uid://dp5fcaw2uucbv"]
 
 [ext_resource type="Shader" uid="uid://dbcydde53akcf" path="res://Scenes/Games/SlotMachines/spin_tex.gdshader" id="1_aqq8y"]
 [ext_resource type="Script" uid="uid://qejaix527yji" path="res://Scenes/Games/SlotMachines/slot_machine.gd" id="1_wy8p5"]
 [ext_resource type="Texture2D" uid="uid://c5fhmwgnmwxo0" path="res://Assets/Art/slot_strip.png" id="2_sk7lg"]
+[ext_resource type="Texture2D" uid="uid://bqcv67n6gltbw" path="res://Assets/Art/ButtonOff.PNG" id="4_raimn"]
+[ext_resource type="Texture2D" uid="uid://qwob8roxmawc" path="res://Assets/Art/ButtonOn.PNG" id="5_i4qj3"]
+[ext_resource type="FontFile" uid="uid://be7gj8v4cpoi7" path="res://Assets/Fonts/carnivalee_freakshow/Carnevalee Freakshow.ttf" id="6_i4qj3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sk7lg"]
 shader = ExtResource("1_aqq8y")
@@ -52,12 +55,25 @@ material = SubResource("ShaderMaterial_stl56")
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SpinButton" type="Button" parent="."]
+[node name="SpinButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 83.0
-offset_top = 193.0
-offset_right = 249.0
-offset_bottom = 302.0
+offset_left = 267.0
+offset_top = 284.0
+offset_right = 1969.0
+offset_bottom = 1022.0
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("4_raimn")
+texture_pressed = ExtResource("5_i4qj3")
+texture_hover = ExtResource("5_i4qj3")
+
+[node name="Label" type="Label" parent="SpinButton"]
+layout_mode = 0
+offset_left = 570.0
+offset_top = 115.00006
+offset_right = 1223.0
+offset_bottom = 674.00006
+theme_override_fonts/font = ExtResource("6_i4qj3")
+theme_override_font_sizes/font_size = 450
 text = "spin"
 
 [node name="CreditsLabel" type="Label" parent="."]
