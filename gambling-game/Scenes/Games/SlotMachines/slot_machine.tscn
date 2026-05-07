@@ -45,7 +45,7 @@ spinners = [NodePath("HBoxContainer/Slot1"), NodePath("HBoxContainer/Slot2"), No
 layout_mode = 0
 offset_right = 2172.0
 offset_bottom = 1158.0
-color = Color(0.43823835, 0.32803163, 0.34046724, 1)
+color = Color(0.7866197, 0.6771521, 0.6874967, 1)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
