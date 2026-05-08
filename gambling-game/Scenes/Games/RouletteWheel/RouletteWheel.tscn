@@ -43,10 +43,10 @@ anchors_preset = 0
 
 [node name="Spin" type="TextureButton" parent="Buttons"]
 layout_mode = 0
-offset_left = 238.0
-offset_top = 206.0
-offset_right = 1940.0
-offset_bottom = 944.0
+offset_left = 244.0
+offset_top = 249.0
+offset_right = 1946.0
+offset_bottom = 987.0
 scale = Vector2(0.08, 0.08)
 texture_normal = ExtResource("5_vwodv")
 texture_hover = ExtResource("6_dtwpq")
@@ -54,17 +54,17 @@ texture_hover = ExtResource("6_dtwpq")
 [node name="Skip" type="Button" parent="Buttons"]
 layout_mode = 0
 offset_left = 290.0
-offset_top = 282.0
+offset_top = 324.0
 offset_right = 331.0
-offset_bottom = 313.0
+offset_bottom = 355.0
 text = "Skip"
 
 [node name="PlayAgain" type="Button" parent="Buttons"]
 layout_mode = 0
-offset_left = 262.0
-offset_top = 281.0
-offset_right = 349.0
-offset_bottom = 312.0
+offset_left = 265.0
+offset_top = 324.0
+offset_right = 352.0
+offset_bottom = 355.0
 text = "Play again"
 
 [node name="Reset" type="Button" parent="Buttons"]
@@ -81,6 +81,24 @@ offset_top = 98.0
 offset_right = 1086.0
 offset_bottom = 98.0
 
+[node name="Money" parent="Display" index="0"]
+offset_left = -421.0
+offset_top = 429.0
+offset_right = -359.0
+offset_bottom = 452.0
+
+[node name="Bet" parent="Display" index="1"]
+offset_left = -421.0
+offset_top = 458.0
+offset_right = -381.0
+offset_bottom = 481.0
+
+[node name="Result" parent="Display" index="2"]
+offset_left = 45.0
+offset_top = 444.0
+offset_right = 94.0
+offset_bottom = 467.0
+
 [node name="Spin" type="Label" parent="Display"]
 layout_mode = 1
 anchors_preset = -1
@@ -88,32 +106,14 @@ anchor_left = 0.101
 anchor_top = 0.29000002
 anchor_right = 0.101
 anchor_bottom = 0.29000002
-offset_left = -828.0
-offset_top = 122.0
-offset_right = -731.0
-offset_bottom = 151.0
+offset_left = -824.0
+offset_top = 165.0
+offset_right = -727.0
+offset_bottom = 194.0
 theme_override_fonts/font = ExtResource("8_dtwpq")
 theme_override_font_sizes/font_size = 25
 text = "Spin"
 horizontal_alignment = 1
-
-[node name="Money" parent="Display" index="1"]
-offset_left = -421.0
-offset_top = 429.0
-offset_right = -359.0
-offset_bottom = 452.0
-
-[node name="Bet" parent="Display" index="2"]
-offset_left = -421.0
-offset_top = 458.0
-offset_right = -381.0
-offset_bottom = 481.0
-
-[node name="Result" parent="Display" index="3"]
-offset_left = 45.0
-offset_top = 444.0
-offset_right = 94.0
-offset_bottom = 467.0
 
 [connection signal="get_bet_size" from="." to="Table" method="_on_get_bet_size"]
 [connection signal="get_money" from="." to="Table" method="_on_get_money"]

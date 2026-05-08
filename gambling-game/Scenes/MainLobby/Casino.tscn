@@ -1,9 +1,9 @@
-[gd_scene load_steps=35 format=3 uid="uid://v01uei8xai5"]
+[gd_scene load_steps=37 format=3 uid="uid://v01uei8xai5"]
 
 [ext_resource type="PackedScene" uid="uid://cvpqp3jyr8v16" path="res://Assets/Characters/Player.tscn" id="1_gm6j6"]
 [ext_resource type="Script" uid="uid://ba8perqd1jtlj" path="res://Scenes/MainLobby/casino.gd" id="1_wjenp"]
 [ext_resource type="PackedScene" uid="uid://cvqdfjofxjey2" path="res://Scenes/Interaction/interactable.tscn" id="3_2ihwe"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/LoanSharkCutscene.tscn" id="3_aamvy"]
+[ext_resource type="PackedScene" uid="uid://bpljjl1ivlbrf" path="res://Scenes/UI/LoanSharkCutscene.tscn" id="3_aamvy"]
 [ext_resource type="Script" uid="uid://bvxy8sqm6i2sa" path="res://Scenes/MainLobby/UI_Scripts/Minigame_UI.gd" id="3_ek0c7"]
 [ext_resource type="Script" uid="uid://0w4wdp653haa" path="res://Scenes/MainLobby/UI_Scripts/mini_game_window.gd" id="4_hileu"]
 [ext_resource type="Script" uid="uid://cb43w23gjnin6" path="res://Scenes/MainLobby/Interactable_Minigame_Scripts/BlackJackInteractable.gd" id="4_uqjeq"]
@@ -31,6 +31,12 @@
 [ext_resource type="PackedScene" uid="uid://bt81lyemaummj" path="res://Scenes/UI/pause_menu.tscn" id="23_0vkxp"]
 [ext_resource type="AudioStream" uid="uid://gbheyyaehibf" path="res://Assets/Sounds/music_for_videos-casino-164235.mp3" id="26_go16v"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hora8"]
+bg_color = Color(0.13054097, 0.19392473, 0.2539979, 0.67058825)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_viis7"]
+bg_color = Color(0.2715471, 0.47546053, 0.29835767, 1)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_gvffd"]
 radius = 251.24689
 
@@ -47,6 +53,7 @@ size = Vector2(725.5, 499)
 script = ExtResource("1_wjenp")
 
 [node name="PauseMenu" parent="." instance=ExtResource("23_0vkxp")]
+visible = false
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -62,60 +69,74 @@ grow_vertical = 1
 [node name="GameHUD" type="Control" parent="GameHUD_UI"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 179.0
+offset_top = -8.0
+offset_right = 219.0
+offset_bottom = 32.0
 script = ExtResource("13_hileu")
 
 [node name="DayLabel" type="Label" parent="GameHUD_UI/GameHUD"]
 layout_mode = 0
-offset_left = 179.0
-offset_top = 12.0
-offset_right = 473.0
-offset_bottom = 97.0
+offset_left = -152.0
+offset_top = 22.0
+offset_right = 142.0
+offset_bottom = 107.0
+theme_override_font_sizes/font_size = 30
 text = "day label"
 
 [node name="DayProgressBar" type="ProgressBar" parent="GameHUD_UI/GameHUD"]
 layout_mode = 0
-offset_left = 350.0
+offset_left = 348.0
 offset_top = 18.0
-offset_right = 1083.0
+offset_right = 1081.0
 offset_bottom = 98.0
+theme_override_font_sizes/font_size = 25
+theme_override_styles/background = SubResource("StyleBoxFlat_hora8")
+theme_override_styles/fill = SubResource("StyleBoxFlat_viis7")
 
 [node name="DebtLabel" type="Label" parent="GameHUD_UI/GameHUD"]
 layout_mode = 0
-offset_left = 1113.0
-offset_top = 104.0
-offset_right = 1482.0
-offset_bottom = 284.0
+offset_left = 348.0
+offset_top = 155.0
+offset_right = 1072.0
+offset_bottom = 212.0
+theme_override_font_sizes/font_size = 25
 text = "debt label
 "
+horizontal_alignment = 1
 
 [node name="DeadlineLabel" type="Label" parent="GameHUD_UI/GameHUD"]
 layout_mode = 0
-offset_left = 655.0
-offset_top = 105.0
-offset_right = 821.0
-offset_bottom = 197.0
+offset_left = 350.0
+offset_top = 108.0
+offset_right = 1077.0
+offset_bottom = 200.0
+theme_override_font_sizes/font_size = 25
 text = "deadline label"
+horizontal_alignment = 1
 
 [node name="LimbsLabel" type="Label" parent="GameHUD_UI/GameHUD"]
 layout_mode = 0
-offset_left = 175.0
-offset_top = 95.0
-offset_right = 373.0
-offset_bottom = 205.0
+offset_left = 1101.0
+offset_top = 26.0
+offset_right = 1726.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 25
 text = "limbs label"
+horizontal_alignment = 2
 
 [node name="MoneyLabel" type="Label" parent="GameHUD_UI/GameHUD"]
 layout_mode = 0
-offset_left = 1113.0
-offset_top = 13.0
-offset_right = 1437.0
-offset_bottom = 164.0
+offset_left = -148.0
+offset_top = 78.0
+offset_right = 176.0
+offset_bottom = 229.0
+theme_override_font_sizes/font_size = 25
 text = "money
 "
 
 [node name="Minigame_UI" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("3_ek0c7")
 
 [node name="Dimmer" type="ColorRect" parent="Minigame_UI"]
@@ -145,7 +166,7 @@ offset_bottom = 939.0
 [node name="SubViewport" type="SubViewport" parent="Minigame_UI/MiniGameWindow/SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(1500, 800)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="CloseButton" type="Button" parent="Minigame_UI/MiniGameWindow"]
 layout_mode = 0
@@ -256,15 +277,16 @@ texture = ExtResource("19_viis7")
 
 [node name="Bar" type="Sprite2D" parent="Y-sort"]
 y_sort_enabled = true
-position = Vector2(-2700, 1033)
+position = Vector2(-2700, 1383)
 texture = ExtResource("20_xbt58")
+offset = Vector2(0, -350)
 
 [node name="Area2D" type="StaticBody2D" parent="Y-sort"]
 position = Vector2(-2700, 1033)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Y-sort/Area2D"]
 position = Vector2(54.000057, 9.000014)
-polygon = PackedVector2Array(198, -433, 468, -427, 461, 309, -661.2923, 300.23608, -655.2923, -311.76392, -662.29224, -542.7639, -334, -539, -333, -366)
+polygon = PackedVector2Array(198, -433, 468, -427, 461, 309, -661.2923, 300.23608, -655.2923, -311.76392, -662.29224, -542.7639, -334, -539, -333, -366, -344, 216, 184, 213)
 
 [node name="Sprite2D" type="Sprite2D" parent="Y-sort"]
 y_sort_enabled = true
