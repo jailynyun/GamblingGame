@@ -13,7 +13,7 @@ var turns_taken = 0
 var money = GameManager.money
 var bet_size = 0
 var game_started = false
-var lost_eye = true
+var lost_eye = false
 
 @onready var betting_square: Control = $"../CanvasLayer/Betting"
 @onready var bet_50_button: Button = $"../CanvasLayer/Betting/Bet50Button"
@@ -32,7 +32,7 @@ const mystery_tile_alt = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	GameManager.limb_lost.connect(_on_limb_lost)
+	#GameManager.limb_lost.connect(_on_limb_lost)
 	randomize()
 	betting_square.visible = true
 	results_label.visible = false
@@ -48,9 +48,10 @@ func _ready() -> void:
 	reset_bet_button.pressed.connect(_reset_bet)
 	
 
-func _on_limb_lost(limb_name: String):
-	if limb_name == "eye":
-		lost_eye = true
+func _on_limb_lost():
+	if "eye" in GameManager.lost_limbs:
+		print("eye is lost in memory game")
+		return true
 
 func get_tiles_to_use():
 	var chosen_tile_coords = []
@@ -104,7 +105,7 @@ func _input(event: InputEvent) -> void:
 			if current_tile_alt == hidden_tile_alt and revealed_spots.size() < 2:
 				self.set_cell(Layers.hidden, pos_clicked, -1)
 
-				if lost_eye and randf() < 0.25:
+				if _on_limb_lost() and randf() < 0.25:
 					print("enter lost eye")
 					self.set_cell(Layers.revealed, pos_clicked, SOURCE_NUM, mystery_tile_coords, mystery_tile_alt)
 

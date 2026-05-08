@@ -20,13 +20,14 @@ var money = 1000
 var curr_bet = 0
 var round_active = false
 
-var lost_arm = true
-var lost_eye = true
+var lost_arm = false
+var lost_eye = false
 
 var card_back_image = preload("res://Assets/Art/cards/Cards_back.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	_on_limb_lost()
 	$amount.text = "$" + str(money)
 	$bet.text = "$" + str(curr_bet)
 	#$Buttons/VBoxContainer/Replay.visible = false
@@ -74,6 +75,13 @@ func _ready():
 func _process(delta):
 	pass
 	
+func _on_limb_lost() -> void:
+	if "arm" in GameManager.lost_limbs:
+		lost_arm = true
+	
+	if "eye" in GameManager.lost_limbs:
+		lost_eye = true
+		lose_eye()
 	
 func _on_hit_pressed():
 	if lost_eye:
