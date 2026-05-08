@@ -7,6 +7,14 @@ extends Control
 @onready var limbs_label: Label = $LimbsLabel
 @onready var money_label: Label = $MoneyLabel
 
+
+@onready var end_screen: Control = $EndScreen
+@onready var title_label: Label = $EndScreen/TitleLabel
+@onready var message_label: Label = $EndScreen/MessageLabel
+@onready var restart_button: Button = $EndScreen/RestartButton
+
+
+	
 func _ready() -> void:
 	GameManager.day_changed.connect(_on_day_changed)
 	GameManager.time_changed.connect(_on_time_changed)
@@ -16,6 +24,11 @@ func _ready() -> void:
 	GameManager.game_won.connect(_on_game_won)
 
 	_refresh_all()
+	GameManager.game_over.connect(_on_game_over)
+	GameManager.game_won.connect(_on_game_won)
+	restart_button.pressed.connect(_on_restart_button_pressed)
+
+	end_screen.hide()
 
 func _process(_delta: float) -> void:
 	money_label.text = "Money: $" + str(GameManager.money)
@@ -73,11 +86,23 @@ func _on_limb_lost() -> void:
 	limbs_label.text = limbs_text
 
 func _on_game_over() -> void:
-	#should switch to ending scene (lose)
-	debt_label.text = "GAME OVER"
-	deadline_label.text = "The loan shark got you."
+	end_screen.show()
+	title_label.text = "GAME OVER"
+	message_label.text = "You lost too much to the loan shark."
+
+	get_tree().paused = true
+	end_screen.process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _on_game_won() -> void:
-	#should switch to ending scene (win)
-	debt_label.text = "Debt paid off!"
-	deadline_label.text = "You survived the casino."
+	end_screen.show()
+	title_label.text = "YOU WIN"
+	message_label.text = "You paid back the full $10,000."
+
+	get_tree().paused = true
+	end_screen.process_mode = Node.PROCESS_MODE_ALWAYS
+	
+
+
+func _on_restart_button_pressed() -> void:
+	get_tree().reload_current_scene()
+	GameManager.reset_game()

@@ -75,6 +75,42 @@ offset_right = 219.0
 offset_bottom = 32.0
 script = ExtResource("13_hileu")
 
+[node name="EndScreen" type="Panel" parent="GameHUD_UI/GameHUD"]
+layout_mode = 0
+offset_left = -171.0
+offset_top = 8.0
+offset_right = 4622.0
+offset_bottom = 2612.0
+
+[node name="TitleLabel" type="Label" parent="GameHUD_UI/GameHUD/EndScreen"]
+layout_mode = 0
+offset_left = -282.0
+offset_top = 202.0
+offset_right = 2145.0
+offset_bottom = 729.0
+theme_override_font_sizes/font_size = 200
+text = "TITLE LABEL"
+horizontal_alignment = 1
+
+[node name="MessageLabel" type="Label" parent="GameHUD_UI/GameHUD/EndScreen"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 446.0
+offset_right = 1792.0
+offset_bottom = 973.0
+theme_override_font_sizes/font_size = 70
+text = "message"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="GameHUD_UI/GameHUD/EndScreen"]
+layout_mode = 0
+offset_left = 728.0
+offset_top = 697.0
+offset_right = 1140.0
+offset_bottom = 815.0
+theme_override_font_sizes/font_size = 50
+text = "Try Again"
+
 [node name="DayLabel" type="Label" parent="GameHUD_UI/GameHUD"]
 layout_mode = 0
 offset_left = -152.0
@@ -397,4 +433,5 @@ stream = ExtResource("26_go16v")
 autoplay = true
 parameters/looping = false
 
+[connection signal="pressed" from="GameHUD_UI/GameHUD/EndScreen/RestartButton" to="GameHUD_UI/GameHUD" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="Minigame_UI/MiniGameWindow/CloseButton" to="Y-sort/Player" method="_on_close_button_pressed"]

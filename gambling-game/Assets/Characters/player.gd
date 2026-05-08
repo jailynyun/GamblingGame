@@ -14,7 +14,7 @@ var moving_right = true
 
 func _ready() -> void:
 	GameManager.limb_lost.connect(_on_limb_lost)
-
+	
 func _physics_process(delta):
 	#Check if Entered a Casino MiniGame
 	if !can_move || GameManager.is_cutscene_playing:
