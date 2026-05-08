@@ -1,0 +1,138 @@
+[gd_scene load_steps=6 format=3 uid="uid://j2llparkct2w"]
+
+[ext_resource type="Script" uid="uid://cjxgcqllcn133" path="res://Scenes/UI/credits.gd" id="1_k0d3f"]
+[ext_resource type="FontFile" uid="uid://be7gj8v4cpoi7" path="res://Assets/Fonts/carnivalee_freakshow/Carnevalee Freakshow.ttf" id="2_1g7ho"]
+[ext_resource type="Texture2D" uid="uid://bqcv67n6gltbw" path="res://Assets/Art/UI/ButtonOff.PNG" id="3_yvj1n"]
+[ext_resource type="Texture2D" uid="uid://qwob8roxmawc" path="res://Assets/Art/UI/ButtonOn.PNG" id="4_i8gny"]
+[ext_resource type="FontFile" uid="uid://d2k5ryupklj83" path="res://Assets/Fonts/grand_casino/Grand Casino Demo.otf" id="5_kgcjs"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k0d3f")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = 6.0
+offset_right = -16.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.7177518, 0.60752076, 0.62290865, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 1910.0
+offset_bottom = 335.0
+
+[node name="Label" type="Label" parent="CenterContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1g7ho")
+theme_override_font_sizes/font_size = 150
+text = "Credits"
+
+[node name="BackButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 813.0
+offset_top = 839.0
+offset_right = 1119.0
+offset_bottom = 1002.3728
+size_flags_vertical = 4
+texture_normal = ExtResource("3_yvj1n")
+texture_hover = ExtResource("4_i8gny")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Back" type="Label" parent="BackButton"]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 7.0
+offset_right = 264.0
+offset_bottom = 139.0
+theme_override_fonts/font = ExtResource("2_1g7ho")
+theme_override_font_sizes/font_size = 110
+text = "Back"
+
+[node name="Programmers" type="Label" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 257.0
+offset_right = 456.0
+offset_bottom = 336.0
+theme_override_fonts/font = ExtResource("2_1g7ho")
+theme_override_font_sizes/font_size = 90
+text = "Programmers"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Programmers"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 117.0
+offset_right = 323.0
+offset_bottom = 486.0
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="Programmers/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_kgcjs")
+theme_override_font_sizes/font_size = 80
+text = "Hailey"
+
+[node name="Label2" type="Label" parent="Programmers/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_kgcjs")
+theme_override_font_sizes/font_size = 80
+text = "Jailyn"
+
+[node name="Label3" type="Label" parent="Programmers/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_kgcjs")
+theme_override_font_sizes/font_size = 80
+text = "Isabelle"
+
+[node name="Label4" type="Label" parent="Programmers/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_kgcjs")
+theme_override_font_sizes/font_size = 80
+text = "gianna"
+
+[node name="Artist" type="Label" parent="."]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 360.0
+offset_right = 1190.0
+offset_bottom = 462.0
+theme_override_fonts/font = ExtResource("2_1g7ho")
+theme_override_font_sizes/font_size = 90
+text = "Artists"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Artist"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 118.0
+offset_right = 332.0
+offset_bottom = 487.0
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="Artist/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_kgcjs")
+theme_override_font_sizes/font_size = 80
+text = "patrick"
+
+[node name="Label2" type="Label" parent="Artist/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_kgcjs")
+theme_override_font_sizes/font_size = 80
+text = "Jailyn"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
