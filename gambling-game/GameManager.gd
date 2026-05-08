@@ -128,6 +128,7 @@ func reset_game() -> void:
 	loan_amount = 0
 	is_game_over = false
 	is_game_won = false
+	is_cutscene_playing = false
 
 	debt_changed.emit(1, get_current_amount_due(), total_paid)
 	time_changed.emit(0.0, DAY_LENGTH, current_day)

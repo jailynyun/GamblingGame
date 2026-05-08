@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cvpqp3jyr8v16" path="res://Assets/Characters/Player.tscn" id="1_gm6j6"]
 [ext_resource type="Script" uid="uid://ba8perqd1jtlj" path="res://Scenes/MainLobby/casino.gd" id="1_wjenp"]
 [ext_resource type="PackedScene" uid="uid://cvqdfjofxjey2" path="res://Scenes/Interaction/interactable.tscn" id="3_2ihwe"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/LoanSharkCutscene.tscn" id="3_aamvy"]
+[ext_resource type="PackedScene" uid="uid://bpljjl1ivlbrf" path="res://Scenes/UI/LoanSharkCutscene.tscn" id="3_aamvy"]
 [ext_resource type="Script" uid="uid://bvxy8sqm6i2sa" path="res://Scenes/MainLobby/UI_Scripts/Minigame_UI.gd" id="3_ek0c7"]
 [ext_resource type="Script" uid="uid://0w4wdp653haa" path="res://Scenes/MainLobby/UI_Scripts/mini_game_window.gd" id="4_hileu"]
 [ext_resource type="Script" uid="uid://cb43w23gjnin6" path="res://Scenes/MainLobby/Interactable_Minigame_Scripts/BlackJackInteractable.gd" id="4_uqjeq"]

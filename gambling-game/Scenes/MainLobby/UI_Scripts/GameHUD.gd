@@ -90,7 +90,7 @@ func _on_game_over() -> void:
 	title_label.text = "GAME OVER"
 	message_label.text = "You lost too much to the loan shark."
 
-	get_tree().paused = true
+	#get_tree().paused = true
 	end_screen.process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _on_game_won() -> void:
@@ -98,7 +98,7 @@ func _on_game_won() -> void:
 	title_label.text = "YOU WIN"
 	message_label.text = "You paid back the full $10,000."
 
-	get_tree().paused = true
+	#get_tree().paused = true
 	end_screen.process_mode = Node.PROCESS_MODE_ALWAYS
 	
 
