@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b1o3m2apddd26"]
+[gd_scene load_steps=11 format=3 uid="uid://b1o3m2apddd26"]
 
 [ext_resource type="Script" uid="uid://61ce14pbwdam" path="res://Scenes/UI/main_menu.gd" id="1_nhmg3"]
 [ext_resource type="Texture2D" uid="uid://xfwqffjk68p0" path="res://Assets/Art/Characters/Main_Character.png" id="2_i2xx2"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://gv5bl5bscy66" path="res://Assets/Art/Backgrounds/Roulette.png" id="7_wqme5"]
 [ext_resource type="Texture2D" uid="uid://yegpq8xtkcax" path="res://Assets/Art/Backgrounds/Bar.png" id="8_jewm6"]
 [ext_resource type="Texture2D" uid="uid://baf86hhbsuiqv" path="res://Assets/Art/Backgrounds/MemoryGame.png" id="9_cejvf"]
+[ext_resource type="Texture2D" uid="uid://c17x3251uj3w8" path="res://Assets/Art/Characters/LoanShark.png" id="10_jewm6"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -130,6 +131,11 @@ texture = ExtResource("8_jewm6")
 position = Vector2(326.00003, 529)
 scale = Vector2(0.3814103, 0.38141033)
 texture = ExtResource("9_cejvf")
+
+[node name="LoanShark" type="Sprite2D" parent="."]
+position = Vector2(1437, 1080)
+texture = ExtResource("10_jewm6")
+flip_h = true
 
 [connection signal="pressed" from="MarginContainer/Control/CanvasLayer/PlayButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Control/CanvasLayer/CreditsButton" to="." method="_on_credits_button_pressed"]
