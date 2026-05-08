@@ -51,7 +51,7 @@ sources/0 = SubResource("TileSetAtlasSource_ykvbb")
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1611.0
 offset_bottom = 920.0
-color = Color(0.43, 0.1376, 0.1376, 1)
+color = Color(0.36, 0.1368, 0.14796005, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0

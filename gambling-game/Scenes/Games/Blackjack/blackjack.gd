@@ -422,15 +422,16 @@ func playerHasAce(cards):
 
 
 func _on_money_pressed() -> void:
-	#money -= 100
-	curr_bet += 100
-	update_ui()
+	if money >= 100:
+		money -= 100
+		curr_bet += 100
+		update_ui()
 
 func update_ui():
-	$amount.text = "$" + str(GameManager.money)
+	$amount.text = "$" + str(money)
 	$bet.text = "$" + str(curr_bet)
 	
-	$Money.disabled = round_active or GameManager.money < 100
+	$Money.disabled = round_active or money < 100
 	$Play.disabled = curr_bet <= 0
 	
 func reset_board():
@@ -497,6 +498,7 @@ func _on_play_pressed() -> void:
 	await get_tree().create_timer(0.5).timeout
 	generate_card("player")
 	updateText()
+	GameManager.money = money
 	
 	
 	# Generate dealers cards; note how first one is true as we want to show the back
