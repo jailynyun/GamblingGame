@@ -32,10 +32,10 @@
 [ext_resource type="AudioStream" uid="uid://gbheyyaehibf" path="res://Assets/Sounds/music_for_videos-casino-164235.mp3" id="26_go16v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hora8"]
-bg_color = Color(0.25442424, 0.16114599, 0.14701945, 0.8235294)
+bg_color = Color(0.13054097, 0.19392473, 0.2539979, 0.67058825)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_viis7"]
-bg_color = Color(0.28199998, 0.48, 0.21599999, 1)
+bg_color = Color(0.2715471, 0.47546053, 0.29835767, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gvffd"]
 radius = 251.24689
@@ -277,15 +277,16 @@ texture = ExtResource("19_viis7")
 
 [node name="Bar" type="Sprite2D" parent="Y-sort"]
 y_sort_enabled = true
-position = Vector2(-2700, 1033)
+position = Vector2(-2700, 1383)
 texture = ExtResource("20_xbt58")
+offset = Vector2(0, -350)
 
 [node name="Area2D" type="StaticBody2D" parent="Y-sort"]
 position = Vector2(-2700, 1033)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Y-sort/Area2D"]
 position = Vector2(54.000057, 9.000014)
-polygon = PackedVector2Array(198, -433, 468, -427, 461, 309, -661.2923, 300.23608, -655.2923, -311.76392, -662.29224, -542.7639, -334, -539, -333, -366)
+polygon = PackedVector2Array(198, -433, 468, -427, 461, 309, -661.2923, 300.23608, -655.2923, -311.76392, -662.29224, -542.7639, -334, -539, -333, -366, -344, 216, 184, 213)
 
 [node name="Sprite2D" type="Sprite2D" parent="Y-sort"]
 y_sort_enabled = true
