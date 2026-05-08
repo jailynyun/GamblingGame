@@ -16,7 +16,7 @@ var ace_found
 var MIN_X = 83.33
 var MIN_Y = 116.66
 
-var money = 1000
+var money = GameManager.money
 var curr_bet = 0
 var round_active = false
 
@@ -28,7 +28,7 @@ var card_back_image = preload("res://Assets/Art/cards/Cards_back.png")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_on_limb_lost()
-	$amount.text = "$" + str(money)
+	$amount.text = "$" + str(GameManager.money)
 	$bet.text = "$" + str(curr_bet)
 	#$Buttons/VBoxContainer/Replay.visible = false
 	$WinnerText.visible = false
@@ -299,7 +299,7 @@ func playerLose():
 	$Play.disabled = false
 	
 	#update_ui()
-	money -= curr_bet
+	GameManager.money -= curr_bet
 	reset_ui()
 	
 	$Play.text = "Play Again"
@@ -329,7 +329,7 @@ func playerWin(blackjack=false):
 	await get_tree().create_timer(0.5).timeout
 	#$Buttons/VBoxContainer/Replay.visible = true
 	
-	money += (2 * curr_bet)
+	GameManager.money += (2 * curr_bet)
 	#update_ui()
 	reset_ui()
 	
@@ -427,10 +427,10 @@ func _on_money_pressed() -> void:
 	update_ui()
 
 func update_ui():
-	$amount.text = "$" + str(money)
+	$amount.text = "$" + str(GameManager.money)
 	$bet.text = "$" + str(curr_bet)
 	
-	$Money.disabled = round_active or money < 100
+	$Money.disabled = round_active or GameManager.money < 100
 	$Play.disabled = curr_bet <= 0
 	
 func reset_board():
