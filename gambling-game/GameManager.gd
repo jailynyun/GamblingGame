@@ -56,6 +56,7 @@ func _process(delta: float) -> void:
 	if debt_round_index < DEBT_ROUNDS.size() and time_since_last_debt_check >= DEBT_CHECK_TIME:
 		time_since_last_debt_check -= DEBT_CHECK_TIME
 		_handle_debt_deadline()
+		
 
 func _input(event: InputEvent) -> void:
 	if is_game_over or is_game_won or is_cutscene_playing:
